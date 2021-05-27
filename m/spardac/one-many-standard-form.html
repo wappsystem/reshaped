@@ -1,0 +1,123 @@
+<div id=D__ID>
+<!--third html start -->
+    <div class="container mt-95 mb-3">
+      <div class="row" >
+        <!-- form container start -->
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+          <div class="row">
+            <div class="col-12">
+              <!-- form start -->
+              <form id="F__ID">
+                <h3 id=title__ID></h3>
+                <!-- participant part for all tsak forms -------------------->
+                  <div id="participant_div__ID">
+                      <div class="form-group">
+                         <fieldset class="subquestions">
+                             <label ><span class="">Participant</span>
+                                 <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant"/>
+                             </label><br>
+                             <label ><span class="">Participant ID</span>
+                                 <input type=text name="Participant_uid" class=form-control readonly />
+                             </label>
+                          </fieldset>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <fieldset class="subquestions">
+                          <h4>Normally the options are vertical. If the answer options are short/few horizontal layout is possible for wider screens. The will automatically change to vertical for narrow screens.</h4>
+                      </fieldset>
+                  </div>
+                  <div class="form-group">
+                      <h4>1. Please rate the CURRENT SEVERITY of your insomnia problem(s).</h4>
+      				          <div class="questiongroup ">
+                          <fieldset class="subquestions">
+                              <label class="radiobuttons">
+                                <input type="radio" name="Q_1" value="0" required>
+                                <span class="checkmark"></span> None</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="Q_1" value="1">
+                                <span class="checkmark"></span> Mild</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="Q_1" value="2">
+                                <span class="checkmark"></span> Moderate</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="Q_1" value="3">
+                                <span class="checkmark"></span> Severe</label><br>
+                              <label class="radiobuttons">
+                                <input type="radio" name="Q_1" value="4">
+                                <span class="checkmark"></span> Very severe</label>
+                          </fieldset>
+                        </div>
+                  </div>
+                  <div class="form-group">
+                    <h4>2. To what extent do you consider your sleep problem to INTERFERE with your daily functioning CURRENTLY?</h4>
+     				          <div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_2" value="0" required>
+                               <span class="checkmark"></span> Not at all interfering</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_2" value="1">
+                               <span class="checkmark"></span> A little</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_2" value="2">
+                               <span class="checkmark"></span> Somewhat</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_2" value="3">
+                               <span class="checkmark"></span> Much</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_2" value="4">
+                               <span class="checkmark"></span> Very much interfering</label><br>
+                         </fieldset>
+                      </div>
+     		            </div>
+                    <div class="form-group">
+                     <h4>3. How NOTICEABLE to others do you think your sleep problem is in terms of impairing the quality of your life?</h4>
+     				          <div class="questiongroup">
+                         <fieldset>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_3" value="0" required>
+                               <span class="checkmark"></span> Not at all noticeable</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_3" value="1">
+                               <span class="checkmark"></span> A little</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_3" value="2">
+                               <span class="checkmark"></span> Somewhat</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_3" value="3">
+                               <span class="checkmark"></span> Much</label><br>
+                             <label class="radiobuttons">
+                               <input type="radio" name="Q_3" value="4">
+                               <span class="checkmark"></span> Very much noticeable</label><br>
+                         </fieldset>
+                      </div>
+     		            </div>
+                    <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <script>
+  function F__ID(){
+      //-------------------------------------
+      VmInclude:'__COMPONENT__/f/form.01.js'
+      VmInclude:__CURRENT_PATH__/shared-form.js
+      //-------------------------------------
+			var load2=m.load;
+			m.load=function(){
+				load2();
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+      }
+      //-------------------------------------
+  }
+  </script>
+     <style>
+      #D__ID .mt-95 {
+          max-width:600px;
+      }
+      VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+  </style>
+</div>

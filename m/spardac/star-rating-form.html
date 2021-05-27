@@ -1,0 +1,109 @@
+<div id=D__ID>
+
+  <!--third html start -->
+  <div class="container mt-95 mb-3">
+    <div class="row">
+      <!-- form container start -->
+      <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+        <div class="row">
+          <div class="col-12">
+            <!-- form start -->
+            <form id=F__ID>
+              <h3 id=title__ID></h3>
+              <!-- participant part for all tsak forms -------------------->
+              <div id="participant_div__ID">
+                <div class="form-group">
+                  <fieldset class="subquestions">
+                    <label><span class="">Participant</span>
+                      <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                    </label><br>
+                    <label><span class="">Participant ID</span>
+                      <input type=text name="Participant_uid" class=form-control readonly />
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+              <!-- form group -->
+              <div class="form-group">
+                <fieldset class="subquestions">
+                  <h4>Star Rating can be added into any form.</h4>
+                </fieldset>
+              </div>
+              <!-- form group -->
+              <div class="form-group">
+                <fieldset class="subquestions">
+                  <h4>1. Rate your opinion about Item 1?</h4>
+                  <div class="star-rating__ID">
+                    <span class="fa fa-star-o" data-rating="1"></span>
+                    <span class="fa fa-star-o" data-rating="2"></span>
+                    <span class="fa fa-star-o" data-rating="3"></span>
+                    <span class="fa fa-star-o" data-rating="4"></span>
+                    <span class="fa fa-star-o" data-rating="5"></span>
+                    <input type="text" name="item_1" id=item_1__ID class="rating-value__ID" required value="">
+                  </div>
+                </fieldset>
+              </div>
+              <button id=submit__ID type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function F__ID() {
+      //-------------------------------------
+      VmInclude:'__COMPONENT__/f/form.01.js'
+      VmInclude:__CURRENT_PATH__/shared-form.js
+      //-------------------------------------
+			var load2=m.load;
+			m.load=function(){
+				load2();
+        $star_rating.siblings('input.rating-value__ID').val();
+        $star_rating.siblings('input.rating-value__ID').val($('#item_1__ID').val())
+        m.SetRatingStar();
+        $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+      }
+      //-------------------------------------
+      m.SetRatingStar = function () {
+        return $star_rating.each(function () {
+          $('#item_1__ID').val($star_rating.siblings('input.rating-value__ID').val())
+          if (parseInt($star_rating.siblings('input.rating-value__ID').val()) >= parseInt($(this).data('rating'))) {
+            return $(this).removeClass('fa-star-o').addClass('fa-star');
+          } else {
+            return $(this).removeClass('fa-star').addClass('fa-star-o');
+          }
+        });
+      };
+      //-------------------------------------
+      var $star_rating = $('.star-rating__ID .fa');
+      //-------------------------------------
+      $star_rating.on('click', function () {
+        $star_rating.siblings('input.rating-value__ID').val($(this).data('rating'));
+        $('#item_1__ID').prop('type', 'text')
+        return m.SetRatingStar();
+      });
+      //-------------------------------------
+    }
+  </script>
+  <style>
+    #item_1__ID {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .star-rating__ID {
+      line-height: 32px;
+      font-size: 2.0em;
+    }
+
+    .star-rating__ID .fa-star {
+      color: orange;
+    }
+        #D__ID .mt-95 {
+        max-width:600px;
+    }
+    VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+  </style>
+</div>

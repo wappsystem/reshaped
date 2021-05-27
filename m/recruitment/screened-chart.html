@@ -1,0 +1,59 @@
+<div id=D__ID>
+	VmInclude:__CURRENT_PATH__/chart.01.html
+	<section id=chart_container__ID>
+		<div id=chart_div__ID></div>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+            VmInclude:__CURRENT_PATH__/chart.01.js
+    		//-------------------------------------
+			m.fields="Date,Screening_target";
+			m.sort={'I1':1};
+			m.data_process=function(){
+				if(m.google==0) return;
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(draw_chart);
+			}
+			//-------------------------------------
+			var draw_chart=function(){
+				//----------------------------------
+				var ds=[]
+				ds.push(['Date','Screening target','Screened'])
+				var fd=m.fields.split(',')
+				for(var i=0;i<recruitment_rec.length;i++){
+					var row=[];
+					for(var j=0;j<3;j++){
+						//console.log(i+" - "+j+" - "+m.records[i].Data[fd[j]])
+						if(j==0) row.push((recruitment_rec[i].Data[fd[j]]));
+						else if(j==1) row.push(parseFloat(recruitment_rec[i].Data[fd[j]]));
+						else {
+							var count=0;
+							for(var k=0;k<participant_rec.length;k++){
+								//console.log( recruitment_rec[i].Data[fd[0]] +" - "+(participant_rec[k].Submit_date).substring(0,10))
+								if( recruitment_rec[i].Data[fd[0]] > (participant_rec[k].Submit_date).substring(0,10)) count++;
+								else break;
+							}
+							row.push(count)
+						}
+					}
+					ds.push(row)
+				}
+				//----------------------------------
+				var data = google.visualization.arrayToDataTable(ds);
+				var options = {title: 'Screened'}; 
+				var chart = new google.visualization.ColumnChart(document.getElementById('chart_div__ID'));
+				chart.draw(data, options);				
+			}
+			//-------------------------------------
+    	}
+		//-------------------------------------
+    </script>
+    <style>
+		VmInclude:__CURRENT_PATH__/chart.01.css
+		#chart_div__ID{
+			height:500px;
+			max-width:700px;
+		}
+    </style>
+</div>

@@ -1,0 +1,58 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id=title__ID ></h3>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Report Date</span>
+                                            <input class="form-control" type="date" name="Date" required>
+                                        </label>
+                                    </label><br>
+                                    <label><span class="">Screening target</span>
+                                        <input class="form-control" type="number" name="Screening_target" required>
+                                    </label>
+                                    <label><span class="">Enrollment target</span>
+                                        <input class="form-control" type="number" name="Enrollment_Target" required>
+                                    </label>
+                                </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID(){
+            //-------------------------------------
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            //-------------------------------------
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                index.I1=data.Date;
+                return true;
+            }
+           //-------------------------------------
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+        max-width:800px;
+    }
+        VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+    </style>
+</div>

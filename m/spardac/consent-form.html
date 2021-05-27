@@ -1,0 +1,145 @@
+<div id=D__ID>
+  <!--third html start -->
+  <div class="container mt-95 mb-3">
+    <div class="row">
+      <!-- form container start -->
+      <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+        <div class="row">
+          <div class="col-12">
+            <!-- form start -->
+            <form id="F__ID">
+              <h3 id=title__ID></h3>
+              <!-- participant part for all tsak forms -------------------->
+              <!--<div class="form-group">
+                <fieldset class="subquestions">
+                  <label><span class="">Participant</span>
+                    <input type=text name="Participant" class=form-control id=Participant__ID data-id="Participant" />
+                  </label><br>
+                  <label><span class="">Participant ID</span>
+                    <input type=text name="Participant_uid" class=form-control readonly />
+                  </label>
+                </fieldset>
+              </div>-->
+              <!-- form group -->
+              <div class="form-group">
+                <h4>The Impact of Sleep Disturbance on Sleep Dependent Emotional Memory Consolidation: An Investigation of Late-Life Depression (Protocol Number:# )
+                  <br><br>
+                Principal Investigator: Dr Angela D’Rozario
+                <br><br>
+                In giving my consent I state that:
+                </h4>
+                <div class="questiongroup">
+                  <fieldset>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_1">
+                      <span class="check_checkmark"></span> I understand the purpose of the study, what I will be asked to do, and any risks/benefits involved. </label><br>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_2">
+                      <span class="check_checkmark"></span> I have read the Participant Information Statement and have been able to discuss my involvement in the study with the researchers if I wished to do so. </label><br>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_3">
+                      <span class="check_checkmark"></span> The researchers have answered any questions that I had about the study and I am happy with the answers.</label><br>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_4">
+                      <span class="check_checkmark"></span> I understand that being in this study is completely voluntary and I do not have to take part. My decision whether to be in the study will not affect my relationship with the researchers or anyone else at the Woolcock Institute of Medical Research or the University of Sydney now or in the future.</label><br>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_5">
+                      <span class="check_checkmark"></span> I understand that I can withdraw from the study at any time.</label><br>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand that personal information about me that is collected over the course of this project will be stored securely and will only be used for purposes that I have agreed to.
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand my referring physician will provide a relevant medical history to researchers, including any sleep complaints.
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand my sleep data generated from my overnight sleep studies at the Woolcock Institute will be shared with the researchers of this study. 
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand that my clinical data from the Healthy Brain Ageing clinic will be shared with the researchers of this study, if relevant.
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand that information about me will only be told to others with my permission, except as required by law.
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand that the results of this study may be published, and that publications will not contain my name or any identifiable information about me. 
+                    </label>
+                    <label class="checkboxes">
+                      <input type="checkbox" name="option_6">
+                      <span class="check_checkmark"></span> I understand that as a part of the routine procedure I will be monitored by video during the sleep study.
+                    </label>
+                  </fieldset>
+              </div>
+              <br><br>
+              <div class="form-group">
+              <h4>Pleases select optional components:
+              </h4>
+              <div class="questiongroup">
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> I consent to being contacted about future studies.
+                </label>
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> I consent to the researchers sharing my de-identified data with other researchers. 
+                </label>
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> I would like to receive feedback about the overall results of this study.
+                </label><br>
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> I would like to receive a copy of my sleep study report.
+                </label>
+              </div>
+              </div>
+              <br><br>
+              <div class="form-group">
+              <h4>Please select:
+              </h4>
+              <div class="questiongroup">
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> Yes, I agree to participate in this research study if I am deemed eligible. 
+                </label><br>
+                <label class="checkboxes">
+                  <input type="checkbox" name="option_6">
+                  <span class="check_checkmark"></span> No, I do not wish to take part in this or future research. 
+                </label>
+              </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+      function F__ID(){
+          //-------------------------------------
+          VmInclude:'__COMPONENT__/f/form.01.js'
+          VmInclude:__CURRENT_PATH__/shared-form.js
+          //-------------------------------------
+          var load2=m.load;
+			    m.load=function(){
+				    load2();
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+          }
+          //-------------------------------------
+      }
+  </script>
+  <style>
+      #D__ID .mt-95 {
+      max-width:600px;
+  }
+    VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+  </style>
+</div>
