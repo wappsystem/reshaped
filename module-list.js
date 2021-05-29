@@ -15,8 +15,12 @@
                                                 participant_id:{field1:"Subject_ID",field2:"Subject_Initials"},
                                                 participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB"
                                             },
-        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"reshaped-participant"},
+       "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"reshaped-participant"},
 
+       "participant-progress-data":   		{url:"$H/m/participant/progress-data.html",Table:"reshaped-participant", 
+                                                start_date:"start_date_reshaped",
+                                            },
+        "start_date_reshaped":              {url:"$H/m/library/date-form.html",Table:"progress-reshaped",task_name:"Start Date"},
         "online-questionnaire-setup-reshaped": {url:"$H/m/oq-setup.html",Table:"reshaped-participant"},
         "online-questionnaire-app-reshaped":   {url:"$H/oq.html"},
 

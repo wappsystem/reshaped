@@ -279,3 +279,13 @@
 #D__ID .labelright {
     margin-left:-15px;
 }
+@media (min-width: 576px) {
+    #D__ID  fieldset.subquestions br { display: none; }
+    #D__ID label {
+        margin-left:0;
+    }
+    #D__ID .labelleft {
+        margin-left:0;
+    }
+}
+
