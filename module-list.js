@@ -13,7 +13,8 @@
                                                 questionnaire_setup:"online-questionnaire-setup-reshaped",
                                                 online_questionnaire:"online-questionnaire-app-reshaped",
                                                 participant_id:{field1:"Subject_ID",field2:"Subject_Initials"},
-                                                participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB"
+                                                participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB",
+                                                status_table:"status-reshped"
                                             },
        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"reshaped-participant"},
 
@@ -105,6 +106,9 @@
         "source-doc-ssn-form-reshaped":                    {url:"$H/m/library/upload-file-form.html",Table:"source-doc-ssn-reshaped",task_name:"Sleep Study - Source Documentation"},
         "geoscan-ssn-data-reshaped":                    {url:"$H/m/library/upload-file-data.html",Table:"geoscan-ssn-reshaped",form_module:"geoscan-ssn-form-reshaped",task_name:"Sleep Study - Geoscan File upload"},
         "geoscan-ssn-form-reshaped":                    {url:"$H/m/library/upload-file-form.html",Table:"geoscan-ssn-reshaped",task_name:"Sleep Study - Geoscan File upload"},
+        
+        //"status-data":                    {url:"$H/m/participant/status-data.html",Table:"participant-status-reshaped",form_module:"status-form",task_name:"---", router:1},
+        //"status-form":                    {url:"$H/m/participant/status-form.html",Table:"participant-status-reshaped",task_name:"---"},
     }
     for(p in modules){
         $vm.module_list[p]=modules[p];
