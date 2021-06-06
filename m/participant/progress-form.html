@@ -1,0 +1,85 @@
+<div id=D__ID>
+	<div class="container mt-95 mb-3">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id=F__ID>
+							<h3>Progress</h3>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 row_participant__ID">
+									<label class=''><span class=''>Participant ID</span>
+										<input type=text class=form-control id=record__ID readonly>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6">
+									<label class=''><span class=''>Subject ID</span>
+										<input type=text class=form-control name=Subject_ID readonly>
+									</label>
+								</div>
+							</div>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 ">
+									<label class=''><span class=''>Screening Number</span>
+										<input type=text class=form-control name=Screening_Number readonly>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6">
+									<label class=''><span class=''>Subject Initials</span>
+										<input type=text class=form-control name=Subject_Initials readonly>
+									</label>
+								</div>
+							</div>
+                            <hr>
+							<div class='row px-4'>
+								<div class="col-sm-12 col-lg-6">
+									<label class=''><span class=''>Start Date</span>
+										<input type=date class=form-control name=Start_Date>
+									</label>
+								</div>
+							</div>
+                            <div class="col-sm-12 col-lg-6">
+                            </div>
+                        <div class='row px-4'>
+								<div class="col-sm-12 col-lg-6 ">
+									<label class=''><span class=''>Last Questionnaire</span>
+										<input type=text class=form-control name=Last_Questionnaire readonly>
+									</label>
+								</div>
+								<div class="col-sm-12 col-lg-6">
+									<label class=''><span class=''>Last Reminder Date</span>
+										<input type=date class=form-control name=Last_Reminder_Date readonly>
+									</label>
+								</div>
+							</div>
+							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			VmInclude: __COMPONENT__/f/form.01.js
+			//-------------------------------------
+			var load = m.load;
+			m.load = function () {
+				load();
+                $('.row_participant__ID').show()
+                $('#record__ID').val(m.input.record.UID)
+			}
+			//-------------------------------------
+		}
+	</script>
+	<style>
+		#D__ID .mt-95 {
+			max-width: 800px;
+		}
+
+		VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+	</style>
+</div>

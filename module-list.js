@@ -17,12 +17,11 @@
                                             },
        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"reshaped-participant"},
 
-       "participant-progress-data":   		{url:"$H/m/participant/progress-data.html",Table:"reshaped-participant", 
-                                                start_date:"start_date_reshaped",
-                                            },
-        "start_date_reshaped":              {url:"$H/m/library/date-form.html",Table:"progress-reshaped",task_name:"Start Date"},
         "online-questionnaire-setup-reshaped": {url:"$H/m/oq-setup.html",Table:"reshaped-participant"},
         "online-questionnaire-app-reshaped":   {url:"$H/oq.html"},
+
+        "progress-reshaped-data":   		{url:"$H/m/participant/progress-data.html",Table:"reshaped-participant",form_module:"progress-reshaped-form"},
+        "progress-reshaped-form":              {url:"$H/m/participant/progress-form.html",Table:"reshaped-participant",task_name:"Progress"},
 
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"reshaped-notes",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"reshaped-notes"},
@@ -114,6 +113,7 @@
     //if(window.location.toString().indexOf('tb=demo')!=-1){
         for(p in $vm.module_list){
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
+            $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
         }
     //}
 
