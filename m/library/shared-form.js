@@ -2,9 +2,9 @@
 var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.Data.Subject_ID+' '+record.Data.Subject_Initials; else return record.UID;}
 //-------------------------------------
 
-var status_table=$vm.module_list['participant-data'].status_table;
+var progress_table=$vm.module_list['progress-reshaped-data'].Table2;
 //-------------------------------------
-
+console.log('progress_table: '+progress_table)
 
 //auto select particpant
 var part_id1=$vm.module_list['participant-data'].participant_id.field1;
@@ -90,12 +90,12 @@ m.after_insert=function(data0,res){
     var Participant_uid=data0.Participant_uid;
     var data={}
     var index={}
-    $vm.request({api:m.api,cmd:"find-s",table:status_table,options:m.options},function(res){
+    $vm.request({api:m.api,cmd:"find-s",table:progress_table,options:m.options},function(res){
         if(res.result.length==1){
             data=res.result[0].Data;
             data[m.Table]=1;
             var rid=res.result[0]._id;
-            $vm.request({api:m.api,cmd:"update",id:rid,table:status_table,data:data,index:index,options:m.options},function(res){
+            $vm.request({api:m.api,cmd:"update",id:rid,table:progress_table,data:data,index:index,options:m.options},function(res){
                 console.log(res);
                 $vm.refresh=1;
                 window.history.go(-1);       
@@ -104,7 +104,7 @@ m.after_insert=function(data0,res){
         else{
             data.Participant_uid=Participant_uid;
             data[m.Table]=1;
-            $vm.request({api:m.api,cmd:"insert",table:status_table,data:data,index:index,options:m.options},function(res){
+            $vm.request({api:m.api,cmd:"insert",table:progress_table,data:data,index:index,options:m.options},function(res){
                 console.log(res);
                 $vm.refresh=1;
                 window.history.go(-1);       

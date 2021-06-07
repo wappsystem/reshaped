@@ -14,15 +14,14 @@
                                                 online_questionnaire:"online-questionnaire-app-reshaped",
                                                 participant_id:{field1:"Subject_ID",field2:"Subject_Initials"},
                                                 participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB",
-                                                status_table:"status-reshped"
                                             },
        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"reshaped-participant"},
 
         "online-questionnaire-setup-reshaped": {url:"$H/m/oq-setup.html",Table:"reshaped-participant"},
         "online-questionnaire-app-reshaped":   {url:"$H/oq.html"},
 
-        "progress-reshaped-data":   		{url:"$H/m/participant/progress-data.html",Table:"reshaped-participant",form_module:"progress-reshaped-form"},
-        "progress-reshaped-form":              {url:"$H/m/participant/progress-form.html",Table:"reshaped-participant",task_name:"Progress"},
+        "progress-reshaped-data":   		{url:"$H/m/participant/progress-data.html",Table:"reshaped-participant",Table2:"progress-reshaped",form_module:"progress-reshaped-form"},
+        "progress-reshaped-form":              {url:"$H/m/participant/progress-form.html",Table:"reshaped-participant",Table2:"progress-reshaped",task_name:"Progress"},
 
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"reshaped-notes",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"reshaped-notes"},
