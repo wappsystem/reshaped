@@ -80,7 +80,7 @@ m.before_submit=function(data){
    data.sysStatus=$vm.status_of_data(data);
 };
 //-------------------------------------
-m.after_insert=function(data0,res){
+/*m.after_insert=function(data0,res){
     if($vm.online_questionnaire!=1) {
         console.log("Go back")
         $vm.refresh=1;
@@ -90,10 +90,14 @@ m.after_insert=function(data0,res){
     var Participant_uid=data0.Participant_uid;
     var data={}
     var index={}
+    var nd=new Date();
+    var date_time=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2)+' '+$vm.pad(nd.getHours(),2)+':' +$vm.pad(nd.getMinutes(),2)+':'+$vm.pad(nd.getSeconds(),2);
+    var q_table=(m.Table).replace(/-/g,'_');
+
     $vm.request({api:m.api,cmd:"find-s",table:progress_table,options:m.options},function(res){
         if(res.result.length==1){
             data=res.result[0].Data;
-            data[m.Table]=1;
+            data[q_table]=date_time;
             var rid=res.result[0]._id;
             $vm.request({api:m.api,cmd:"update",id:rid,table:progress_table,data:data,index:index,options:m.options},function(res){
                 console.log(res);
@@ -103,7 +107,7 @@ m.after_insert=function(data0,res){
         }
         else{
             data.Participant_uid=Participant_uid;
-            data[m.Table]=1;
+            data[q_table]=date_time;
             $vm.request({api:m.api,cmd:"insert",table:progress_table,data:data,index:index,options:m.options},function(res){
                 console.log(res);
                 $vm.refresh=1;
@@ -111,5 +115,6 @@ m.after_insert=function(data0,res){
             })
         }
     })
+    */
 }
 //-------------------------------------
