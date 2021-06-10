@@ -1,11 +1,6 @@
 //-------------------------------------
 var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.Data.Subject_ID+' '+record.Data.Subject_Initials; else return record.UID;}
 //-------------------------------------
-
-var progress_table=$vm.module_list['progress-reshaped-data'].Table2;
-//-------------------------------------
-console.log('progress_table: '+progress_table)
-
 //auto select particpant
 var part_id1=$vm.module_list['participant-data'].participant_id.field1;
 var part_id2=$vm.module_list['participant-data'].participant_id.field2;
@@ -115,6 +110,6 @@ m.before_submit=function(data){
             })
         }
     })
-    */
 }
+*/
 //-------------------------------------
