@@ -390,11 +390,11 @@
                                     <h4>7. During the past 7 days, have you done any light housework, such as dusting or washing dishes?</h4>
                                     <fieldset class="">
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_7" value="1" required>
+                                            <input type="radio" name="pase_7" value="0" required>
                                             <span class="checkmark"></span> No
                                         </label><br>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_7" value="2" >
+                                            <input type="radio" name="pase_7" value="1" >
                                             <span class="checkmark"></span> Yes
                                         </label><br>
                                     </fieldset>
@@ -405,11 +405,11 @@
                                     <h4>8. During the past 7 days, have you done any heavy housework or chores, such as vacuuming, scrubbing floors, washing windows, or carrying wood?</h4>
                                     <fieldset class="">
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_8" value="1" required>
+                                            <input type="radio" name="pase_8" value="0" required>
                                             <span class="checkmark"></span> No
                                         </label><br>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_8" value="2" >
+                                            <input type="radio" name="pase_8" value="1" >
                                             <span class="checkmark"></span> Yes
                                         </label><br>
                                     </fieldset>
@@ -423,11 +423,11 @@
                                             <h6>a. Home repairs like painting, wallpapering, electrical work, etc.</h6>
                                             <fieldset class="">
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9a" value="1" required>
+                                                    <input type="radio" name="pase_9a" value="0" required>
                                                     <span class="checkmark"></span> No
                                                 </label><br>
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9a" value="2" >
+                                                    <input type="radio" name="pase_9a" value="1" >
                                                     <span class="checkmark"></span> Yes
                                                 </label><br>
                                             </fieldset>
@@ -438,11 +438,11 @@
                                             <h6> b. Lawn work or yard care, including snow or leaf removal, wood chopping, etc.</h6>
                                             <fieldset class="">
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9b" value="1" required>
+                                                    <input type="radio" name="pase_9b" value="0" required>
                                                     <span class="checkmark"></span> No
                                                 </label><br>
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9b" value="2" >
+                                                    <input type="radio" name="pase_9b" value="1" >
                                                     <span class="checkmark"></span> Yes
                                                 </label><br>
                                             </fieldset>
@@ -453,11 +453,11 @@
                                             <h6>c. Outdoor gardening</h6>
                                             <fieldset class="">
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9c" value="1" required>
+                                                    <input type="radio" name="pase_9c" value="0" required>
                                                     <span class="checkmark"></span> No
                                                 </label><br>
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9c" value="2" >
+                                                    <input type="radio" name="pase_9c" value="1" >
                                                     <span class="checkmark"></span> Yes
                                                 </label><br>
                                             </fieldset>
@@ -468,11 +468,11 @@
                                             <h6>d. Caring for another person, such as children, dependent spouse, or another adult</h6>
                                             <fieldset class="">
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9d" value="1" required>
+                                                    <input type="radio" name="pase_9d" value="0" required>
                                                     <span class="checkmark"></span> No
                                                 </label><br>
                                                 <label class="radiobuttons">
-                                                    <input type="radio" name="pase_9d" value="2" >
+                                                    <input type="radio" name="pase_9d" value="1" >
                                                     <span class="checkmark"></span> Yes
                                                 </label><br>
                                             </fieldset>
@@ -490,11 +490,11 @@
                                     <h4>10. During the past 7 days, did you work for pay or as a volunteer?</h4>
                                     <fieldset class="">
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_10" value="1" required>
+                                            <input type="radio" name="pase_10" value="0" required>
                                             <span class="checkmark"></span> No
                                         </label><br>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="pase_10" value="2" >
+                                            <input type="radio" name="pase_10" value="1" >
                                             <span class="checkmark"></span> Yes
                                         </label><br>
                                     </fieldset>
@@ -697,7 +697,7 @@
                 }
             })
             $("input[name='pase_10']").change(function(){
-                if($("input[name='pase_10']:checked").val()!='1'){
+                if($("input[name='pase_10']:checked").val()!='0'){
                     $('#q10__ID').show();
                     $("input[name='pase_10a']").prop('required', true);
                     $("input[name='pase_10b']").prop('required', true);
@@ -711,7 +711,118 @@
             //-------------------------------------
             var before_submit=m.before_submit;
             m.before_submit=function(data,index){
-            data.pase="??"
+                var pa2=0
+                if(data.pase_2=='0') pa2=0;
+                if(data.pase_2=='1'){
+                    if(data.pase_2a=='0') pa2=20*0.11;
+                    else if(data.pase_2a=='1') pa2=20*0.32;
+                    else if(data.pase_2a=='2') pa2=20*0.64;
+                    else if(data.pase_2a=='3') pa2=20*1.07;
+                }
+                if(data.pase_2=='2'){
+                    if(data.pase_2a=='0') pa2=20*0.25;
+                    else if(data.pase_2a=='1') pa2=20*0.75;
+                    else if(data.pase_2a=='2') pa2=20*1.50;
+                    else if(data.pase_2a=='3') pa2=20*2.50;
+                }
+                if(data.pase_2=='3'){
+                    if(data.pase_2a=='0') pa2=20*0.43;
+                    else if(data.pase_2a=='1') pa2=20*1.29;
+                    else if(data.pase_2a=='2') pa2=20*2.57;
+                    else if(data.pase_2a=='3') pa2=20*4.29;
+                }
+                var pa3=0;  
+                if(data.pase_3=='0') pa3=0;
+                if(data.pase_3=='1'){
+                    if(data.pase_3b=='0') pa3=21*0.11;
+                    else if(data.pase_3b=='1') pa3=21*0.32;
+                    else if(data.pase_3b=='2') pa3=21*0.64;
+                    else if(data.pase_3b=='3') pa3=21*1.07;
+                }
+                if(data.pase_3=='2'){
+                    if(data.pase_3b=='0') pa3=21*0.25;
+                    else if(data.pase_3b=='1') pa3=21*0.75;
+                    else if(data.pase_3b=='2') pa3=21*1.50;
+                    else if(data.pase_3b=='3') pa3=21*2.50;
+                }
+                if(data.pase_3=='3'){
+                    if(data.pase_3b=='0') pa3=21*0.43;
+                    else if(data.pase_3b=='1') pa3=21*1.29;
+                    else if(data.pase_3b=='2') pa3=21*2.57;
+                    else if(data.pase_3b=='3') pa3=21*4.29;
+                }
+                var pa4=0;  
+                if(data.pase_4=='0') pa4=0;
+                if(data.pase_4=='1'){
+                    if(data.pase_4b=='0') pa4=23*0.11;
+                    else if(data.pase_4b=='1') pa4=23*0.32;
+                    else if(data.pase_4b=='2') pa4=23*0.64;
+                    else if(data.pase_4b=='3') pa4=23*1.07;
+                }
+                if(data.pase_4=='2'){
+                    if(data.pase_4b=='0') pa4=23*0.25;
+                    else if(data.pase_4b=='1') pa4=23*0.75;
+                    else if(data.pase_4b=='2') pa4=23*1.50;
+                    else if(data.pase_4b=='3') pa4=23*2.50;
+                }
+                if(data.pase_4=='3'){
+                    if(data.pase_4b=='0') pa4=23*0.43;
+                    else if(data.pase_4b=='1') pa4=23*1.29;
+                    else if(data.pase_4b=='2') pa4=23*2.57;
+                    else if(data.pase_4b=='3') pa4=23*4.29;
+                }
+                var pa5=0;  
+                if(data.pase_5=='0') pa5=0;
+                if(data.pase_5=='1'){
+                    if(data.pase_5b=='0') pa5=23*0.11;
+                    else if(data.pase_5b=='1') pa5=23*0.32;
+                    else if(data.pase_5b=='2') pa5=23*0.64;
+                    else if(data.pase_5b=='3') pa5=23*1.07;
+                }
+                if(data.pase_5=='2'){
+                    if(data.pase_5b=='0') pa5=23*0.25;
+                    else if(data.pase_5b=='1') pa5=23*0.75;
+                    else if(data.pase_5b=='2') pa5=23*1.50;
+                    else if(data.pase_5b=='3') pa5=23*2.50;
+                }
+                if(data.pase_5=='3'){
+                    if(data.pase_5b=='0') pa5=23*0.43;
+                    else if(data.pase_5b=='1') pa5=23*1.29;
+                    else if(data.pase_5b=='2') pa5=23*2.57;
+                    else if(data.pase_5b=='3') pa5=23*4.29;
+                }
+                var pa6=0;  
+                if(data.pase_6=='0') pa6=0;
+                if(data.pase_6=='1'){
+                    if(data.pase_6b=='0') pa6=30*0.11;
+                    else if(data.pase_6b=='1') pa6=30*0.32;
+                    else if(data.pase_6b=='2') pa6=30*0.64;
+                    else if(data.pase_6b=='3') pa6=30*1.07;
+                }
+                if(data.pase_6=='2'){
+                    if(data.pase_6b=='0') pa6=30*0.25;
+                    else if(data.pase_6b=='1') pa6=30*0.75;
+                    else if(data.pase_6b=='2') pa6=30*1.50;
+                    else if(data.pase_6b=='3') pa6=30*2.50;
+                }
+                if(data.pase_6=='3'){
+                    if(data.pase_6b=='0') pa6=30*0.43;
+                    else if(data.pase_6b=='1') pa6=30*1.29;
+                    else if(data.pase_6b=='2') pa6=30*2.57;
+                    else if(data.pase_6b=='3') pa6=30*4.29;
+                }
+                var pa7=parseFloat(data.pase_7)*25;
+                var pa8=parseFloat(data.pase_8)*25;
+                var pa9a=parseFloat(data.pase_9a)*30;
+                var pa9b=parseFloat(data.pase_9b)*36;
+                var pa9c=parseFloat(data.pase_9c)*20;
+                var pa9d=parseFloat(data.pase_9d)*35;
+                var pa10=0;
+                if(data.pase_10=='1' && data.pase_10b!='0'){
+                    pa10=parseFloat(data.pase_10a)/7*21;
+                }
+                console.log(pa2+' - '+pa3+' - '+pa4+' - '+pa5+' - '+pa6+' - '+pa7+' - '+pa8+' - '+pa9a+' - '+pa9b+' - '+pa9c+' - '+pa9d+' - '+pa10)
+                data.pase=(pa2+pa3+pa4+pa5+pa6+pa7+pa8+pa9a+pa9b+pa9c+pa9d+pa10).toFixed(2);
                 return before_submit(data,index);;
             }
         }
