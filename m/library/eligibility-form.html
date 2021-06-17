@@ -1,0 +1,148 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id="title__ID"></h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Did the participant screen positive to sleep apnoea (ODI ≥10)?</span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="wristox_inclusion" value="0" >
+                                          <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="wristox_inclusion" value="1">
+                                          <span class="checkmark"></span> Yes</label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">MMSE ≥ 24?</span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="pre_scre_mmse_inclusion" value="0" >
+                                          <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="pre_scre_mmse_inclusion" value="1">
+                                          <span class="checkmark"></span> Yes</label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4>if ODI ≥10 and MMSE  ≥24 participant is eligible </h4>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Is the participant eligible? </span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="pre_screening_eligibility" value="0" >
+                                          <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons"><br>
+                                          <input type="radio" name="pre_screening_eligibility" value="1">
+                                          <span class="checkmark"></span> Yes</label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            <div class="form-group">
+                                <div class="pb-3">
+                                    <label><span>Set Status</span></label>
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="_status" value="#FF0000">
+                                            <span class="checkmark"
+                                                style="background-color:#FF0000"></span>&nbsp;</label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="_status" value="#FFCC00">
+                                            <span class="checkmark"
+                                                style="background-color:#FFCC00"></span>&nbsp;</label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="_status" value="#00FF00">
+                                            <span class="checkmark"
+                                                style="background-color:#00FF00"></span>Manually&nbsp;&nbsp;</label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="_status" value="" checked>
+                                            <span class="checkmark"
+                                                style="background-color:#C9C9C9"></span>Automatically</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude: __CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var mmse_total;
+            $("#calc__ID").on('click', function(){
+                mmse_total=0
+                if($("input[name='pre_scre_mmse_1_day']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_date']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_month']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_season']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_year']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_floor']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_suburb']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_town']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_state']:checked").val()=='on') mmse_total++;
+                if($("input[name='pre_scre_mmse_1_country']:checked").val()=='on') mmse_total++;
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_2']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_3']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_4']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_1_a']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_1_b']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_2']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_3']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_4']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_5']").val())
+                mmse_total+=parseInt($("select[name='pre_scre_mmse_6']").val())
+                $("input[name='pre_scre_mmese_total']").val(parseInt(mmse_total))
+                if(mmse_total>23) {
+                    $("#include_yes__ID").prop('checked',true);
+                    $("#include_no__ID").prop('checked',false);
+                }
+                else{
+                    $("#include_yes__ID").prop('checked',false);
+                    $("#include_no__ID").prop('checked',true);
+                }
+
+            });
+            //-------------------------------------
+
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 800px;
+        }
+
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>
