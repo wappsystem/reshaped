@@ -55,8 +55,8 @@
         "medical-history-s-form-reshaped":	    {url:"$H/m/library/medical-history-form.html",Table:"medical-history-s-reshaped",task_name:"Screening - Medical History Questionnaire"},
         "biomedical-measurements-s-data-reshaped":{url:"$H/m/library/biomedical-measurements-data.html",Table:"biomedical-measurements-s-reshaped",form_module:"biomedical-measurements-s-form-reshaped",task_name:"Screening - Biomedical Measurements"},
         "biomedical-measurements-s-form-reshaped":{url:"$H/m/library/biomedical-measurements-form.html",Table:"biomedical-measurements-s-reshaped",task_name:"Screening - Biomedical Measurements"},
-        "in-ex-s-data-reshaped":	            {url:"$H/m/library/in-ex-data.html",Table:"in-ex-s-reshaped",form_module:"in-ex-s-form-reshaped",task_name:"Screening - Inclusion/ Exclusion Criteria"},
-        "in-ex-s-form-reshaped":	            {url:"$H/m/library/in-ex-form.html",Table:"in-ex-s-reshaped",task_name:"Screening - Inclusion/ Exclusion Criteria"},
+        "in-ex-s-data-reshaped":	            {url:"$H/m/library/inclusion-exclusion-data.html",Table:"in-ex-s-reshaped",form_module:"in-ex-s-form-reshaped",task_name:"Screening - Inclusion/ Exclusion Criteria"},
+        "in-ex-s-form-reshaped":	            {url:"$H/m/library/inclusion-exclusion-form.html",Table:"in-ex-s-reshaped",task_name:"Screening - Inclusion/ Exclusion Criteria"},
 
         "date-bl-data-reshaped":                {url:"$H/m/library/date-data.html",Table:"date-bl-reshaped",form_module:"date-bl-form-reshaped",task_name:"Baseline - Visit Date"},
         "date-bl-form-reshaped":                {url:"$H/m/library/date-form.html",Table:"date-bl-reshaped",task_name:"Baseline - Visit Date"},
