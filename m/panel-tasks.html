@@ -1,5 +1,15 @@
-
 <div class='nav__ID'>
+    <div class=ul-show>
+        <span id=unscheduled__ID style="cursor:pointer">Unscheduled forms</span><br>
+        <span id=prescreening__ID style="cursor:pointer">Pre-Screening</span><br>
+        <span id=screening__ID style="cursor:pointer">Screening</span><br>
+        <span id=baseline__ID style="cursor:pointer">Baseline</span><br>
+        <span id=6months__ID style="cursor:pointer">6 Month</span><br>
+        <span id=24months__ID style="cursor:pointer">24 Month</span><br>
+        <span id=treatment__ID style="cursor:pointer">Treatment Visit</span><br>
+    </div>
+</div>
+<div class='nav__ID' id=unscheduled_show__ID style='display:none'>
     <span>Unscheduled forms</span>
     <ul>
         <li><a href=?/adverse-event-data-reshaped>Adverse Events</a></li>
@@ -7,103 +17,221 @@
         <li><a href=?/file-notes-data-reshaped>File Notes</a></li>
         <p class="small font-italic text-muted mt-1"></p>
     </ul>
+</div>
+<div class='nav__ID' id=prescreening_show__ID style='display:none'>
     <span>Pre-Screening </span>
     <ul>
         <li><a href=?/date-ps-data-reshaped>Visit Date</a></li>
         <p class="small font-italic text-muted mt-1"></p>
         <span>Participant Consent </span>
         <ul>
-            <li><a href=?/consent-ps-data-reshaped>Consent </a></li>
+            <li><a href=?/consent-ps-data-reshaped>Inform Consent </a></li>
             <p class="small font-italic text-muted mt-1"></p>
         </ul>
-        <span>Inclusion/ Exclusion Criteria </span>
-        <ul>    
-                <li><a href=?/wristox-ps-data-reshaped>WristOx<sub>2</sub></a></li>
-                <li><a href=?/mmse-ps-data-reshaped>MMSE</a></li>
-                <li><a href=?/eligibility-ps-data-reshaped>Eligibility</a></li>
-                <p class="small font-italic text-muted mt-1"></p>
+        <span>Eligibility</span>
+        <ul>
+            <li><a href=?/demographics-ps-data-reshaped>Demographics</a></li>
+            <li><a href=?/wristox-ps-data-reshaped>WristOx<sub>2</sub></a></li>
+            <!--<li><a href=?/mmse-ps-data-reshaped>MMSE</a></li>-->
+            <li><a href=?/eligibility-ps-data-reshaped>Eligibility</a></li>
+            <p class="small font-italic text-muted mt-1"></p>
         </ul>
     </ul>
+</div>
+<div class='nav__ID' id=screening_show__ID style='display:none'>
     <span>Screening</span>
     <ul>
         <li><a href=?/date-s-data-reshaped>Visit Date</a></li>
         <span>Participant Consent </span>
         <ul>
-            <li><a href=?/consent-s-data-reshaped>Consent</a></li>
+            <li><a href=?/consent-s-data-reshaped>Inform Consent</a></li>
             <p class="small font-italic text-muted mt-1"></p>
         </ul>
         <span>Screening Assessment </span>
         <ul>
-            <li><a href=?/mmse-s-data-reshaped>MMSE (After 6 months of pre-screening)</a></li>
+            <!--<li><a href=?/mmse-s-data-reshaped>MMSE (After 6 months of pre-screening)</a></li>-->
             <li><a href=?/demographics-s-data-reshaped>Demographics</a></li>
-            <li><a href=?/medical-history-s-data-reshaped>Medical History</a></li>
+            <li><a href=?/medical-assessment-s-data-reshaped>Medical Assessment</a></li>
             <!--<li><a href=?/biomedical-measurements-s-data-reshaped>Biomedical Measurements</a></li>-->
             <p class="small font-italic text-muted mt-1"></p>
         </ul>
-        <span>Inclusion/ Exclusion Criteria </span>
-        <ul>    
-                <li><a href=?/in-ex-s-data-reshaped>Inclusion/ Exclusion</a></li>
-                <p class="small font-italic text-muted mt-1"></p>
+        <span>Eligibility </span>
+        <ul>
+            <li><a href=?/in-ex-s-data-reshaped>Inclusion/ Exclusion</a></li>
+            <p class="small font-italic text-muted mt-1"></p>
         </ul>
     </ul>
 </div>
-<div class='nav__ID'>
-    <span>Baseline</span>
-    <ul>
-        <li><a href=?/date-bl-data-reshaped>Visit Date</a></li>
-        <span>Sleep Assessment </span>
+<div id=baseline_show__ID style='display:none'>
+    <div class='nav__ID'>
+        <span>Baseline</span>
         <ul>
+            <li><a href=?/date-bl-data-reshaped>Visit Date</a></li>
+            <li><a href=?/btb-bl-data-reshaped>Blood Test</a></li>
             <li><a href=?/watchpat-bl-data-reshaped>WatchPat</a></li>
-            <p class="small font-italic text-muted mt-1"></p>
-        </ul>
-        <span>Medical Assessment </span>
-        <ul>
-            <li><a href=?/medical-history-bl-data-reshaped>Medical History</a></li>
-            <li><a href=?/demographics-s-data-reshaped>Demographics</a></li>
+            <span>Imaging </span>
+            <ul>
+                <li><a href=?/mri-bl-data-reshaped>MRI data</a></li>
+                <li><a href=?/pet-bl-data-reshaped>PET data</a></li>
+                <p class="small font-italic text-muted mt-1"></p>
+            </ul>
             <li><a href=?/biomedical-measurements-bl-data-reshaped>Biomedical Measurements</a></li>
+            <li><a href=?/stop-bang-bl-data-reshaped>STOP BANG</a></li>
             <li><a href=?/cirs-bl-data-reshaped>Cumulative Illness Rating Scale- Geriatric Version</a></li>
-            <p class="small font-italic text-muted mt-1"></p>
         </ul>
         <span>Neuropsychological Assessment </span>
-        <ul>    
-            <li><ax href=?/ravlt-1-6-bl-data-reshaped ><i>RAVLT Trials1-6</i></ax></li>
-            <li><a href=?/ravlt-7-bl-data-reshaped>RAVLT 7 and recognition</a></li>
+        <ul>
+            <li><a href=?/ravlt-7-bl-data-reshaped>RAVLT</a></li>
             <li><a href=?/trail-part-b-bl-data-reshaped>Trail part B</a></li>
             <li><a href=?/dkefs-bl-data-reshaped>DKEFS Stroop Test</a></li>
             <li><a href=?/sdmt-bl-data-reshaped>Symbol Digit Modalities Test</a></li>
-            <li><a href=?/cantab-pal-bl-data-reshaped>CANTAB Pair Associated Learning test</a></li>
-            <li><a href=?/cantab-mtt-bl-data-reshaped>CANTAB Multitasking Test</a></li>
-            <li><a href=?/cantab-rvp-bl-data-reshaped>CANTAB Rapid Visual Processing Test</a></li>
+            <li><a href=?/cantab-bl-data-reshaped>CANTAB</a></li>
             <p class="small font-italic text-muted mt-1"></p>
         </ul>
-    </ul>
-</div>
-<div class='nav__ID'>
-    <ul>
-        <span>Questionnaires </span>
-        <ul>    
-            <li><a href=?/bc-cci-bl-data-reshaped>British Columbia Cognitive Complaints Inventory (BC-CCI)</a></li>
-            <li><a href=?/gad-7-bl-data-reshaped>Generalised Anxiety Disorder – 7 (GAD-7)</a></li>
-            <li><a href=?/audit-part-bl-data-reshaped>Alcohol Use Disorders Identification Test (Audit)</a></li>
-            <li><a href=?/psqi-bl-data-reshaped>The Pittsburgh Sleep Quality Index (PSQI)</a></li>
-            <li><a href=?/phq-9-bl-data-reshaped>The Patient Health Questionnaire-9 (PHQ-9)</a></li>
-            <li><a href=?/isi-bl-data-reshaped>Insomia Severity Index (ISI)</a></li>
-            <li><a href=?/stop-bang-bl-data-reshaped>STOP BANG</a></li>
-            <li><a href=?/ess-bl-data-reshaped>Epworth Sleepiness Scale (ESS)</a></li>
-            <li><a href=?/eq-5d-bl-data-reshaped>EQol-5D</a></li>
-            <li><a href=?/aqol-bl-data-reshaped>(AQoL) </a></li>
-            <p class="small font-italic text-muted mt-1"></p>
-        </ul>
-        <span>Blood Pathology </span>
+    </div>
+    <div class='nav__ID'>
         <ul>
-            <li><a href=?/btb-bl-data-reshaped>Blood Test Biomarkers</a></li>
-            <p class="small font-italic text-muted mt-1"></p>
+            <span>Questionnaires </span>
+            <ul>
+                <li><a href=?/gad-7-bl-data-reshaped>Generalised Anxiety Disorder – 7 (GAD-7)</a></li>
+                <li><a href=?/psqi-bl-data-reshaped>The Pittsburgh Sleep Quality Index (PSQI)</a></li>
+                <li><a href=?/audit-part-bl-data-reshaped>Alcohol Use Disorders Identification Test (Audit)</a></li>
+                <li><a href=?/phq-9-bl-data-reshaped>The Patient Health Questionnaire-9 (PHQ-9)</a></li>
+                <li><a href=?/bc-cci-bl-data-reshaped>British Columbia Cognitive Complaints Inventory (BC-CCI)</a></li>
+                <li><a href=?/eq-5d-bl-data-reshaped>EQol-5D</a></li>
+                <li><a href=?/ess-bl-data-reshaped>Epworth Sleepiness Scale (ESS)</a></li>
+                <p class="small font-italic text-muted mt-1"></p>
+            </ul>
         </ul>
-        <span>Imaging </span>
-        <ul>
-            <li><a href=?/mri-bl-data-reshaped>MRI data</a></li>
-            <li><a href=?/pet-bl-data-reshaped>PET data</a></li>
-            <p class="small font-italic text-muted mt-1"></p>
-        </ul>
-    </ul>
+    </div>
 </div>
+<div id=6months_show__ID style='display:none'>
+    <div class='nav__ID'>
+        <span>6 Months</span>
+        <ul>
+            <li><a href=?/date-6-data-reshaped>Visit Date</a></li>
+            <li><a href=?/btb-6-data-reshaped>Blood Test</a></li>
+            <li><a href=?/watchpat-6-data-reshaped>WatchPat</a></li>
+            <li><a href=?/biomedical-measurements-6-data-reshaped>Biomedical Measurements</a></li>
+        </ul>
+        <span>Neuropsychological Assessment </span>
+        <ul>
+            <li><a href=?/ravlt-7-6-data-reshaped>RAVLT</a></li>
+            <li><a href=?/trail-part-b-6-data-reshaped>Trail part B</a></li>
+            <li><a href=?/dkefs-6-data-reshaped>DKEFS Stroop Test</a></li>
+            <li><a href=?/sdmt-6-data-reshaped>Symbol Digit Modalities Test</a></li>
+            <li><a href=?/cantab-6-data-reshaped>CANTAB</a></li>
+            <p class="small font-italic text-muted mt-1"></p>
+        </ul>
+    </div>
+    <div class='nav__ID'>
+        <ul>
+            <span>Questionnaires </span>
+            <ul>
+                <li><a href=?/phq-9-6-data-reshaped>The Patient Health Questionnaire-9 (PHQ-9)</a></li>
+                <li><a href=?/bc-cci-6-data-reshaped>British Columbia Cognitive Complaints Inventory (BC-CCI)</a></li>
+                <li><a href=?/eq-5d-6-data-reshaped>EQol-5D</a></li>
+                <li><a href=?/ess-6-data-reshaped>Epworth Sleepiness Scale (ESS)</a></li>
+                <p class="small font-italic text-muted mt-1"></p>
+            </ul>
+        </ul>
+    </div>
+</div>
+<div id=24months_show__ID style='display:none'>
+    <div class='nav__ID'>
+        <span>24 Months</span>
+        <ul>
+            <li><a href=?/date-24-data-reshaped>Visit Date</a></li>
+            <li><a href=?/btb-24-data-reshaped>Blood Test</a></li>
+            <li><a href=?/watchpat-24-data-reshaped>WatchPat</a></li>
+            <span>Imaging </span>
+            <ul>
+                <li><a href=?/mri-24-data-reshaped>MRI data</a></li>
+                <p class="small font-italic text-muted mt-1"></p>
+            </ul>
+            <li><a href=?/biomedical-measurements-24-data-reshaped>Biomedical Measurements</a></li>
+            <li><a href=?/cirs-24-data-reshaped>Cumulative Illness Rating Scale- Geriatric Version</a></li>
+        </ul>
+        <span>Neuropsychological Assessment </span>
+        <ul>
+            <li><a href=?/ravlt-7-24-data-reshaped>RAVLT</a></li>
+            <li><a href=?/trail-part-b-24-data-reshaped>Trail part B</a></li>
+            <li><a href=?/dkefs-24-data-reshaped>DKEFS Stroop Test</a></li>
+            <li><a href=?/sdmt-24-data-reshaped>Symbol Digit Modalities Test</a></li>
+            <li><a href=?/cantab-24-data-reshaped>CANTAB</a></li>
+            <p class="small font-italic text-muted mt-1"></p>
+        </ul>
+    </div>
+    <div class='nav__ID'>
+        <ul>
+            <span>Questionnaires </span>
+            <ul>
+                <li><a href=?/phq-9-24-data-reshaped>The Patient Health Questionnaire-9 (PHQ-9)</a></li>
+                <li><a href=?/bc-cci-24-data-reshaped>British Columbia Cognitive Complaints Inventory (BC-CCI)</a></li>
+                <li><a href=?/eq-5d-24-data-reshaped>EQol-5D</a></li>
+                <li><a href=?/ess-24-data-reshaped>Epworth Sleepiness Scale (ESS)</a></li>
+                <p class="small font-italic text-muted mt-1"></p>
+            </ul>
+        </ul>
+    </div>
+</div>
+<script>
+    var hide_all = function () {
+        $('#unscheduled_show__ID').hide()
+        $('#prescreening_show__ID').hide()
+        $('#screening_show__ID').hide()
+        $('#baseline_show__ID').hide()
+        $('#6months_show__ID').hide()
+        $('#24months_show__ID').hide()
+        $('#treatment_show__ID').hide()
+        $('#unscheduled__ID').css('color', '#555')
+        $('#prescreening__ID').css('color', '#555')
+        $('#screening__ID').css('color', '#555')
+        $('#baseline__ID').css('color', '#555')
+        $('#6months__ID').css('color', '#555')
+        $('#24months__ID').css('color', '#555')
+        $('#treatment__ID').css('color', '#555')
+    }
+    //--------------------------------------------------------
+    $('#unscheduled__ID').on('click', function () {
+        hide_all();
+        $('#unscheduled_show__ID').show()
+        $('#unscheduled__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#prescreening__ID').on('click', function () {
+        hide_all();
+        $('#prescreening_show__ID').show()
+        $('#prescreening__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#screening__ID').on('click', function () {
+        hide_all();
+        $('#screening_show__ID').show()
+        $('#screening__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#baseline__ID').on('click', function () {
+        hide_all();
+        $('#baseline_show__ID').show()
+        $('#baseline__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#6months__ID').on('click', function () {
+        hide_all();
+        $('#6months_show__ID').show()
+        $('#6months__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#24months__ID').on('click', function () {
+        hide_all();
+        $('#24months_show__ID').show()
+        $('#24months__ID').css('color', 'red')
+    })
+    //--------------------------------------------------------
+    $('#treatment__ID').on('click', function () {
+        hide_all();
+        $('#treatment_show__ID').show()
+        $('#treatment__ID').css('color', 'red')
+    })
+</script>

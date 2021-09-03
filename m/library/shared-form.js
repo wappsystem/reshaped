@@ -1,20 +1,15 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.Data.Subject_ID+' '+record.Data.Subject_Initials; else return record.UID;}
+var participant_name=function(record){ if(record.Data.Screening_Number!=undefined) return record.Data.Screening_Number; else return record.UID;}
 //-------------------------------------
 //auto select particpant
-var part_id1=$vm.module_list['participant-data'].participant_id.field1;
-var part_id2=$vm.module_list['participant-data'].participant_id.field2;
-var part_id3=$vm.module_list['participant-data'].participant_id.field3;
 var autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,options:{},skip:0,limit:10}
 var autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
 var autocomplete_list_p=function(records){
     var items=[];
     for(var i=0;i<records.length;i++){
         var obj={};
-        if(records[i].Data[part_id1]!= undefined ) obj.label=records[i].Data[part_id1];
+        if(records[i].Data.Screening_Number!= undefined ) obj.label=records[i].Data.Screening_Number;
         else obj.label=records[i].UID;
-        if(records[i].Data[part_id2]!= undefined ) obj.label+=' '+records[i].Data[part_id2];
-        if(records[i].Data[part_id3]!= undefined ) obj.label+=' '+records[i].Data[part_id3];
         obj['UID']=records[i].UID;
         items.push(obj);
     }
@@ -72,44 +67,23 @@ m.before_submit=function(data){
         $vm.alert("Please select a participant. Make sure Participant ID has a number.") 
         return false;    
     }
-   data.sysStatus=$vm.status_of_data(data);
-};
-//-------------------------------------
-/*m.after_insert=function(data0,res){
-    if($vm.online_questionnaire!=1) {
-        console.log("Go back")
-        $vm.refresh=1;
-        window.history.go(-1);       
-        return;
-    }
-    var Participant_uid=data0.Participant_uid;
-    var data={}
-    var index={}
-    var nd=new Date();
-    var date_time=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2)+' '+$vm.pad(nd.getHours(),2)+':' +$vm.pad(nd.getMinutes(),2)+':'+$vm.pad(nd.getSeconds(),2);
-    var q_table=(m.Table).replace(/-/g,'_');
-
-    $vm.request({api:m.api,cmd:"find-s",table:progress_table,options:m.options},function(res){
-        if(res.result.length==1){
-            data=res.result[0].Data;
-            data[q_table]=date_time;
-            var rid=res.result[0]._id;
-            $vm.request({api:m.api,cmd:"update",id:rid,table:progress_table,data:data,index:index,options:m.options},function(res){
-                console.log(res);
-                $vm.refresh=1;
-                window.history.go(-1);       
-            })
-        }
-        else{
-            data.Participant_uid=Participant_uid;
-            data[q_table]=date_time;
-            $vm.request({api:m.api,cmd:"insert",table:progress_table,data:data,index:index,options:m.options},function(res){
-                console.log(res);
-                $vm.refresh=1;
-                window.history.go(-1);       
-            })
-        }
-    })
+    if($("#F__ID input[name=_status]:checked").val()=='' || $("#F__ID input[name=_status]:checked").val()==undefined)
+        data.sysStatus=status_of_data(data);
+    else data.sysStatus=$("#F__ID input[name=_status]:checked").val()
 }
-*/
+//-------------------------------------
+var status_of_data=function(data){
+    var N1=0,N2=0;
+    for(key in data){
+        if(key!="" && key!="Participant" && key!="Participant_uid" && key!="sysStatus" && key!="_status"){
+            console.log(key+',')//+' - '+ data[key]);
+            N2++;
+            if(data[key]=='') N1++;
+        }
+    }
+    var status="#FFCC00";
+    if(N1==N2) 		    status='#FF0000';
+    else if(N1==0)  	status='#00FF00';
+    return status;
+}
 //-------------------------------------

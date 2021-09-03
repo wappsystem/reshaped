@@ -25,7 +25,7 @@
                             </div>
                             <!-- form group -->
                             <div class="form-group">
-                                <label><span class="">Is WristOx data available?</span></label>
+                                <label><span class="">Is WristOx data available for 2 nights?</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="subquestions">
                                         <label class="radiobuttons">
@@ -33,19 +33,6 @@
                                           <span class="checkmark"></span> No</label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="wristox_data" value="1">
-                                          <span class="checkmark"></span> Yes</label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="">Is data usable and validad?</span></label>
-                                <div class="questiongroup ">
-                                    <fieldset class="subquestions">
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="wristox_validity" value="0" required>
-                                          <span class="checkmark"></span> No</label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="wristox_validity" value="1">
                                           <span class="checkmark"></span> Yes</label><br>
                                     </fieldset>
                                 </div>
@@ -67,18 +54,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label><span class="">SpO2 total events:</span></label>
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_analyzed>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label><span class="">Analyzed</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_total_events>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="">SpO2 total events:</span></label>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_analyzed>
                                     </fieldset>
                                 </div>
                             </div>
@@ -107,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label><span class="">Time below 90%:</span></label>
+                                <label><span class="">Time (%) below 90%:</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_below_90>
@@ -139,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label><span class="">Av. g. Low SpO2 (%0:</span></label>
+                                <label><span class="">Av. g. Low SpO2 (%):</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_av_low_spo2>
@@ -191,6 +178,13 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ( $('[type="date"]').prop('type') != 'date' ) {
+                    $('[type="date"]').datepicker();
+                }
+            }
             //-------------------------------------
 
         }

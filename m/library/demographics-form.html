@@ -27,147 +27,34 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">Date of Birth</span>
-                                            <input type=date class="form-control" name="dob" placeholder="">
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">Age at assessment</span>
-                                            <input type=number class="form-control" name="age_assessment" placeholder="">
+                                        <label><span class="">Age</span>
+                                            <input type=number class="form-control" name="age" placeholder="">
                                         </label><br>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="questiongroup">
-                                    <label><span>Gender</span></label>
+                                    <label><span>MMSE score available?</span></label>
                                     <fieldset class="">
                                         <label class="radiobuttons">
-                                            <input type="radio" name="gender" value="0">
-                                            <span class="checkmark"></span>Female</label>
+                                            <input type="radio" name="mmse_available" value="1">
+                                            <span class="checkmark"></span>Yes</label>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="gender" value="1">
-                                            <span class="checkmark"></span>Male&nbsp;</label>
+                                            <input type="radio" name="mmse_available" value="0">
+                                            <span class="checkmark"></span>No&nbsp;</label>
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="questiongroup">
-                                    <fieldset class="subquestions">
-                                        <label><span class="">First language</span>
-                                            <select name="language" class=form-control>
-                                                <option value="0">English</option>
-                                                <option value="1">other</option>
-                                            </select>
-                                        </label><br>
-                                        <label><span class="">Specify</span>
-                                            <input type=text class="form-control" name="language_other" placeholder="">
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">Total years of full-time education</span>
-                                            <input type=number class="form-control" name="years_education" placeholder="">
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <label><span>Mariatal status</span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="mariatal_status" value="1">
-                                            <span class="checkmark"></span>Never married
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="mariatal_status" value="2">
-                                            <span class="checkmark"></span>Married, remained or in a de facto relationship
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="mariatal_status" value="3">
-                                            <span class="checkmark"></span>Separate
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="mariatal_status" value="4">
-                                            <span class="checkmark"></span>Widowed
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="mariatal_status" value="5">
-                                            <span class="checkmark"></span>Divorced
-                                        </label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <label><span>Current living circumstances </span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="living_circumstances" value="1">
-                                            <span class="checkmark"></span>Independent (lives alone)
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="living_circumstances" value="2">
-                                            <span class="checkmark"></span>Living with partner, friends
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="living_circumstances" value="3">
-                                            <span class="checkmark"></span>Living with family/relatives
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="living_circumstances" value="4">
-                                            <span class="checkmark"></span>Depends completely on person living with them in their own home, or with relatives
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <label><span>Where were you born? </span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="born" value="1">
-                                            <span class="checkmark"></span>Australia
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="born" value="2">
-                                            <span class="checkmark"></span>Asia (including the subcontinent), Middle East, North Africa, Southern Europe
-                                        </label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="born" value="3">
-                                            <span class="checkmark"></span>Other
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup">
-                                    <label><span>Are you of Aboriginal or Torres Strait Islander descent? </span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="atsi" value="0">
-                                            <span class="checkmark"></span>No</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="atsi" value="1">
-                                            <span class="checkmark"></span>Yes&nbsp;</label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">Years of education</span>
-                                            <input type=number class="form-control" name="education" placeholder="">
-                                        </label><br>
-                                    </fieldset>
+                            <div style='display:none' id=mmse_score__ID>
+                                <div class="form-group" >
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">MMSE Score:</span>
+                                                <input type=number class="form-control" name="mmse_score" placeholder="">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
@@ -206,7 +93,25 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
-
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if($("input[name='mmse_available']:checked").val()=='1'){
+                    $('#mmse_score__ID').show();
+                }
+                else {
+                    $('#mmse_score__ID').hide();
+                }
+            }
+        //-------------------------------------
+            $("input[name='mmse_available']").change(function(){
+                if($("input[name='mmse_available']:checked").val()=='1'){
+                    $('#mmse_score__ID').show();
+                }
+                else {
+                    $('#mmse_score__ID').hide();
+                }
+            });
         }
     </script>
     <style>

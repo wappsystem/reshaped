@@ -27,6 +27,19 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
+                                        <label><span class="">Is the participant 50 to 75 years of age</span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="age" value="0" >
+                                          <span class="checkmark"></span> No</label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="age" value="1">
+                                          <span class="checkmark"></span> Yes</label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
                                         <label><span class="">Did the participant screen positive to sleep apnoea (ODI ≥10)?</span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="wristox_inclusion" value="0" >
@@ -34,7 +47,10 @@
                                         <label class="radiobuttons">
                                           <input type="radio" name="wristox_inclusion" value="1">
                                           <span class="checkmark"></span> Yes</label><br>
-                                    </fieldset>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="wristox_inclusion" value="NA">
+                                          <span class="checkmark"></span> N/A</label><br>
+                                      </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,7 +74,7 @@
                                         <label class="radiobuttons">
                                           <input type="radio" name="pre_screening_eligibility" value="0" >
                                           <span class="checkmark"></span> No</label><br>
-                                        <label class="radiobuttons"><br>
+                                        <label class="radiobuttons">
                                           <input type="radio" name="pre_screening_eligibility" value="1">
                                           <span class="checkmark"></span> Yes</label><br>
                                     </fieldset>
@@ -100,42 +116,6 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
-            var mmse_total;
-            $("#calc__ID").on('click', function(){
-                mmse_total=0
-                if($("input[name='pre_scre_mmse_1_day']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_date']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_month']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_season']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_year']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_floor']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_suburb']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_town']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_state']:checked").val()=='on') mmse_total++;
-                if($("input[name='pre_scre_mmse_1_country']:checked").val()=='on') mmse_total++;
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_2']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_3']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_4']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_1_a']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_1_b']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_2']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_3']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_4']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_5_5']").val())
-                mmse_total+=parseInt($("select[name='pre_scre_mmse_6']").val())
-                $("input[name='pre_scre_mmese_total']").val(parseInt(mmse_total))
-                if(mmse_total>23) {
-                    $("#include_yes__ID").prop('checked',true);
-                    $("#include_no__ID").prop('checked',false);
-                }
-                else{
-                    $("#include_yes__ID").prop('checked',false);
-                    $("#include_no__ID").prop('checked',true);
-                }
-
-            });
-            //-------------------------------------
-
         }
     </script>
     <style>

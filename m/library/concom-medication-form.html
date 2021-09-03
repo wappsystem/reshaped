@@ -173,6 +173,14 @@
             VmInclude:'__COMPONENT__/f/form.01.js'
             VmInclude:__CURRENT_PATH__/shared-form.js
             //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ( $('[type="date"]').prop('type') != 'date' ) {
+                    $('[type="date"]').datepicker();
+                }
+            }
+            //-------------------------------------
         }
     </script>
     <style>
