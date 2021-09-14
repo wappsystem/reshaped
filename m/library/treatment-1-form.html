@@ -8,7 +8,7 @@
                     <div class="col-12">
                         <!-- form start -->
                         <form id="F__ID">
-                            <h3 id="title__ID"></h3>
+                            <h3 id=title__ID></h3>
                             <!-- participant part for all tsak forms -------------------->
                             <div id="participant_div__ID">
                                 <div class="form-group">
@@ -26,67 +26,53 @@
                             <!-- form group -->
                             <div class="form-group">
                                 <div class="questiongroup ">
-                                    <h4>MRI data</h4>
-                                    <fieldset class="">
-                                        <label><span class="">Did the participant have a PET scan? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
-                                    <fieldset class="">
-                                        <label><span class="">Did the participant sign consent to use his/her PET’s data? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data_consent" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data_consent" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
-                                    <fieldset class="">
-                                        <label><span class="">Is the data saved in the hard drive? Yes </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_hard_drive" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_hard_drive" value="1">
-                                          <span class="checkmark"></span> Yes</label>
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Visit Date</span>
+                                            <input class="form-control" type="date" name="visit_date">
+                                        </label>
                                     </fieldset>
                                 </div>
                             </div>
-<!--                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label style="width:100%"><span class="">Historical amyloid beta </span>
-                                            <input type=text class="form-control" name="pet_amyloid" placeholder="">
-                                        </label><br>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Appointment type</span>
+                                            <select name="appointment_type" class=form-control>
+                                                <option></option>
+                                                <option>Face to face</option>
+                                                <option>Telehealth</option>
+                                            </select>
+                                        </label>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label style="width:100%"><span class="">Historical tau </span>
-                                            <input type=text class="form-control" name="pet_tau" placeholder="">
+                                        <label><span class="">ODI (from WatchPAT)</span>
+                                            <input type=number step=0.1 class="form-control" name="ODI" placeholder="">
                                         </label><br>
                                     </fieldset>
                                 </div>
-                            </div>-->
-                            <div class="row px-4">
-                                <div class='col'>
-                                    <span>PET Report</span>
-                                    <div class="form-control">
-                                        <u style='cursor:pointer' id=link_File_Name__ID></u>
-                                        <br>
-                                        <input type="file" name=File_Name style="margin-top:6px" /> &nbsp;&nbsp;&nbsp;
-                                        <button type="button" id=x_File_Name__ID>Remove</button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Treatment selected</span>
+                                            <select name="treatment" class=form-control>
+                                                <option></option>
+                                                <option>CPAP</option>
+                                                <option>MAS</option>
+                                                <option>Oxygen</option>
+                                                <option>Positional Therapy</option>
+                                            </select>
+                                        </label>
+                                    </fieldset>
                                 </div>
                             </div>
-
-                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            <div class="form-group">
+                                <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
                             <div class="form-group">
                                 <div class="pb-3">
                                     <label><span>Set Status</span></label>
@@ -116,22 +102,26 @@
             </div>
         </div>
     </div>
-    VmInclude:__COMPONENT__/m/model.01.html
     <script>
-        function F__ID() {
+        function F__ID(){
             //-------------------------------------
-            VmInclude: '__COMPONENT__/f/form.01.js'
-            VmInclude: __CURRENT_PATH__/shared-form.js
+            VmInclude:'__COMPONENT__/f/form.01.js'
+            VmInclude:__CURRENT_PATH__/shared-form.js
             //-------------------------------------
-            //-------------------------------------
-
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ( $('[type="date"]').prop('type') != 'date' ) {
+                    $('[type="date"]').datepicker();
+                }
+            }
+        //-------------------------------------
         }
     </script>
     <style>
         #D__ID .mt-95 {
-            max-width: 800px;
-        }
-
+        max-width:600px;
+    }
         VmInclude:__CURRENT_PATH__/wappsystem-form.css
     </style>
 </div>

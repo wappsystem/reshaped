@@ -1,5 +1,5 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Screening_Number!=undefined) return record.Data.Screening_Number; else return record.UID;}
+var participant_name=function(record){ if(record.Data.Subject_ID!=undefined) return record.Data.Subject_ID; else return record.UID;}
 //-------------------------------------
 //auto select particpant
 var autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,options:{},skip:0,limit:10}
@@ -8,7 +8,7 @@ var autocomplete_list_p=function(records){
     var items=[];
     for(var i=0;i<records.length;i++){
         var obj={};
-        if(records[i].Data.Screening_Number!= undefined ) obj.label=records[i].Data.Screening_Number;
+        if(records[i].Data.Subject_ID!= undefined ) obj.label=records[i].Data.Subject_ID;
         else obj.label=records[i].UID;
         obj['UID']=records[i].UID;
         items.push(obj);

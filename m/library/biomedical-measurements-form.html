@@ -52,34 +52,46 @@
                                 <h4>Blood pressure:</h4>
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">Blood pressure taken from left/right?</span></label><br>
+                                        <h4>First Sitting:</h4>
+                                        <label><span class="">Arm used left/right?</span></label><br>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="bm_bloodpressure_side" value="1">
+                                            <input type="radio" name="bm_bloodpressure_side1" value="L">
                                             <span class="checkmark"></span>Left</label>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="bm_bloodpressure_side" value="2">
+                                            <input type="radio" name="bm_bloodpressure_side1" value="R">
                                             <span class="checkmark"></span>Right&nbsp;
                                         </label><br>
-                                        <label><span class="">Lying or sitting?</span></label><br>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="bm_bloodpressure_position" value="1">
-                                            <span class="checkmark"></span>Lying</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="bm_bloodpressure_position" value="2">
-                                            <span class="checkmark"></span>Sitting&nbsp;
+                                        <label><span class="">Pressure</span></label><br>
+                                        <label><span class="">Systolic</span>
+                                            <input class="form-control" type="number" name="bm_bp_sys1"
+                                                 placeholder="">
+                                        </label>&nbsp;/&nbsp;
+                                        <label><span class="">Diastolic</span>
+                                            <input class="form-control" type="number" name="bm_bp_dia1"
+                                                 placeholder="">
                                         </label><br>
-                                        <label><span class="">Blood pressure 1</span>
-                                            <input class="form-control" type="text" name="bm_bp1"
-                                                 placeholder="BP1 .../...">
-                                        </label>
-                                        <label><span class="">Blood pressure 2</span>
-                                            <input class="form-control" type="text" name="bm_bp2"
-                                                 placeholder="BP2 .../...">
-                                        </label>
-                                        <label><span class="">Pulse Rate 1 (BPM)</span>
+                                        <label><span class="">Pulse (BPM)</span>
                                             <input class="form-control" type="number" name="bm_pulse1" placeholder="">
-                                        </label>
-                                        <label><span class="">Pulse Rate 2 (BPM)</span>
+                                        </label><br>
+                                        <h4>Second Sitting:</h4>
+                                        <label><span class="">Arm used left/right?</span></label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="bm_bloodpressure_side2" value="L">
+                                            <span class="checkmark"></span>Left</label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="bm_bloodpressure_side2" value="R">
+                                            <span class="checkmark"></span>Right&nbsp;
+                                        </label><br>
+                                        <label><span class="">Pressure</span></label><br>
+                                        <label><span class="">Systolic</span>
+                                            <input class="form-control" type="number" name="bm_bp_sys2"
+                                                 placeholder="">
+                                        </label>&nbsp;/&nbsp;
+                                        <label><span class="">Diastolic</span>
+                                            <input class="form-control" type="number" name="bm_bp_dia2"
+                                                 placeholder="">
+                                        </label><br>
+                                        <label><span class="">Pulse (BPM)</span>
                                             <input class="form-control" type="number" name="bm_pulse2" placeholder="">
                                         </label><br>
                                         <!--<label><span class="">Is it normal?</span></label><br>

@@ -10,19 +10,9 @@
         //-------------------------------------
         $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('Anthropometry')
         //-------------------------------------
-        var fields="File_Name,wristox_data,wristox_date,wristox_duration,wristox_analyzed,wristox_spo2_total_events,wristox_spo2_adjusted_index,wristox_pulse_total_events,wristox_pulse_adjusted_index,wristox_time_below_90,wristox_basal_spo2,wristox_time_88,wristox_minimun_spo2,wristox_av_low_spo2,wristox_desaturation_event";
+        var fields="raw_score,age_ss";
         m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Submit_date,Submitted_by,_Delete";
         //-------------------------------------
-        m.cell_render=function(records,I,field,td,set_value,source){
-            switch(field){
-                case 'File_Name':
-                    m.set_file_link(records,I,field,td)
-                    break;
-
-            }
-        }
-        //-------------------------------------
-
     }
 </script>
 <style>

@@ -23,6 +23,9 @@
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"notes-reshaped",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"notes-reshaped"},
 
+        "site-data-reshaped":  	                    {url:"$H/m/library/site-data.html",Table:"site-reshaped",form_module:"site-form-reshaped",router:1},
+        "site-form-reshaped":  	                    {url:"$H/m/library/site-form.html",Table:"site-reshaped"},
+
         "randomisation-table-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-reshaped",form_module:"randomisation-table-form-reshaped"},
         "randomisation-table-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-reshaped"},
 
@@ -92,8 +95,8 @@
         "phq-9-bl-form-reshaped":                {url:"$H/m/library/phq-form.html",Table:"phq-9-bl-reshaped",task_name:"Baseline - The Patient Health Questionnaire-9 (PHQ-9)"},
         "bc-cci-bl-data-reshaped":                {url:"$H/m/library/bc-cci-data.html",Table:"bc-cci-bl-reshaped",form_module:"bc-cci-bl-form-reshaped",task_name:"Baseline - Brittish Colombia Cognitive Complaints Inventory"},
         "bc-cci-bl-form-reshaped":                {url:"$H/m/library/bc-cci-form.html",Table:"bc-cci-bl-reshaped",task_name:"Baseline - Brittish Colombia Cognitive Complaints Inventory"},
-        "eq-5d-bl-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-bl-reshaped",form_module:"eq-5d-bl-form-reshaped",task_name:"Baseline - Australian Quality of life inventory (QOL-AD)"},
-        "eq-5d-bl-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-bl-reshaped",task_name:"Baseline - Australian Quality of life inventory (QOL-AD)"},
+        "eq-5d-bl-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-bl-reshaped",form_module:"eq-5d-bl-form-reshaped",task_name:"Baseline - Quality of life inventory (EQ-5D-5L)"},
+        "eq-5d-bl-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-bl-reshaped",task_name:"Baseline - Quality of life inventory (EQ-5D-5L)"},
         "ess-bl-data-reshaped":                {url:"$H/m/library/ess-data.html",Table:"ess-bl-reshaped",form_module:"ess-bl-form-reshaped",task_name:"Baseline - Epworth Sleepiness Scale (ESS)"},
         "ess-bl-form-reshaped":                {url:"$H/m/library/ess-form.html",Table:"ess-bl-reshaped",task_name:"Baseline - Epworth Sleepiness Scale (ESS)"},
 
@@ -119,8 +122,8 @@
         "phq-9-6-form-reshaped":                {url:"$H/m/library/phq-form.html",Table:"phq-9-6-reshaped",task_name:"6 Months - The Patient Health Questionnaire-9 (PHQ-9)"},
         "bc-cci-6-data-reshaped":                {url:"$H/m/library/bc-cci-data.html",Table:"bc-cci-6-reshaped",form_module:"bc-cci-6-form-reshaped",task_name:"6 Months - Brittish Colombia Cognitive Complaints Inventory"},
         "bc-cci-6-form-reshaped":                {url:"$H/m/library/bc-cci-form.html",Table:"bc-cci-6-reshaped",task_name:"6 Months - Brittish Colombia Cognitive Complaints Inventory"},
-        "eq-5d-6-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-6-reshaped",form_module:"eq-5d-6-form-reshaped",task_name:"6 Months - Australian Quality of life inventory (QOL-AD)"},
-        "eq-5d-6-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-6-reshaped",task_name:"6 Months - Australian Quality of life inventory (QOL-AD)"},
+        "eq-5d-6-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-6-reshaped",form_module:"eq-5d-6-form-reshaped",task_name:"6 Months - Quality of life inventory (EQ-5D-5L)"},
+        "eq-5d-6-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-6-reshaped",task_name:"6 Months - Quality of life inventory (EQ-5D-5L)"},
         "ess-6-data-reshaped":                {url:"$H/m/library/ess-data.html",Table:"ess-6-reshaped",form_module:"ess-6-form-reshaped",task_name:"6 Months - Epworth Sleepiness Scale (ESS)"},
         "ess-6-form-reshaped":                {url:"$H/m/library/ess-form.html",Table:"ess-6-reshaped",task_name:"6 Months - Epworth Sleepiness Scale (ESS)"},
 
@@ -150,11 +153,15 @@
         "phq-9-24-form-reshaped":                {url:"$H/m/library/phq-form.html",Table:"phq-9-24-reshaped",task_name:"24 Months - The Patient Health Questionnaire-9 (PHQ-9)"},
         "bc-cci-24-data-reshaped":                {url:"$H/m/library/bc-cci-data.html",Table:"bc-cci-24-reshaped",form_module:"bc-cci-24-form-reshaped",task_name:"24 Months - Brittish Colombia Cognitive Complaints Inventory"},
         "bc-cci-24-form-reshaped":                {url:"$H/m/library/bc-cci-form.html",Table:"bc-cci-24-reshaped",task_name:"24 Months - Brittish Colombia Cognitive Complaints Inventory"},
-        "eq-5d-24-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-24-reshaped",form_module:"eq-5d-24-form-reshaped",task_name:"24 Months - Australian Quality of life inventory (QOL-AD)"},
-        "eq-5d-24-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-24-reshaped",task_name:"24 Months - Australian Quality of life inventory (QOL-AD)"},
+        "eq-5d-24-data-reshaped":                {url:"$H/m/library/eq-5d-data.html",Table:"eq-5d-24-reshaped",form_module:"eq-5d-24-form-reshaped",task_name:"24 Months - Quality of life inventory (EQ-5D-5L)"},
+        "eq-5d-24-form-reshaped":                {url:"$H/m/library/eq-5d-form.html",Table:"eq-5d-24-reshaped",task_name:"24 Months - Quality of life inventory (EQ-5D-5L)"},
         "ess-24-data-reshaped":                {url:"$H/m/library/ess-data.html",Table:"ess-24-reshaped",form_module:"ess-24-form-reshaped",task_name:"24 Months - Epworth Sleepiness Scale (ESS)"},
         "ess-24-form-reshaped":                {url:"$H/m/library/ess-form.html",Table:"ess-24-reshaped",task_name:"24 Months - Epworth Sleepiness Scale (ESS)"},
 
+        "treatment-1-data-reshaped":                {url:"$H/m/library/treatment-1-data.html",Table:"treatment-1-reshaped",form_module:"treatment-1-form-reshaped",task_name:"Treatment Visit - First Treatment Visit"},
+        "treatment-1-form-reshaped":                {url:"$H/m/library/treatment-1-form.html",Table:"treatment-1-reshaped",task_name:"Treatment Visit - First Treatment Visit"},
+        "treatment-fu-data-reshaped":                {url:"$H/m/library/treatment-fu-data.html",Table:"treatment-fu-reshaped",form_module:"treatment-fu-form-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
+        "treatment-fu-form-reshaped":                {url:"$H/m/library/treatment-fu-form.html",Table:"treatment-fu-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
 
     }
     for(p in modules){

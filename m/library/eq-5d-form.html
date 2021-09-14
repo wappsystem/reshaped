@@ -65,7 +65,7 @@
                                     <fieldset class="subquestions">
                                         <h4>Please click the ONE box that best describes your health TODAY.</h4>
                                     </fieldset>
-                                    <h4>SELF-CARE</h4>
+                                    <h4>PERSONAL CARE</h4>
                                     <div class="questiongroup">
                                         <fieldset>
                                             <label class="radiobuttons">
@@ -209,16 +209,16 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class=col-sm-8>
-                                            <div class="form-group">
+                                            <div class="form-group" style=border:0!important>
                                                 <div class="questiongroup ">
-                                                    <fieldset class="subquestions">
+                                                    <fieldset class="">
                                                         <ul>
                                                             <li>We would like to know how good or bad your health is TODAY.</li>
                                                             <li>This scale is numbered from 0 to 100.</li>
-                                                            <li>100 means the <u>best</u> health you can imagine. 0 means the <u>worst</u> health you can imagine.</li>
+                                                            <li>100 means the <u>best</u> health you can imagine.<br>0 means the <u>worst</u> health you can imagine.</li>
                                                             <li>Please click on the scale to indicate how your health is TODAY.</li>
                                                         </ul>    
-                                                        <div style='text-align: right;'>
+                                                        <div style='text-align: right;padding-top:35px'>
                                                             <label><span class="">YOUR HEALTH TODAY</span>
                                                                 <input class="form-control" type="number" min=0 max=100
                                                                     name="EQ_5D_6" required readonly>
@@ -229,9 +229,9 @@
                                             </div>
                                         </div>
                                         <div class=col-sm-3>
-                                            <div class=" p-4">
+                                            <div class=" p-1">
                                                 <div class=EQ_5D_6__ID
-                                                    style='position:relative;height:574px; left: 0px; top: 0px; width: 80px;'>
+                                                    style='position:relative;height:415px; left: 0px; top: 0px; width: 80px;'>
                                                     <div id="vaswrapper">
                                                         <div class="vas" id="vas">
                                                             <div class="vas__header">The best health you can imagine</div>
@@ -383,7 +383,7 @@
                 else {
                     $('#indicator__ID').show();
                     position = parseInt(m.input.record.Data.EQ_5D_6);
-                    dx = position / 100 * 456 - 513
+                    dx = position / 100 * 300 - 357
                     dx = -dx;
                     $('#indicator__ID').css('margin-top', dx.toString() + 'px');
                 }
@@ -435,9 +435,9 @@
                 //alert(x1+'-'+x0+' '+dx)
                 console.log("DX: "+dx)
                 if (dx < 57) dx = 57;
-                if (dx > 513) dx = 513;
+                if (dx > 357) dx = 357;
                 $('#indicator__ID').css('margin-top', dx.toString() + 'px');
-                var pos = ((456 - (dx - 57)) * 100 / 456).toFixed(0);
+                var pos = ((300 - (dx - 57)) * 100 / 300).toFixed(0);
                 position = pos;
                 console.log("POS: "+pos)
                 $('#D__ID input[name="EQ_5D_6"]').val(pos);
@@ -469,7 +469,7 @@
         }
 #F__ID .vas {
     position: relative;
-    height: 574px;
+    height: 419px;
     width: 200px;
     display: -ms-flexbox;
     display: -webkit-box;

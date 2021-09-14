@@ -306,7 +306,7 @@
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
                 }
-                if($("input[name='mmse_done']:checked").val()=='1'){
+                if($("input[name='mmse_done']:checked").val()=='0'){
                     $('#mmse_total_score__ID').show();
                 }
                 else {
@@ -316,7 +316,7 @@
             }
             //-------------------------------------
             $("input[name='mmse_done']").change(function(){
-                if($("input[name='mmse_done']:checked").val()=='1'){
+                if($("input[name='mmse_done']:checked").val()=='0'){
                     $('#mmse_total_score__ID').show();
                 }
                 else {

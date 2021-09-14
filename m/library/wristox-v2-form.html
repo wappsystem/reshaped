@@ -141,7 +141,17 @@
                                     </fieldset>
                                 </div>
                             </div>
-
+                            <div class="row px-4">
+                                <div class='col'>
+                                    <span>File</span>
+                                    <div class="form-control">
+                                        <u style='cursor:pointer' id=link_File_Name__ID></u>
+                                        <br>
+                                        <input type="file" name=File_Name style="margin-top:6px" /> &nbsp&nbsp&nbsp
+                                        <button type="button" id=x_File_Name__ID>Remove</button>
+                                    </div>
+                                </div>
+                            </div>
                             <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
                             <div class="form-group">
                                 <div class="pb-3">
@@ -172,6 +182,7 @@
             </div>
         </div>
     </div>
+    VmInclude:__COMPONENT__/m/model.01.html
     <script>
         function F__ID() {
             //-------------------------------------
