@@ -16,7 +16,7 @@
 								</div>
 								<div class="col-sm-12 col-lg-4">
 									<label class=''><span class=''>Site</span>
-										<input type=text class=form-control name=Site>
+										<input type=text class=form-control name=Site id=site__ID>
 									</label>
 								</div>
 								<div class="col-sm-12 col-lg-4">
@@ -126,6 +126,27 @@
 				index.I2=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2);
 			}
 			//-------------------------------------
+            var autocomplete_req_1={cmd:"find",table:"demo-site-reshaped",options:{},skip:0,limit:10}
+            var autocomplete_callback_1=function(items){ $("#F__ID input[name=Site]").val(items["Site"]); }
+            var autocomplete_list_1=function(records){
+                var items=[];
+                for(var i=0;i<records.length;i++){
+                    var obj={};
+                    obj.label=records[i].Data.Site;
+                    obj['UID']=records[i].UID;
+                    items.push(obj);
+                }
+                return items;
+            }
+            var wait1=function(){
+                $vm.autocomplete($('#site__ID'),autocomplete_req_1,autocomplete_list_1,autocomplete_callback_1);
+            }
+            var I=0; var loop_1=setInterval(function (){
+                if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
+                I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
+            },100);
+            //-------------------------------------
+
 		}
 	</script>
 	<style>

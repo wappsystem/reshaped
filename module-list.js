@@ -14,6 +14,7 @@
                                                 online_questionnaire:"online-questionnaire-app-reshaped",
                                                 participant_id:{field1:"Subject_ID",field2:"Subject_Initials"},
                                                 participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB",
+                                                Table2:"site-permission-reshaped",
                                             },
        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"participant-reshaped"},
 
@@ -23,8 +24,11 @@
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"notes-reshaped",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"notes-reshaped"},
 
-        "site-data-reshaped":  	                    {url:"$H/m/library/site-data.html",Table:"site-reshaped",form_module:"site-form-reshaped",router:1},
-        "site-form-reshaped":  	                    {url:"$H/m/library/site-form.html",Table:"site-reshaped"},
+        "site-data-reshaped":  	            {url:"$H/m/library/site-data.html",Table:"site-reshaped",form_module:"site-form-reshaped",task_name:"Site List",router:1},
+        "site-form-reshaped":  	            {url:"$H/m/library/site-form.html",Table:"site-reshaped",task_name:"Site List"},
+        "site-permission-data-reshaped":  	{url:"$H/m/library/site-permission-data.html",Table:"site-permission-reshaped",form_module:"site-permission-form-reshaped",task_name:"Site Permission List",router:1},
+        "site-permission-form-reshaped":  	{url:"$H/m/library/site-permission-form.html",Table:"site-permission-reshaped",task_name:"Site Permission List"},
+
 
         "randomisation-table-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-reshaped",form_module:"randomisation-table-form-reshaped"},
         "randomisation-table-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-reshaped"},
