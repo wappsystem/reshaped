@@ -31,46 +31,48 @@ var load=m.load;
 m.load=function(){
     console.log($vm.module_list["participant-data"])
     load();
-    var query_user={"Data.user_name":$vm.user_name}
-    jQuery.ajaxSetup({async:false});
-    $vm.request({cmd:"find",table:$vm.module_list["participant-data"].Table2,query:query_user,limit:1},function(res){
-        if(res.status=='np' || res.result==undefined){
-            res.result=[];
-        }
-        if(res.status=='np'){
-            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
-            else $vm.alert("No permission.");
-        }
-        if(res.result[0].Data.site!=undefined){
-            site_list=res.result[0].Data.site.split(',');
-            query='[';
-            for (var i=0;i<site_list.length;i++){
-                if(i>0) query+=',';
-                query+='{"Data.Site":"'+site_list[i]+'"}';
-            }
-            query+=']';
-        }
-    })
-    jQuery.ajaxSetup({async:true});
-    site_query={$or:JSON.parse(query)}
-    autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,query:site_query,options:{},skip:0,limit:10}
-    autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
-    autocomplete_list_p=function(records){
-        var items=[];
-        for(var i=0;i<records.length;i++){
-            var obj={};
-            if(records[i].Data.Subject_ID!= undefined ) obj.label=records[i].Data.Subject_ID;
-            else obj.label=records[i].UID;
-            obj['UID']=records[i].UID;
-            items.push(obj);
-        }
-        return items;
-    }
-    $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
     if($vm.online_questionnaire==1) {
         $('#pdf__ID').hide();
         $('#participant_div__ID').hide();
     }
+    else{
+        var query_user={"Data.user_name":$vm.user_name}
+        jQuery.ajaxSetup({async:false});
+        $vm.request({cmd:"find",table:$vm.module_list["participant-data"].Table2,query:query_user,limit:1},function(res){
+            if(res.status=='np' || res.result==undefined){
+                res.result=[];
+            }
+            if(res.status=='np'){
+                if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                else $vm.alert("No permission.");
+            }
+            if(res.result[0].Data.site!=undefined){
+                site_list=res.result[0].Data.site.split(',');
+                query='[';
+                for (var i=0;i<site_list.length;i++){
+                    if(i>0) query+=',';
+                    query+='{"Data.Site":"'+site_list[i]+'"}';
+                }
+                query+=']';
+            }
+        })
+        jQuery.ajaxSetup({async:true});
+        site_query={$or:JSON.parse(query)}
+        autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,query:site_query,options:{},skip:0,limit:10}
+        autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
+        autocomplete_list_p=function(records){
+            var items=[];
+            for(var i=0;i<records.length;i++){
+                var obj={};
+                if(records[i].Data.Subject_ID!= undefined ) obj.label=records[i].Data.Subject_ID;
+                else obj.label=records[i].UID;
+                obj['UID']=records[i].UID;
+                items.push(obj);
+            }
+            return items;
+        }
+    }
+    $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
 //--------------------------
     if(m.input!=undefined && m.input.participant_record!=undefined){
         //new from child panel
