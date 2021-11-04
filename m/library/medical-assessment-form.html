@@ -55,35 +55,37 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label style='width:100%'><span class="">2. MEDICAL/ SURGICAL HISTORY</span>
-                                            <textarea class="form-control" name="medical_hisory_2" placeholder=""></textarea>
-                                        </label><br>
-                                    </fieldset>
-                                </div>
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">START DATE</span>
-                                            <input type=date class="form-control" name="start_date_2" placeholder="">
-                                        </label>
-                                        <label><span class="">STOP DATE</span>
-                                            <input type=date class="form-control" name="stop_date_2" placeholder="">
-                                        </label>
-                                        <label><span>Ongoing</span></label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="ongoing_2" value="0">
-                                            <span class="checkmark"></span>No
-                                        </label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="ongoing_2" value="1">
-                                            <span class="checkmark"></span>Yes
-                                        </label>
-                                    </fieldset>
+                            <div  id="mh_2" style='display:none'>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label style='width:100%'><span class="">2. MEDICAL/ SURGICAL HISTORY</span>
+                                                <textarea class="form-control" name="medical_hisory_2" placeholder=""></textarea>
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">START DATE</span>
+                                                <input type=date class="form-control" name="start_date_2" placeholder="">
+                                            </label>
+                                            <label><span class="">STOP DATE</span>
+                                                <input type=date class="form-control" name="stop_date_2" placeholder="">
+                                            </label>
+                                            <label><span>Ongoing</span></label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="ongoing_2" value="0">
+                                                <span class="checkmark"></span>No
+                                            </label>
+                                            <label class="radiobuttons">
+                                                <input type="radio" name="ongoing_2" value="1">
+                                                <span class="checkmark"></span>Yes
+                                            </label>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_3">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">3. MEDICAL/ SURGICAL HISTORY</span>
@@ -111,7 +113,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"  id="mh_4">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">4. MEDICAL/ SURGICAL HISTORY</span>
@@ -139,7 +141,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_5">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">5. MEDICAL/ SURGICAL HISTORY</span>
@@ -167,7 +169,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"  id="mh_6">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">6. MEDICAL/ SURGICAL HISTORY</span>
@@ -195,7 +197,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_7">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">7. MEDICAL/ SURGICAL HISTORY</span>
@@ -223,7 +225,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_8">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">8. MEDICAL/ SURGICAL HISTORY</span>
@@ -251,7 +253,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_9">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">9. MEDICAL/ SURGICAL HISTORY</span>
@@ -279,7 +281,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="mh_10">
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label style='width:100%'><span class="">10. MEDICAL/ SURGICAL HISTORY</span>
@@ -615,9 +617,21 @@
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
                 }
+                console.log("CCCCC: "+$("#D__ID textarea[name=medical_hisory_1]").val())
+                if ($("#D__ID textarea[name=medical_hisory_1]").val()!=''){
+                    $('#mh_2').show(); 
+                    console.log("BBBB")
+                }
+                else{
+                    $('#mh_2').hide(); 
+                    console.log("DDD")
+                }
             }
             //-------------------------------------
-
+            $("#D__ID textarea[name=medical_hisory_1]").on('change',function(){
+                $('#mh_2').show(); 
+                console.log("AAAA")
+            })
         }
     </script>
     <style>

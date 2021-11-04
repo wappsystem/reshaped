@@ -41,13 +41,15 @@
                 //$('#title__ID').text('Project: '+m.input.record.Data.project_name+' '); 
                 //m.query={I2:m.I2}
             }
-            m.cell_render=function(records,I,field,td,set_value,source){
+            var cell_render=m.cell_render;
+            m.cell_render=function(records,I,field,td){
+                cell_render(records,I,field,td);
                 switch(field){
                     case 'File_Name':
                         m.set_file_link(records,I,field,td)
                         break;
-
-               }
+                }
+            }
             }
             //-------------------------------------
         }
