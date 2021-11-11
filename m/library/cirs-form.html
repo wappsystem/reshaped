@@ -473,10 +473,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <h4>The following numbers are automatically calculated at Submit.
+                                </h4>
                                 <div class="questiongroup">
                                     <fieldset class="">
                                         <label><span class="">Total number of categories endorsed</span>
-                                            <input class="form-control" type="number" name="cirs_categories" required>
+                                            <input class="form-control" type="number" name="total_endorsed" >
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -484,8 +486,8 @@
                             <div class="form-group">
                                 <div class="questiongroup">
                                     <fieldset class="">
-                                        <label><span class="">TotaTotal score</span>
-                                            <input class="form-control" type="number" name="cirs_total">
+                                        <label><span class="">Total score</span>
+                                            <input class="form-control" type="number" name="total_score">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -494,7 +496,25 @@
                                 <div class="questiongroup">
                                     <fieldset class="">
                                         <label><span class="">Severity index</span>
-                                            <input class="form-control" type="number" step=0.1 name="cirs_severity_index">
+                                            <input class="form-control" type="number" step=0.1 name="severity_index">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <fieldset class="">
+                                        <label><span class="">Number of categories at level 3 severity</span>
+                                            <input class="form-control" type="number" name="level_3_severity">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup">
+                                    <fieldset class="">
+                                        <label><span class="">Number of categories at level 4 severity</span>
+                                            <input class="form-control" type="number" name="level_4_severity">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -538,8 +558,28 @@
             //-------------------------------------
             var before_submit=m.before_submit;
             m.before_submit=function(data,index){
-              data.cirs_total=(parseFloat(data.cirs_1)+parseFloat(data.cirs_2)+parseFloat(data.cirs_3)+parseFloat(data.cirs_4)+parseFloat(data.cirs_5)+parseFloat(data.cirs_6)+parseFloat(data.cirs_7)+parseFloat(data.cirs_8)+parseFloat(data.cirs_9)+parseFloat(data.cirs_10)+parseFloat(data.cirs_11)+parseFloat(data.cirs_12)+parseFloat(data.cirs_13)).toFixed(0);
-              data.cirs_severity_index=(parseFloat(data.cirs_total)/parseFloat(data.cirs_categories)).toFixed(1);
+                var endorsed=0;
+                var level_3=0;
+                var level_4=0;
+                var cirs_total=0.0;
+                if(data.cirs_1!=undefined ){if(parseFloat(data.cirs_1)>0){ cirs_total+=parseFloat(data.cirs_1);endorsed++;};if(parseFloat(data.cirs_1)==3) level_3++;if(parseFloat(data.cirs_1)==4) level_4++;}
+                if(data.cirs_2!=undefined ){if(parseFloat(data.cirs_2)>0){ cirs_total+=parseFloat(data.cirs_2);endorsed++;};if(parseFloat(data.cirs_2)==3) level_3++;if(parseFloat(data.cirs_2)==4) level_4++;}
+                if(data.cirs_3!=undefined ){if(parseFloat(data.cirs_3)>0){ cirs_total+=parseFloat(data.cirs_3);endorsed++;};if(parseFloat(data.cirs_3)==3) level_3++;if(parseFloat(data.cirs_3)==4) level_4++;}
+                if(data.cirs_4!=undefined ){if(parseFloat(data.cirs_4)>0){ cirs_total+=parseFloat(data.cirs_4);endorsed++;};if(parseFloat(data.cirs_4)==3) level_3++;if(parseFloat(data.cirs_4)==4) level_4++;}
+                if(data.cirs_5!=undefined ){if(parseFloat(data.cirs_5)>0){ cirs_total+=parseFloat(data.cirs_5);endorsed++;};if(parseFloat(data.cirs_5)==3) level_3++;if(parseFloat(data.cirs_5)==4) level_4++;}
+                if(data.cirs_6!=undefined ){if(parseFloat(data.cirs_6)>0){ cirs_total+=parseFloat(data.cirs_6);endorsed++;};if(parseFloat(data.cirs_6)==3) level_3++;if(parseFloat(data.cirs_6)==4) level_4++;}
+                if(data.cirs_7!=undefined ){if(parseFloat(data.cirs_7)>0){ cirs_total+=parseFloat(data.cirs_7);endorsed++;};if(parseFloat(data.cirs_7)==3) level_3++;if(parseFloat(data.cirs_7)==4) level_4++;}
+                if(data.cirs_8!=undefined ){if(parseFloat(data.cirs_8)>0){ cirs_total+=parseFloat(data.cirs_8);endorsed++;};if(parseFloat(data.cirs_8)==3) level_3++;if(parseFloat(data.cirs_8)==4) level_4++;}
+                if(data.cirs_9!=undefined ){if(parseFloat(data.cirs_9)>0){ cirs_total+=parseFloat(data.cirs_9);endorsed++;};if(parseFloat(data.cirs_9)==3) level_3++;if(parseFloat(data.cirs_9)==4) level_4++;}
+                if(data.cirs_10!=undefined ){if(parseFloat(data.cirs_10)>0){ cirs_total+=parseFloat(data.cirs_10);endorsed++;};if(parseFloat(data.cirs_10)==3) level_3++;if(parseFloat(data.cirs_10)==4) level_4++;}
+                if(data.cirs_11!=undefined ){if(parseFloat(data.cirs_11)>0){ cirs_total+=parseFloat(data.cirs_11);endorsed++;};if(parseFloat(data.cirs_11)==3) level_3++;if(parseFloat(data.cirs_11)==4) level_4++;}
+                if(data.cirs_12!=undefined ){if(parseFloat(data.cirs_12)>0){ cirs_total+=parseFloat(data.cirs_12);endorsed++;};if(parseFloat(data.cirs_12)==3) level_3++;if(parseFloat(data.cirs_12)==4) level_4++;}
+                if(data.cirs_13!=undefined ){if(parseFloat(data.cirs_13)>0){ cirs_total+=parseFloat(data.cirs_13);endorsed++;};if(parseFloat(data.cirs_13)==3) level_3++;if(parseFloat(data.cirs_13)==4) level_4++;}
+              data.severity_index=(cirs_total/endorsed).toFixed(1);
+              data.total_score=cirs_total.toFixed(0);
+              data.total_endorsed=endorsed.toFixed(0);
+              data.level_3_severity=level_3.toFixed(0);
+              data.level_4_severity=level_4.toFixed(0);
               return before_submit(data,index);
           }
 
