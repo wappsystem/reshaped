@@ -20,28 +20,11 @@
 									</label>
 								</div>
 								<div class="col-sm-12 col-lg-4">
-									<label class=''><span class=''>Subject ID</span>
-										<input type=text class=form-control name=Subject_ID>
+									<label class=''><span class=''>Code</span>
+										<input type=text class=form-control name=Code readonly>
 									</label>
 								</div>
 							</div>
-                            <div class='row px-4'>
-                                <div class="col-sm-12 col-lg-4">
-                                    <label class=''><span class=''>Pre-Screening Number</span>
-                                        <input type=text class=form-control name=Pre_Screening_Number>
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-lg-4 ">
-                                    <label class=''><span class=''>Screening Number</span>
-                                        <input type=text class=form-control name=Screening_Number>
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-lg-4">
-                                    <label class=''><span class=''>Subject Initials</span>
-                                        <input type=text class=form-control name=Subject_Initials>
-                                    </label>
-                                </div>
-                            </div>
 							<div class='row px-4'>
 								<div class="col-sm-12 col-lg-4 ">
 									<label class=''><span class=''>Gender</span>
@@ -53,26 +36,43 @@
 										</select>
 									</label>
 								</div>
+                                <div class="col-sm-12 col-lg-4">
+                                    <label class=''><span class=''>Subject Initials</span>
+                                        <input type=text class=form-control name=Subject_Initials>
+                                    </label>
+                                </div>
 								<div class="col-sm-12 col-lg-4">
 									<label class=''><span class=''>DOB</span>
 										<input type=date class=form-control name=DOB>
 									</label>
 								</div>
-								<div class="col-sm-12 col-lg-4 ">
-									<label class=''><span class=''>Password</span>
-										<input type=text class=form-control name=_Password>
+                            </div>
+                            <div class='row px-4'>
+                                <div class="col-sm-12 col-lg-4">
+                                    <label class=''><span class=''>Pre-Screening Number (P)</span>
+                                        <input type=text class=form-control name=Pre_Screening_Number readonly >
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-lg-4 ">
+                                    <label class=''><span class=''>Screening Number (S)</span>
+                                        <input type=text class=form-control name=Screening_Number readonly placeholder='click to get screening #'>
+                                    </label>
+                                </div>
+								<div class="col-sm-12 col-lg-4 row_participant__ID">
+									<label class=''><span class=''>Randomisation Number (R)</span>
+										<input type=text class=form-control name=Randomisation_Number readonly placeholder='click to randomise'>
 									</label>
 								</div>
                             </div>
 							<div class='row px-4'>
 								<div class="col-sm-12 col-lg-4 row_participant__ID">
-									<label class=''><span class=''>Randomisation Number</span>
-										<input type=text class=form-control name=Randomisation_Number readonly placeholder='click here to randomise'>
-									</label>
-								</div>
-								<div class="col-sm-12 col-lg-4 row_participant__ID">
 									<label class=''><span class=''>Randomised by</span>
 										<input type=text class=form-control name=Randomised_by readonly>
+									</label>
+								</div>
+                                <div class="col-sm-12 col-lg-4 ">
+									<label class=''><span class=''>Password</span>
+										<input type=text class=form-control name=_Password>
 									</label>
 								</div>
 							</div>
@@ -93,7 +93,7 @@
 				load();
 				if (m.input.record == undefined) {
 					$('.row_participant__ID').hide()
-					$('#F__ID input[name=_Password').val($vm.vm_password(8, false));
+					$('#F__ID input[name=_Password').val($vm.vm_password(8, false));                    
 				}
 				else {
 					$('.row_participant__ID').show()
@@ -114,25 +114,66 @@
 							if (res.result[0].I1 !== undefined) max_I1 = res.result[0].I1
 						}
 						max_I1++;
-						$('#F__ID input[name=Randomisation_Number').val(max_I1);
+						$('#F__ID input[name=Randomisation_Number').val('R'+$('#F__ID input[name=Code').val()+max_I1.toString().padStart(3, "0"));
 						$('#F__ID input[name=Randomised_by').val($vm.user_name);
 					})
 				}
 			})
 			//-------------------------------------
+			$('#F__ID input[name=Screening_Number]').on('click', function () {
+				var I5 = $('#F__ID input[name=Screening_Number').val();
+				if (I5 == '') {
+					$vm.request({ cmd: "find", table: m.Table, sort: { I5: -1 }, skip: 0, limit: 1 }, function (res) {
+						if (res.sys.permission == false) {
+							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+							return;
+						}
+						var max_I5 = 0;
+						if (res.result.length > 0) {
+							if (res.result[0].I5 !== undefined) max_I5 = res.result[0].I5
+						}
+						max_I5++;
+						$('#F__ID input[name=Screening_Number').val('S'+$('#F__ID input[name=Code').val()+max_I5.toString().padStart(3, "0"));
+					})
+				}
+			})
+			//-------------------------------------
 			m.before_submit = function (data, index) {
-				var I1 = $('#F__ID input[name=Randomisation_Number').val(); if (I1 != '' && I1 != '-') index.I1 = parseInt(I1);
+				var I1 = $('#F__ID input[name=Randomisation_Number').val().slice(-3); if (I1 != '' && I1 != '-') index.I1 = parseInt(I1);
+				var I5 = $('#F__ID input[name=Screening_Number').val().slice(-3); if (I5 != '' && I5 != '-') index.I5 = parseInt(I5);
 				var nd=new Date()
 				index.I2=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2);
 			}
 			//-------------------------------------
+            m.after_insert = function (data,res) {
+                var rid=res.result.ops[0]._id
+                if(data.Pre_Screening_Number==''){
+                    var uid=res.result.ops[0].UID;
+                    data.Pre_Screening_Number= 'P'+data.Code+uid.toString().padStart(3, "0")
+                    $vm.request({cmd:'update',id:rid,table:m.Table,data:data},function(res){
+                        //-----------------------------
+                        if(res.status=="lk"){
+                            $vm.alert("This record is locked.");
+                            return;
+                        }
+                        //-----------------------------
+                        if(res.status=="np"){
+                            alert("No permission to update this record.");
+                            return;
+                        }
+                        window.history.go(-1);
+                    });
+                }
+            }
+			//-------------------------------------
             var autocomplete_req_1={cmd:"find",table:"demo-site-reshaped",options:{},skip:0,limit:10}
-            var autocomplete_callback_1=function(items){ $("#F__ID input[name=Site]").val(items["Site"]); }
+            var autocomplete_callback_1=function(items){ console.log(JSON.stringify(items));$("#F__ID input[name=Site]").val(items["Site"]);$("#F__ID input[name=Code]").val(items["code"]); }
             var autocomplete_list_1=function(records){
                 var items=[];
                 for(var i=0;i<records.length;i++){
                     var obj={};
                     obj.label=records[i].Data.Site;
+                    obj.code=records[i].Data.Code;
                     obj['UID']=records[i].UID;
                     items.push(obj);
                 }
