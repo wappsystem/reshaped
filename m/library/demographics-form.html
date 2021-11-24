@@ -18,7 +18,7 @@
                                                 data-id="Participant" />
                                         </label>
                                         <label><span class="">Participant ID</span>
-                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                            <input type=text name="Participant_uid" id=Participant_uid__ID class=form-control readonly />
                                         </label>
                                     </fieldset>
                                 </div>
@@ -28,7 +28,7 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Age</span>
-                                            <input type=number class="form-control" name="age" placeholder="">
+                                            <input type=number class="form-control" name="age" id=age__ID placeholder="">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -103,7 +103,7 @@
                     $('#mmse_score__ID').hide();
                 }
             }
-        //-------------------------------------
+            //-------------------------------------
             $("input[name='mmse_available']").change(function(){
                 if($("input[name='mmse_available']:checked").val()=='1'){
                     $('#mmse_score__ID').show();
@@ -112,6 +112,30 @@
                     $('#mmse_score__ID').hide();
                 }
             });
+            //-------------------------------------
+            $("#age__ID").click(function(){
+                if($("#Participant_uid__ID").val()!='' || $("#Participant_uid__ID").val()!=undefined){
+                    var query_uid={"UID":parseInt($("#Participant_uid__ID").val())}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list["participant-data"].Table,query:query_uid,limit:1},function(res){
+                        if(res.status=='np' || res.result==undefined){
+                            res.result=[];
+                        }
+                        if(res.status=='np'){
+                            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            else $vm.alert("No permission.");
+                        }
+                        if(res.result[0].Data.DOB!='' || res.result[0].Data.DOB!=undefined){
+                            dob=new Date(res.result[0].Data.DOB);
+                            var diff = Date.now() - dob.getTime()
+                            var age = new Date(diff);
+                            console.log( Math.abs(age.getUTCFullYear() - 1970));
+                            $('#age__ID').val(Math.abs(age.getUTCFullYear() - 1970).toString());
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+            })
         }
     </script>
     <style>

@@ -1,5 +1,5 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Subject_ID!=undefined) return record.Data.Subject_ID; else return record.UID;}
+var participant_name=function(record){ if(record.Data.Pre_Screening_Number!=undefined) return record.Data.Pre_Screening_Number; else return record.UID;}
 //-------------------------------------
 var query;
 //auto select particpant
@@ -27,9 +27,10 @@ var I=0; var loop_1=setInterval(function (){
 //auto fill participant
 var site_query;
 var query;
+var dob='';
 var load=m.load;
 m.load=function(){
-    console.log($vm.module_list["participant-data"])
+    //console.log($vm.module_list["participant-data"])
     load();
     if($vm.online_questionnaire==1) {
         $('#pdf__ID').hide();
@@ -64,7 +65,7 @@ m.load=function(){
             var items=[];
             for(var i=0;i<records.length;i++){
                 var obj={};
-                if(records[i].Data.Subject_ID!= undefined ) obj.label=records[i].Data.Subject_ID;
+                if(records[i].Data.Pre_Screening_Number!= undefined ) {obj.label=records[i].Data.Pre_Screening_Number;}
                 else obj.label=records[i].UID;
                 obj['UID']=records[i].UID;
                 items.push(obj);
