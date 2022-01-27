@@ -5,21 +5,22 @@
     <script>
         function F__ID(){
             //-------------------------------------
-            VmInclude:__COMPONENT__/g/grid.01.js       
+            VmInclude:__CURRENT_PATH__/grid.01.js       
             //-------------------------------------
             $('#title__ID').text('Participants');            
             //-------------------------------------
             var fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
-            m.load=function(){
+            /*m.load=function(){
                 var site_list;
-                var query;
+                var query='[{"Data.Site":"x"}]';
                 console.log("User: "+$vm.user_name);
                 console.log(JSON.stringify(m.Table2))
                 var query_user={"Data.user_name":$vm.user_name}
                 jQuery.ajaxSetup({async:false});
                 $vm.request({cmd:"find",table:m.Table2,query:query_user,limit:1},function(res){
+
                     if(res.status=='np' || res.result==undefined){
                         res.result=[];
                     }
@@ -39,9 +40,11 @@
                 })
                 jQuery.ajaxSetup({async:true});
                 m.query={$or:JSON.parse(query)}
-            }
+                console.log(m.query)
+            }*/
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
+                
                 switch(field){
                     case 'DOB':
                         if(records[I].Data.DOB!=''){
