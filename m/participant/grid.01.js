@@ -17,7 +17,7 @@ m.set_req_export=function(i1,i2){
 //-----------------------------------------------
 m.request_data=function(){
     var site_list;
-    var query='[{"Data.Site":"x"}]';
+    var query='[{"Data.Site":""}]';
     console.log("User: "+$vm.user_name);
     console.log(JSON.stringify(m.Table2))
     var query_user={"Data.user_name":$vm.user_name}
@@ -27,24 +27,27 @@ m.request_data=function(){
         if(res.status=='np' || res.result==undefined){
             res.result=[];
         }
+        else{
+            if(res.result[0]!=undefined){
+                if(res.result[0].Data.site!=undefined){
+                    site_list=res.result[0].Data.site.split(',');
+                    query='[';
+                    for (var i=0;i<site_list.length;i++){
+                        if(i>0) query+=',';
+                        query+='{"Data.Site":"'+site_list[i]+'"}';
+                    }
+                    query+=']';
+                }    
+            }
+        }
         if(res.status=='np'){
             if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
             else $vm.alert("No permission.");
-        }
-        if(res.result[0].Data.site!=undefined){
-            site_list=res.result[0].Data.site.split(',');
-            query='[';
-            for (var i=0;i<site_list.length;i++){
-                if(i>0) query+=',';
-                query+='{"Data.Site":"'+site_list[i]+'"}';
-            }
-            query+=']';
         }
     })
     jQuery.ajaxSetup({async:true});
     m.query={$or:JSON.parse(query)}
     console.log(m.query)
-
     var limit=parseInt($('#page_size__ID').val());
     var skip=limit*parseInt($('#I__ID').text());
     var mt1=new Date().getTime();
@@ -55,6 +58,7 @@ m.request_data=function(){
     else if(m.cmd_type=='p1') c_cmd='count-p1';
     else if(m.cmd_type=='p2') c_cmd='count-p2';
     else if(m.cmd_type=='table') c_cmd='count-table';
+    console.log("BB: "+JSON.stringify(m.query))
     $vm.request({cmd:c_cmd,table:m.Table,query:m.query,I1:m.I1,search:$('#keyword__ID').val()},function(res){
         if(res.status=='np'){
             res.result=0;
