@@ -15,8 +15,9 @@
                                                 participant_id:{field1:"Subject_ID",field2:"Subject_Initials"},
                                                 participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB",
                                                 Table2:"site-permission-reshaped",
+                                                Table3:"site-reshaped",                                                
                                             },
-       "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"participant-reshaped"},
+       "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"participant-reshaped",Table2:"site-permission-reshaped",Table3:"site-reshaped"},
 
         "online-questionnaire-setup-reshaped": {url:"$H/m/oq-setup.html",Table:"participant-reshaped"},
         "online-questionnaire-app-reshaped":   {url:"$H/oq.html"},
@@ -30,8 +31,16 @@
         "site-permission-form-reshaped":  	{url:"$H/m/library/site-permission-form.html",Table:"site-permission-reshaped",task_name:"Site Permission List"},
 
 
-        "randomisation-table-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-reshaped",form_module:"randomisation-table-form-reshaped"},
-        "randomisation-table-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-reshaped"},
+        "randomisation-table-sydney-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-sydney-reshaped",form_module:"randomisation-table-sydney-form-reshaped"},
+        "randomisation-table-sydney-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-sydney-reshaped"},
+        "randomisation-table-macquarie-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-macquarie-reshaped",form_module:"randomisation-table-macquarie-form-reshaped"},
+        "randomisation-table-macquarie-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-macquarie-reshaped"},
+        "randomisation-table-austin-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-austin-reshaped",form_module:"randomisation-table-austin-form-reshaped"},
+        "randomisation-table-austin-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-austin-reshaped"},
+        "randomisation-table-tasmania-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-tasmania-reshaped",form_module:"randomisation-table-tasmania-form-reshaped"},
+        "randomisation-table-tasmania-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-tasmania-reshaped"},
+        "randomisation-table-murdoch-data-reshaped":		{url:"$H/m/library/randomisation-table-data.html",Table:"randomisation-table-murdoch-reshaped",form_module:"randomisation-table-murdoch-form-reshaped"},
+        "randomisation-table-murdoch-form-reshaped":		{url:"$H/m/library/randomisation-table-form.html",Table:"randomisation-table-murdoch-reshaped"},
 
         "adverse-event-data-reshaped":		{url:"$H/m/library/adverse-event-data.html",Table:"adverse-event-reshaped",form_module:"adverse-event-form-reshaped",task_name:"Unscheduled - Adverse Event"},
         "adverse-event-form-reshaped":		{url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-reshaped",task_name:"Unscheduled - Adverse Event"},
@@ -176,6 +185,7 @@
         for(p in $vm.module_list){
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
             $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
+            $vm.module_list[p].Table3="demo-"+$vm.module_list[p].Table3;
         }
     }
 

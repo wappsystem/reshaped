@@ -24,10 +24,20 @@
         			<li title="We can accomodate any type of randomisation."><a href=?/site-data>Site List</a></li>
         		</ul>
             -->
-                <span>Randomisation</span>
-        		<ul>
-        			<li title="We can accomodate any type of randomisation."><a href=?/randomisation-table-data-reshape>Randomisation table</a></li>
-        		</ul>
+                <div class=ul-show>
+                    <span id=randomisation__ID style="cursor:pointer">Randomisation Tables</span>
+                </div>
+            <div id=randomisation_show__ID style='display:none'>
+                <ul>
+                    <li><a href=?/randomisation-table-sydney-data-reshaped>Sydney</a></li>
+                    <li><a href=?/randomisation-table-macquarie-data-reshaped>Macquarie</a></li>
+                    <li><a href=?/randomisation-table-austin-data-reshaped>Austin</a></li>
+                    <li><a href=?/randomisation-table-tasmania-data-reshaped>Tasmania</a></li>
+                    <li><a href=?/randomisation-table-murdoch-data-reshaped>Murdoch</a></li>
+                    <p class="small font-italic text-muted mt-1"></p>
+                </ul>
+            </div>
+            
 				<br>
                 <span>Notes</span>
         		<ul>
@@ -49,6 +59,19 @@
 				}
             }
             //--------------------------------------------------------
+            $('#randomisation__ID').on('click', function () {
+                if ($('#randomisation_show__ID').is(':visible')){
+                    $('#randomisation_show__ID').hide();
+                    $('#randomisation__ID').css('color', '#555')
+                }
+                else{
+                    $('#randomisation_show__ID').show()
+                    console.log($('#randomisation_show__ID').is(':visible'))
+                    $('#randomisation__ID').css('color', 'red')
+                }
+            })
+            //--------------------------------------------------------
+            
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();
                 var href=$(this).attr('href');

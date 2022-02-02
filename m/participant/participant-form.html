@@ -16,7 +16,8 @@
 								</div>
 								<div class="col-sm-12 col-lg-4">
 									<label class=''><span class=''>Site</span>
-										<input type=text class=form-control name=Site id=site__ID>
+										<select class=form-control name=Site id=site__ID required>
+                                        </select>
 									</label>
 								</div>
 								<div class="col-sm-12 col-lg-4">
@@ -53,7 +54,7 @@
                                         <input type=text class=form-control name=Pre_Screening_Number readonly >
                                     </label>
                                 </div>
-                                <div class="col-sm-12 col-lg-4 ">
+                                <div class="col-sm-12 col-lg-4 row_screening__ID">
                                     <label class=''><span class=''>Screening Number (S)</span>
                                         <input type=text class=form-control name=Screening_Number readonly placeholder='click to get screening #'>
                                     </label>
@@ -88,34 +89,107 @@
 			//-------------------------------------
 			VmInclude: __COMPONENT__/f/form.01.js
 			//-------------------------------------
-			var load = m.load;
+            var load = m.load;
 			m.load = function () {
 				load();
 				if (m.input.record == undefined) {
-					$('.row_participant__ID').hide()
-					$('#F__ID input[name=_Password').val($vm.vm_password(8, false));                    
+					$('.row_participant__ID').hide();
+					$('#F__ID input[name=_Password').val($vm.vm_password(8, false)); 
+					$('.row_screening__ID').hide();
 				}
 				else {
-					$('.row_participant__ID').show()
-					$('#record__ID').val(m.input.record.UID)
+                    $('.row_screening__ID').show();
+                    if(m.input.record.Data.Screening_Number== ""){
+                        $('.row_participant__ID').hide()
+                    }
+                    else{
+                        $('.row_participant__ID').show();
+                    }
+                    $('#record__ID').val(m.input.record.UID)
+
 				}
-			}
+                //--------------------------------
+                var site_list;
+                var query='[{"Data.Site":""}]';
+                //console.log("User: "+$vm.user_name);
+                //console.log(JSON.stringify(m.Table2))
+                var query_user={"Data.user_name":$vm.user_name}
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:m.Table2,query:query_user,limit:1},function(res){
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    else{
+                        if(res.result[0]!=undefined){
+                            if(res.result[0].Data.site!=undefined){
+                                site_list=res.result[0].Data.site.split(',');
+                            }    
+                        }
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        else $vm.alert("No permission.");
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+                //console.log(site_list)
+                dropdown="";
+                for( var i=0;i<site_list.length;i++){
+                    if(site_list[i]!=''){
+                        dropdown+="<option value="+site_list[i]+">"+site_list[i]+"</option>"
+                    }
+                }
+                //console.log(dropdown)
+                $('#site__ID').html(dropdown);
+                if (m.input.record == undefined) {
+                    $('#site__ID').trigger("change");
+                }
+                else{
+                    $('#site__ID').val(m.input.record.Data.Site);
+                }
+                //----------------------------
+            }
+            //-------------------------------
+            $('#site__ID').change(function(){
+                var query_user={"Data.Site":this.value}
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:m.Table3,query:query_user,limit:1},function(res){
+
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    else{
+                        if(res.result[0]!=undefined){
+                            if(res.result[0].Data.Code!=undefined){
+                                $('#F__ID input[name=Code').val(res.result[0].Data.Code)
+                            }    
+                        }
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        else $vm.alert("No permission.");
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+            })
 			//-------------------------------------
 			$('#F__ID input[name=Randomisation_Number]').on('click', function () {
 				var I1 = $('#F__ID input[name=Randomisation_Number').val();
 				if (I1 == '') {
-					$vm.request({ cmd: "find", table: m.Table, sort: { I1: -1 }, skip: 0, limit: 1 }, function (res) {
+                    var query={"Data.Code":$('#F__ID input[name=Code]').val()};
+					$vm.request({ cmd: "find", table: m.Table, query:query, sort: { I1: -1 }, skip: 0, limit: 1 }, function (res) {
 						if (res.sys.permission == false) {
 							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
 							return;
 						}
 						var max_I1 = 0;
+                        console.log(JSON.stringify(res.result))
 						if (res.result.length > 0) {
 							if (res.result[0].I1 !== undefined) max_I1 = res.result[0].I1
 						}
 						max_I1++;
                         var code=$('#F__ID input[name=Code').val()
-                        if(code=='NS') code='SU'
+                        if(code=='NS') code='US'
 						$('#F__ID input[name=Randomisation_Number').val('R'+code+max_I1.toString().padStart(3, "0"));
 						$('#F__ID input[name=Randomised_by').val($vm.user_name);
 					})
@@ -124,7 +198,7 @@
 			//-------------------------------------
 			$('#F__ID input[name=Screening_Number]').on('click', function () {
                 var code=$('#F__ID input[name=Code').val()
-                if(code=='NS') code='SU'
+                if(code=='NS') code='US'
 				var I5 = $('#F__ID input[name=Screening_Number').val();
 				if (I5 == '') {
 					$vm.request({ cmd: "find", table: m.Table, sort: { I5: -1 }, skip: 0, limit: 1 }, function (res) {
@@ -165,12 +239,12 @@
                             alert("No permission to update this record.");
                             return;
                         }
-                        window.history.go(-1);
                     });
                 }
+                window.history.go(-1);
             }
 			//-------------------------------------
-            var autocomplete_req_1={cmd:"find",table:"demo-site-reshaped",options:{},skip:0,limit:10}
+/*            var autocomplete_req_1={cmd:"find",table:"demo-site-reshaped",options:{},skip:0,limit:10}
             var autocomplete_callback_1=function(items){ console.log(JSON.stringify(items));$("#F__ID input[name=Site]").val(items["Site"]);$("#F__ID input[name=Code]").val(items["code"]); }
             var autocomplete_list_1=function(records){
                 var items=[];
@@ -190,7 +264,11 @@
                 if($vm['jquery-ui-min-js']!=undefined){  clearInterval(loop_1); wait1(); }
                 I++; if(I>50){ clearInterval(loop_1); alert("jquery-ui.min.js is not installed."); }
             },100);
-            //-------------------------------------
+*/            //-------------------------------------
+			$('#F__ID select[name=Site]').on('click', function () {
+			})
+			//-------------------------------------
+
 
 		}
 	</script>
