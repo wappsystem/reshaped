@@ -127,10 +127,9 @@
         m.item_a_cell_render = function (records, I, field, td, set_value, source) {
             switch (field) {
                 case "Start_date":
-                var html = '<input type=date />';
-                    render_date_field(records[I], '__ID', td, html)
-                    //td.find('input').on('change', function () {
-                    //})
+                    td.html('<input type=date />');
+                    var sd=m.item_a_records[I][field]; if(sd!=undefined && sd!=null) td.find('input').val(sd);
+                    td.find('input').on('change',function(){ m.item_a_records[I][field]=$(this).val();})
                     break;
                 case "Stop_date":
                     var html = '<input type=date />';
