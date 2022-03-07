@@ -35,6 +35,7 @@ m.load=function(){
     if($vm.online_questionnaire==1) {
         $('#pdf__ID').hide();
         $('#participant_div__ID').hide();
+        $('#status_div__ID').hide();
     }
     else{
         var query_user={"Data.user_name":$vm.user_name}
@@ -79,11 +80,20 @@ m.load=function(){
         //new from child panel
         $("#F__ID input[name=Participant]").val(participant_name(m.input.participant_record));
         $("#F__ID input[name=Participant_uid]").val(m.input.participant_record.UID);
+        $('#modify_reason_div__ID').css('display','none');
+        $('#modify_reason__ID').removeAttr('required');
     }
     else if(m.input!=undefined && m.input.record!=undefined){
+        console.log('Modify')
+        $('#modify_reason_div__ID').css('display','block')
+        $('#modify_reason__ID').attr('required', '');
+        $('#modify_reason__ID').val("");
+        $('#modify_reason_other__ID').val("");
         //modify
     }
     else{
+        $('#modify_reason_div__ID').css('display','none');
+        $('#modify_reason__ID').removeAttr('required');
         //new with no parent
     }
     //--------------------------

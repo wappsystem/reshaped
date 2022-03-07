@@ -76,6 +76,17 @@
 										<input type=text class=form-control name=_Password>
 									</label>
 								</div>
+                                <div class="col-sm-12 col-lg-4 ">
+									<label class=''><span class=''>Progress - Enable Visit</span>
+										<select class=form-control name=_Progress>
+                                            <option value="">Pre Screening</option>
+                                            <option value="1">Screening</option>
+                                            <option value="2">Baseline</option>
+                                            <option value="3">6 Month</option>
+                                            <option value="4">24 Month</option>
+                                        </select>
+									</label>
+								</div>
 							</div>
 							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
 						</div>
@@ -215,12 +226,31 @@
 					})
 				}
 			})
-			//-------------------------------------
+ 			//-------------------------------------
+             function calculateAge(birthday) { // birthday is a date
+                var ageDifMs = Date.now() - birthday.getTime();
+                var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                return Math.abs(ageDate.getUTCFullYear() - 1970);
+            }
+ 			//-------------------------------------
 			m.before_submit = function (data, index) {
-				var I1 = $('#F__ID input[name=Randomisation_Number').val().slice(-3); if (I1 != '' && I1 != '-') index.I1 = parseInt(I1);
-				var I5 = $('#F__ID input[name=Screening_Number').val().slice(-3); if (I5 != '' && I5 != '-') index.I5 = parseInt(I5);
-				var nd=new Date()
-				index.I2=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2);
+                var dob=new Date($('#F__ID input[name=DOB]').val())
+                var age=calculateAge(dob)
+                if(age>75){
+                    $vm.alert("This person is over 75 yrs")
+                    return false;
+                } 
+                else if (age<50){
+                    $vm.alert("This person is under 50 yrs")
+                    return false;
+                }
+                else{
+                    var I1 = $('#F__ID input[name=Randomisation_Number').val().slice(-3); if (I1 != '' && I1 != '-') index.I1 = parseInt(I1);
+                    var I5 = $('#F__ID input[name=Screening_Number').val().slice(-3); if (I5 != '' && I5 != '-') index.I5 = parseInt(I5);
+                    var nd=new Date()
+                    index.I2=nd.getFullYear()+"-"+$vm.pad(nd.getMonth()+1,2)+"-"+$vm.pad(nd.getDate(),2);
+                return;
+                }
 			}
 			//-------------------------------------
             m.after_insert = function (data,res) {

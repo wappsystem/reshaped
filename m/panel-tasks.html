@@ -2,11 +2,21 @@
     <div class=ul-show>
         <span id=unscheduled__ID style="cursor:pointer">Unscheduled forms</span><br>
         <span id=prescreening__ID style="cursor:pointer">Pre-Screening</span><br>
-        <span id=screening__ID style="cursor:pointer">Screening</span><br>
-        <span id=baseline__ID style="cursor:pointer">Baseline</span><br>
-        <span id=6months__ID style="cursor:pointer">6 Month</span><br>
-        <span id=24months__ID style="cursor:pointer">24 Month</span><br>
-        <span id=treatment__ID style="cursor:pointer">Treatment Visit</span><br>
+        <div id="screening_enable__ID">
+            <span id=screening__ID style="cursor:pointer">Screening</span><br>
+        </div>
+        <div id="baseline_enable__ID">
+            <span id=baseline__ID style="cursor:pointer">Baseline</span><br>
+        </div>
+        <div id="6months_enable__ID">
+            <span id=6months__ID style="cursor:pointer">6 Month</span><br>
+        </div>
+        <div id="24months_enable__ID">
+            <span id=24months__ID style="cursor:pointer">24 Month</span><br>
+        </div>
+        <div id="treatment_enable__ID">
+            <span id=treatment__ID style="cursor:pointer">Treatment Visit</span><br>
+        </div>
     </div>
 </div>
 <div class='nav__ID' id=unscheduled_show__ID style='display:none'>
@@ -45,6 +55,7 @@
         <span>Participant Consent </span>
         <ul>
             <li><a href=?/consent-s-data-reshaped>Inform Consent</a></li>
+            <li><a href=?/consent-mri-data-reshaped>MRI Inform Consent</a></li>
             <p class="small font-italic text-muted mt-1"></p>
         </ul>
         <span>Screening Assessment </span>
@@ -70,7 +81,7 @@
             <li><a href=?/btb-bl-data-reshaped>Blood Test</a></li>
             <li><a href=?/watchpat-bl-data-reshaped>WatchPat</a></li>
             <li><a href=?/biomedical-measurements-bl-data-reshaped>Biomedical Measurements</a></li>
-            <li><a href=?/stop-bang-bl-data-reshaped>STOP BANG</a></li>
+            <!--<li><a href=?/stop-bang-bl-data-reshaped>STOP BANG</a></li>-->
             <li><a href=?/cirs-bl-data-reshaped>Cumulative Illness Rating Scale- Geriatric Version</a></li>
         </ul>
         <span>Imaging </span>

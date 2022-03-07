@@ -1,0 +1,79 @@
+
+<section>
+    <div id="F__ID">
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div style="text-align:right;padding-bottom:10px">
+            <button id=close__ID  type=button class='btn btn-secondary btn-sm' title='Close'><i class="fa fa-times"></i></button>
+        </div>
+            VmInclude:__COMPONENT__/g/grid.01.html
+        </div> 
+      </div>
+    </div>
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__CURRENT_PATH__/grid.01.history.js
+        VmInclude:__CURRENT_PATH__/shared-data.js
+        //-------------------------------------
+        var fields="";
+        //-------------------------------------
+        m.load=function(){
+            m.Table=m.input.record.Table;
+            m.input.record.UID=m.input.record.Data.Participant_uid
+            fields = "";
+            $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+            json_object=JSON.stringify(m.input.record.Data).replace(/{/g,"").replace(/}/g,"")
+            console.log(json_object)
+            json_object=json_object.split(',')
+            for(var i=0;i<json_object.length;i++)
+            {
+                var field_object = json_object[i].split(':');
+                field_object[0]=field_object[0].replace(/"/g,"")
+                if(field_object[0]!='Participant' && field_object[0]!='Participant_uid' && field_object[0]!='_status' && field_object[0]!='sysStatus'){
+                    if(fields!="") fields+=',';
+                    fields+=field_object[0];
+                }
+            }
+            m.fields="_Form,_Participant_ID,Participant,"+fields+",Update_date,Updated_by,Submit_date,Submitted_by";
+            m.cmd_t='m';
+            $('#myModal').show();
+            $('#import__ID').hide();
+            $('#new__ID').hide();
+            $('#export__ID').hide();           
+        }
+        $('#close__ID').on('click', function () {
+            $('#myModal').hide()
+            window.history.go(-1);
+        })
+     }
+</script>
+<style>
+    /* The Modal (background) */
+#F__IF .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#F__ID .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

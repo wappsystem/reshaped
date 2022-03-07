@@ -24,10 +24,10 @@
                 else                            return record.Data.Subject_ID+' '+record.Data.Subject_Initials; 
 			}
 			//DEMO VERSION
-			//if(window.location.toString().indexOf('tb=demo')!=-1){
+			if(window.location.toString().indexOf('tb=demo')!=-1){
 				$('#D__ID').css('background-image','url("images/demo.png")')
 				//$('#D__ID').css('background-image','url("m/test.png")')
-			//}			
+			}			
 			//--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();
@@ -89,6 +89,7 @@
     		//---------------------------------------------
     		$('#D__ID').on('load',function(){
 				participant_record=m.input.record;
+                //console.log(JSON.stringify(m.input.record))
     			if(participant_record==undefined){
     				$('#info__ID').text("No individual participant info was found.");
     				return;
@@ -99,6 +100,29 @@
     				set_counting();
     			}
     			$('#info__ID').text(info);
+                var prog=participant_record.Data._Progress
+                $('#screening_enable__ID').hide();
+                $('#baseline_enable__ID').hide();
+                $('#6months_enable__ID').hide();
+                $('#24months_enable__ID').hide();
+                $('#treatment_enable__ID').hide();
+                if(prog=='' || prog==undefined){
+                }
+                if(parseInt(prog)>0){
+                   $('#screening_enable__ID').show();
+                }
+                if(parseInt(prog)>1){
+                   $('#baseline_enable__ID').show();
+                   $('#treatment_enable__ID').show();
+                }
+                if(parseInt(prog)>2){
+                   $('#6months_enable__ID').show();
+                   $('#treatment_enable__ID').show();
+                }
+                if(parseInt(prog)>3){
+                   $('#24months_enable__ID').show();
+                   $('#treatment_enable__ID').show();
+                }
     		})
     		//--------------------------------------------------------
     		$('#count__ID').on('click',function(){

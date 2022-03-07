@@ -18,7 +18,7 @@
                                                 data-id="Participant" />
                                         </label>
                                         <label><span class="">Participant ID</span>
-                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                            <input type=text name="Participant_uid" id='Participant_uid__ID' class=form-control readonly />
                                         </label>
                                     </fieldset>
                                 </div>
@@ -29,7 +29,7 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Date of Birth</span>
-                                            <input type=date class="form-control" name="dob" placeholder="">
+                                            <input type=date class="form-control" name="dob" placeholder="" readonly>
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -38,11 +38,17 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Age at assessment</span>
-                                            <input type=number class="form-control" name="age_assessment" placeholder="">
+                                            <input type=number class="form-control" name="age_assessment" id=age__ID placeholder="" readonly>
                                         </label><br>
+                                        <label id=label_warning__ID style="display:none"><span style='color:red' >This person is 75+<br>Will there be time to randomise before turning 76?<br></span>                                            
+                                            <label><span class="">Months to next birthday</span>
+                                                <input type=number class="form-control" id=month__ID placeholder="">
+                                            </label>                                        
+                                        </label>
                                     </fieldset>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="questiongroup">
                                     <label><span>Sex</span></label>
@@ -59,7 +65,7 @@
                                         </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <div class="questiongroup">
                                     <fieldset class="subquestions">
                                         <label><span class="">First language</span>
@@ -73,7 +79,7 @@
                                         </label><br>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
@@ -192,19 +198,21 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">Number of years of smoking:</span>
-                                            <input type=number class="form-control" name="years_smoking" placeholder="">
-                                        </label><br>
-                                        <label><span class="">Time since quitting (if relevant):</span>
-                                            <input type=text class="form-control" name="time_quitting" placeholder="">
-                                        </label><br>
-                                        <label><span class="">Number of cigarettes on heaviest day:</span>
-                                            <input type=number class="form-control" name="number_cigarettes" placeholder="">
-                                        </label><br>
-                                    </fieldset>
+                            <div id="smoking_div__ID">
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">Number of years of smoking:</span>
+                                                <input type=number class="form-control" name="years_smoking" placeholder="">
+                                            </label><br>
+                                            <label><span class="">Time since quitting (if relevant):</span>
+                                                <input type=text class="form-control" name="time_quitting" placeholder="">
+                                            </label><br>
+                                            <label><span class="">Number of cigarettes on heaviest day:</span>
+                                                <input type=number class="form-control" name="number_cigarettes" placeholder="">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -224,16 +232,18 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">Drinks per day:</span>
-                                            <input type=number class="form-control" name="drinks_day" placeholder="">
-                                        </label><br>
-                                        <label><span class="">or Drinks per week:</span>
-                                            <input type=number class="form-control" name="drinks_week" placeholder="">
-                                        </label><br>
-                                    </fieldset>
+                            <div id="alcohol_div__ID">
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">Drinks per day:</span>
+                                                <input type=number class="form-control" name="drinks_day" placeholder="">
+                                            </label><br>
+                                            <label><span class="">or Drinks per week:</span>
+                                                <input type=number class="form-control" name="drinks_week" placeholder="">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -241,9 +251,8 @@
                                 <div class="questiongroup">
                                     <fieldset class="">
                                         <label><span>Has the MMSE previously done (within 6 months)?<br></span></label>
-
                                         <label class="radiobuttons">
-                                            <input type="radio" name="mmse_done" value="0">
+                                            <input type="radio" name="mmse_done"  value="0">
                                             <span class="checkmark"></span>No
                                         </label>
                                         <label class="radiobuttons">
@@ -258,36 +267,13 @@
                                     <div class="questiongroup ">
                                         <fieldset class="">
                                             <label><span class="">MMSE total score:</span>
-                                                <input type=number class="form-control" name="mmse_total_score" placeholder="">
+                                                <input type=number class="form-control" name="mmse_total_score" id="mmse_score__ID" placeholder="">
                                             </label><br>
                                         </fieldset>
                                     </div>
                                 </div>
                             </div>                            
-                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
-                            <div class="form-group">
-                                <div class="pb-3">
-                                    <label><span>Set Status</span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FF0000">
-                                            <span class="checkmark"
-                                                style="background-color:#FF0000"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FFCC00">
-                                            <span class="checkmark"
-                                                style="background-color:#FFCC00"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#00FF00">
-                                            <span class="checkmark"
-                                                style="background-color:#00FF00"></span>Manually&nbsp;&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="" checked>
-                                            <span class="checkmark"
-                                                style="background-color:#C9C9C9"></span>Automatically</label>
-                                    </fieldset>
-                                </div>
-                            </div>
+                            VmInclude: __CURRENT_PATH__/modification_status.html                        
                         </form>
                     </div>
                 </div>
@@ -306,21 +292,92 @@
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
                 }
-                if($("input[name='mmse_done']:checked").val()=='0'){
+                if($("input[name='mmse_done']:checked").val()=='1'){
                     $('#mmse_total_score__ID').show();
                 }
                 else {
                     $('#mmse_total_score__ID').hide();
                 }
+                //console.log("A "+JSON.stringify(m.input))
+                if(m.input.participant_record!=undefined){
+                    var dob=new Date(m.input.participant_record.Data.DOB);
+                    var diff = Date.now() - dob.getTime()
+                    var age = new Date(diff);
+                    $('#age__ID').val(Math.abs(age.getUTCFullYear() - 1970).toString());
+                    $('#month__ID').val((12-Math.abs(age.getUTCMonth()).toString()));
+                    if(parseInt($('#age__ID').val())>='75'){
+                        $('#label_warning__ID').show();
+                    }
+                    else{
+                        $('#label_warning__ID').hide();
+                    }
+                    $('#F__ID input[name=dob]').val($vm.date_to_yyyymmdd(dob));
+                }
+                //-------------------------------------
+                if($("input[name='smoking_status']:checked").val()!='0' && $("input[name='smoking_status']:checked").val()!=undefined){
+                    $('#smoking_div__ID').show();
+                }
+                else {
+                    $('#smoking_div__ID').hide();
+                }
+                //-------------------------------------
+                if($("input[name='alcohol_status']:checked").val()!='0' && $("input[name='alcohol_status']:checked").val()!=undefined){
+                    $('#alcohol_div__ID').show();
+                }
+                else {
+                    $('#alcohol_div__ID').hide();
+                }
+                //-------------------------------------
+                var records={};
+                console.log("A: "+$('#Participant_uid__ID').val()+" - "+$("input[name='mmse_done']:checked").val())
+                if($('#Participant_uid__ID').val()!=undefined && $("input[name='mmse_done']:checked").val()==undefined){
+                     var query={'Data.Participant_uid':$('#Participant_uid__ID').val()}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            console.log(res.result[0].Data.mmse_score)
+                            $('#mmse_score__ID').val(res.result[0].Data.mmse_score)
+                            $("input[name='mmse_done']").prop("checked", true);
+                            $('#mmse_total_score__ID').show();
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+            //-------------------------------------
+
 
             }
             //-------------------------------------
             $("input[name='mmse_done']").change(function(){
-                if($("input[name='mmse_done']:checked").val()=='0'){
+                if($("input[name='mmse_done']:checked").val()=='1'){
                     $('#mmse_total_score__ID').show();
                 }
                 else {
                     $('#mmse_total_score__ID').hide();
+                }
+            });
+            //-------------------------------------
+            $("input[name='smoking_status']").change(function(){
+                if($("input[name='smoking_status']:checked").val()!='0'){
+                    $('#smoking_div__ID').show();
+                }
+                else {
+                    $('#smoking_div__ID').hide();
+                }
+            });
+            //-------------------------------------
+            $("input[name='alcohol_status']").change(function(){
+                if($("input[name='alcohol_status']:checked").val()!='0'){
+                    $('#alcohol_div__ID').show();
+                }
+                else {
+                    $('#alcohol_div__ID').hide();
                 }
             });
             //-------------------------------------

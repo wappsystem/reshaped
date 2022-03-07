@@ -38,6 +38,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label><span class="">ODI</span></label>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <input type=number step=0.1 class="form-control" style="width:auto" name=odi readonly>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label><span class="">WristOx recording date:</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
@@ -152,30 +160,126 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
-                            <div class="form-group">
-                                <div class="pb-3">
-                                    <label><span>Set Status</span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FF0000">
-                                            <span class="checkmark"
-                                                style="background-color:#FF0000"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FFCC00">
-                                            <span class="checkmark"
-                                                style="background-color:#FFCC00"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#00FF00">
-                                            <span class="checkmark"
-                                                style="background-color:#00FF00"></span>Manually&nbsp;&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="" checked>
-                                            <span class="checkmark"
-                                                style="background-color:#C9C9C9"></span>Automatically</label>
-                                    </fieldset>
+                            <div id="night_2__ID">
+                                <br>
+                                <h3>Night 2</h3>
+                                <div class="form-group">
+                                    <label><span class="">WristOx recording date:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=date class="form-control" style="width:auto" name=wristox_date_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Duration:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_duration_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Analyzed</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_total_events_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">SpO2 total events:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_analyzed_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">SpO2 adjusted index (1/hr):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_spo2_adjusted_index_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Pulse total events:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_pulse_total_events_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Pulse adjusted index (1/hr):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_pulse_adjusted_index_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Time (%) below 90%:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_below_90_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Basal SpO2 (%):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_basal_spo2_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Time (min) &lt;88%:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_88_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Minimum SpO2 (%):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_minimun_spo2_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Av. g. Low SpO2 (%):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_av_low_spo2_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Desaturation event: </span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=text class="form-control" style="width:auto" name=wristox_desaturation_event_2>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row px-4">
+                                    <div class='col'>
+                                        <span>File</span>
+                                        <div class="form-control">
+                                            <u style='cursor:pointer' id=link_File_Name_2__ID></u>
+                                            <br>
+                                            <input type="file" name=File_Name style="margin-top:6px" /> &nbsp&nbsp&nbsp
+                                            <button type="button" id=x_File_Name_2__ID>Remove</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            VmInclude: __CURRENT_PATH__/modification_status.html                        
                         </form>
                     </div>
                 </div>
@@ -195,8 +299,31 @@
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
                 }
+                if($('#F__ID input[name=wristox_data]:checked').val()==1) $('#night_2__ID').show();
+                else  $('#night_2__ID').hide();
             }
             //-------------------------------------
+            $('#F__ID input[name=wristox_data]').change(function(){
+                if($("input[name='wristox_data']:checked").val()=='1'){
+                    $('#night_2__ID').show();
+                }
+                else {
+                    $('#night_2__ID').hide();
+                }
+            });
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                console.log(isNaN(parseInt(data.wristox_spo2_adjusted_index_2)) +' - '+isNaN(parseInt(data.wristox_spo2_adjusted_index)))
+                if(isNaN(parseInt(data.wristox_spo2_adjusted_index_2)) || isNaN(parseInt(data.wristox_spo2_adjusted_index))){
+                    data.odi=data.wristox_spo2_adjusted_index;
+                }
+                else{
+                    data.odi=((parseInt(data.wristox_spo2_adjusted_index_2) + parseInt(data.wristox_spo2_adjusted_index))/2).toFixed(1);
+                }
+              return before_submit(data,index);
+          }
+          //-------------------------------------
 
         }
     </script>

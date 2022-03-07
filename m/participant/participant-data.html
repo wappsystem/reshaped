@@ -9,7 +9,7 @@
             //-------------------------------------
             $('#title__ID').text('Participants');            
             //-------------------------------------
-            var fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
+            var fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,_Progress,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             /*m.load=function(){
@@ -82,9 +82,16 @@
                     case '_Login_ID':
                         td.html(records[I].UID+"-"+records[I].Data.Subject_Initials);
                         break;
+                    case '_Progress':
+                        console.log()
+                        if(records[I].Data._Progress=='') td.html('Pre-Screening');
+                        if(records[I].Data._Progress=='1') td.html('Screening');
+                        if(records[I].Data._Progress=='2') td.html('Baseline');
+                        if(records[I].Data._Progress=='3') td.html('6 Months');
+                        if(records[I].Data._Progress=='4') td.html('24 Months');
+                        break;
                 }
             }
-            console.log(m.fields)
             //-------------------------------------
             m.export_records=function(){
                 tabledata=m.Table;

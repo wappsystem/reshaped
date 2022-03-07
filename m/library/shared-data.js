@@ -48,6 +48,20 @@ m.cell_render=function(records,I,field,td){
                 process_lock(_i);
             })
             break;
+        case 'Modify_Reason':
+            if(records[I].Data.Modify_Reason!="" && records[I].Data.Modify_Reason!=undefined){
+                var mod=(records[I].Data.Modify_Reason).substring(0,30)
+                if(m.cmd_t=='m'){
+                    td.html(mod);
+                }
+                else{
+                    td.html("<u style='cursor:pointer'>"+mod+"</u>");
+                }
+            }
+            td.find('u').on('click',function(){
+                $vm.load_module('history-data','',{record:records[I],task_uid:records[I].UID,participant_uid:records[I].Data.Participant_uid})
+            })
+            break;
     }
 }
 //-------------------------------------

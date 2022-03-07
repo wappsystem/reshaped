@@ -1,0 +1,105 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95 mb-3">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id="F__ID">
+							<h3 id=title__ID></h3>
+							<!-- participant part for all tsak forms -------------------->
+							<div id="participant_div__ID">
+								<div class="form-group">
+									<fieldset class="subquestions">
+										<label><span class="">Participant</span>
+											<input type=text name="Participant" class=form-control id=Participant__ID
+												data-id="Participant" />
+										</label><br>
+										<label><span class="">Participant ID</span>
+											<input type=text name="Participant_uid" class=form-control readonly />
+										</label>
+									</fieldset>
+								</div>
+							</div>
+							<!---------------------------------------------------->
+							<div class="form-group">
+								<fieldset class="subquestions">
+									<h4 id="titel__ID"></h4>
+								</fieldset>
+							</div>
+							<!-- Form Inputs-------------------------------------->
+							<div id=dynamic_part__ID></div>
+							<!---------------------------------------------------->
+							<!-- submit button part for all task forms------------>
+							<button type="button" id="close__ID" class="btn btn-primary btn-lg">Close</button>
+						</form>
+						<!---------------------------------------------------->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function F__ID() {
+			//-------------------------------------
+			var fields = "";
+			$('#header__ID').text("Dynamically generated form from label names ");
+			//-------------------------------------
+			VmInclude: '__COMPONENT__/f/form.01.js'
+			VmInclude: __CURRENT_PATH__/shared-form.js
+			//-------------------------------------
+			var load2 = m.load;
+			m.load = function () {
+                fields = "";
+				$('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+                json_object=JSON.stringify(m.input.record.Data).replace(/{/g,"").replace(/}/g,"")
+                json_object=json_object.split(',')
+                for(var i=0;i<json_object.length;i++)
+                {
+                    var field_object = json_object[i].split(':');
+                    field_object[0]=field_object[0].replace(/"/g,"")
+                    if(field_object[0]!='Participant' && field_object[0]!='Participant_uid' && field_object[0]!='_status' && field_object[0]!='sysStatus'){
+                        if(fields!="") fields+=',';
+                        fields+=field_object[0];
+                    }
+                }
+			//-------------------------------------
+                var fs = fields.split(',');
+                var txt = "";
+                for (var i = 0; i < fs.length; i++) {
+                    var type = "text"
+                    //console.log(fs[i].toLowerCase())
+                    //console.log(fs[i].toLowerCase().includes("date"))
+                    if (fs[i].toLowerCase().includes("date")) type = "date";
+                    if (fs[i].toLowerCase().includes("time")) type = "time";
+                    txt += '<div class="form-group">\r\n';
+                    txt += '<div class="questiongroup">\r\n';
+                    txt += '<fieldset class="">\r\n';
+                    txt += '<label ><span class="">' + fs[i].replace(/_/g, ' ') + '</span>\r\n';
+                    txt += '<input class="form-control form-control-sm" type="' + type + '" name="' + fs[i] + '" >\r\n';
+                    txt += '</label>\r\n';
+                    txt += '</fieldset>\r\n';
+                    txt += '</div>\r\n';
+                    txt += '</div>\r\n';
+                }
+                $('#dynamic_part__ID').html(txt);
+                load2();
+			}
+			//-------------------------------------
+            $('#close__ID').on('click', function () {
+                $('#dynamic_part__ID').html("");
+                window.history.go(-1);
+        })
+
+		}
+	</script>
+	<style>
+		#D__ID .mt-95 {
+			max-width: 600px;
+		}
+
+		VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
+	</style>
+</div>

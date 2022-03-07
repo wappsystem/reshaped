@@ -2,6 +2,7 @@
     var modules={
         "panel-main-reshaped":    	        {url:"$H/m/panel-main.html",router:1},
         "panel-child-reshaped":              {url:"$H/m/panel-child.html"},
+        "panel-setup-reshaped":              {url:"$H/m/panel-setup.html"},
         "panel-library-reshaped":    		{url:"$H/m/panel-library.html",router:1},
         "panel-export-screening-reshaped":   {url:"$H/m/export/panel-export-screened.html",router:1},
         "panel-export-enrolled-reshaped":    {url:"$H/m/export/panel-export-enrolled.html",router:1},
@@ -24,6 +25,9 @@
 
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"notes-reshaped",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"notes-reshaped"},
+
+        "history-data":  	                    {url:"$H/m/library/history-data.html",form_module:"history-form",task_name:"History Data"},
+        "history-form":  	                    {url:"$H/m/library/history-form.html"},
 
         "site-data-reshaped":  	            {url:"$H/m/library/site-data.html",Table:"site-reshaped",form_module:"site-form-reshaped",task_name:"Site List",router:1},
         "site-form-reshaped":  	            {url:"$H/m/library/site-form.html",Table:"site-reshaped",task_name:"Site List"},
@@ -48,8 +52,8 @@
         "concom-medication-form-reshaped":		{url:"$H/m/library/concom-medication-form.html",Table:"concom-medication-reshaped",task_name:"Unscheduled - Concomitant Medication"},
         "file-notes-data-reshaped":		{url:"$H/m/library/file-notes-data.html",Table:"file-notes-reshaped",form_module:"file-notes-form-reshaped",task_name:"Unscheduled - File Notes"},
         "file-notes-form-reshaped":		{url:"$H/m/library/file-notes-form.html",Table:"file-notes-reshaped",task_name:"Unscheduled - File Notes"},
-        "consent-ps-data-reshaped":		        {url:"$H/m/library/date-data.html",Table:"consent-ps-reshaped",form_module:"consent-ps-form-reshaped",task_name:"Pre-screening - Date of Consent"},
-        "consent-ps-form-reshaped":		        {url:"$H/m/library/date-form.html",Table:"consent-ps-reshaped",task_name:"Pre-screening - Date of Consent"},
+        "consent-ps-data-reshaped":		        {url:"$H/m/library/consent-date-data.html",Table:"consent-ps-reshaped",form_module:"consent-ps-form-reshaped",task_name:"Pre-screening - Date of Sign Consent"},
+        "consent-ps-form-reshaped":		        {url:"$H/m/library/consent-date-form.html",Table:"consent-ps-reshaped",task_name:"Pre-screening - Date of Sign Consent"},
         "date-ps-data-reshaped":                {url:"$H/m/library/date-data.html",Table:"date-ps-reshaped",form_module:"date-ps-form-reshaped",task_name:"Pre-screening - Visit Date"},
         "date-ps-form-reshaped":                {url:"$H/m/library/date-form.html",Table:"date-ps-reshaped",task_name:"Screening - Visit Date"},
         "wristox-ps-data-reshaped":	    {url:"$H/m/library/wristox-v2-data.html",Table:"wristox-ps-reshaped",form_module:"wristox-ps-form-reshaped",task_name:"Pre-screening - Wristox"},
@@ -57,12 +61,14 @@
         "demographics-ps-data-reshaped":	    {url:"$H/m/library/demographics-data.html",Table:"demographics-ps-reshaped",form_module:"demographics-ps-form-reshaped",task_name:"Pre-screening - Demographics"},
         "demographics-ps-form-reshaped":	    {url:"$H/m/library/demographics-form.html",Table:"demographics-ps-reshaped",task_name:"Pre-screening - Demographics"},
         "eligibility-ps-data-reshaped":	    {url:"$H/m/library/eligibility-data.html",Table:"eligibility-ps-reshaped",form_module:"eligibility-ps-form-reshaped",task_name:"Pre-screening - Eligibility"},
-        "eligibility-ps-form-reshaped":	    {url:"$H/m/library/eligibility-form.html",Table:"eligibility-ps-reshaped",task_name:"Pre-screening - Eligibility"},
+        "eligibility-ps-form-reshaped":	    {url:"$H/m/library/eligibility-form.html",Table:"eligibility-ps-reshaped",task_name:"Pre-screening - Eligibility",router:1},
 
         "date-s-data-reshaped":                {url:"$H/m/library/date-data.html",Table:"date-s-reshaped",form_module:"date-s-form-reshaped",task_name:"Screening - Visit Date"},
         "date-s-form-reshaped":                {url:"$H/m/library/date-form.html",Table:"date-s-reshaped",task_name:"Screening - Visit Date"},
-        "consent-s-data-reshaped":		        {url:"$H/m/library/date-data.html",Table:"consent-s-reshaped",form_module:"consent-s-form-reshaped",task_name:"Screening - Date of Consent"},
-        "consent-s-form-reshaped":		        {url:"$H/m/library/date-form.html",Table:"consent-s-reshaped",task_name:"Screening - Date of Consent"},
+        "consent-s-data-reshaped":		        {url:"$H/m/library/consent-s-date-data.html",Table:"consent-s-reshaped",form_module:"consent-s-form-reshaped",task_name:"Screening - Date of Sign Consent"},
+        "consent-s-form-reshaped":		        {url:"$H/m/library/consent-s-date-form.html",Table:"consent-s-reshaped",task_name:"Screening - Date of Sign Consent"},
+        "consent-mri-data-reshaped":		        {url:"$H/m/library/consent-mri-data.html",Table:"consent-mri-reshaped",form_module:"consent-mri-form-reshaped",task_name:"Screening - MRI Date of Sign Consent"},
+        "consent-mri-form-reshaped":		        {url:"$H/m/library/consent-mri-form.html",Table:"consent-mri-reshaped",task_name:"Screening - MRI Date of Sign Consent"},
         "demographics-s-data-reshaped":	    {url:"$H/m/library/demographics-long-data.html",Table:"demographics-s-reshaped",form_module:"demographics-s-form-reshaped",task_name:"Screening - Demographics"},
         "demographics-s-form-reshaped":	    {url:"$H/m/library/demographics-long-form.html",Table:"demographics-s-reshaped",task_name:"Screening - Demographics"},
         "medical-assessment-s-data-reshaped":	    {url:"$H/m/library/medical-assessment-data.html",Table:"medical-assessment-s-reshaped",form_module:"medical-assessment-s-form-reshaped",task_name:"Screening - Medical Assessment"},

@@ -30,6 +30,11 @@
                                         <label><span class="">Age</span>
                                             <input type=number class="form-control" name="age" id=age__ID placeholder="">
                                         </label><br>
+                                        <label id=label_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person is 75+<br>Will there be time to randomise before turning 76?<br></span>                                            
+                                            <label><span class="">Months to next birthday</span>
+                                                <input type=number class="form-control" id=month__ID placeholder="">
+                                            </label>                                        
+                                        </label>
                                     </fieldset>
                                 </div>
                             </div>
@@ -51,36 +56,13 @@
                                     <div class="questiongroup ">
                                         <fieldset class="">
                                             <label><span class="">MMSE Score:</span>
-                                                <input type=number class="form-control" name="mmse_score" placeholder="">
+                                                <input type=number class="form-control" min=0 max=30 name="mmse_score" placeholder="">
                                             </label><br>
                                         </fieldset>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
-                            <div class="form-group">
-                                <div class="pb-3">
-                                    <label><span>Set Status</span></label>
-                                    <fieldset class="">
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FF0000">
-                                            <span class="checkmark"
-                                                style="background-color:#FF0000"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#FFCC00">
-                                            <span class="checkmark"
-                                                style="background-color:#FFCC00"></span>&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="#00FF00">
-                                            <span class="checkmark"
-                                                style="background-color:#00FF00"></span>Manually&nbsp;&nbsp;</label>
-                                        <label class="radiobuttons">
-                                            <input type="radio" name="_status" value="" checked>
-                                            <span class="checkmark"
-                                                style="background-color:#C9C9C9"></span>Automatically</label>
-                                    </fieldset>
-                                </div>
-                            </div>
+                            VmInclude: __CURRENT_PATH__/modification_status.html
                         </form>
                     </div>
                 </div>
@@ -96,12 +78,14 @@
             var load2 = m.load;
             m.load = function () {
                 load2();
+                console.log(JSON.stringify(m.input))
                 if($("input[name='mmse_available']:checked").val()=='1'){
                     $('#mmse_score__ID').show();
                 }
                 else {
                     $('#mmse_score__ID').hide();
                 }
+                $('#label_warning__ID').hide();
             }
             //-------------------------------------
             $("input[name='mmse_available']").change(function(){
@@ -114,26 +98,18 @@
             });
             //-------------------------------------
             $("#age__ID").click(function(){
-                if($("#Participant_uid__ID").val()!='' || $("#Participant_uid__ID").val()!=undefined){
-                    var query_uid={"UID":parseInt($("#Participant_uid__ID").val())}
-                    jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list["participant-data"].Table,query:query_uid,limit:1},function(res){
-                        if(res.status=='np' || res.result==undefined){
-                            res.result=[];
-                        }
-                        if(res.status=='np'){
-                            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
-                            else $vm.alert("No permission.");
-                        }
-                        if(res.result[0].Data.DOB!='' || res.result[0].Data.DOB!=undefined){
-                            dob=new Date(res.result[0].Data.DOB);
-                            var diff = Date.now() - dob.getTime()
-                            var age = new Date(diff);
-                            console.log( Math.abs(age.getUTCFullYear() - 1970));
-                            $('#age__ID').val(Math.abs(age.getUTCFullYear() - 1970).toString());
-                        }
-                    })
-                    jQuery.ajaxSetup({async:true});
+                if(m.input.participant_record!=undefined){
+                    dob=new Date(m.input.participant_record.Data.DOB);
+                    var diff = Date.now() - dob.getTime()
+                    var age = new Date(diff);
+                    $('#age__ID').val(Math.abs(age.getUTCFullYear() - 1970).toString());
+                    $('#month__ID').val((12-Math.abs(age.getUTCMonth()).toString()));
+                    if(parseInt($('#age__ID').val())>='75'){
+                        $('#label_warning__ID').show();
+                    }
+                    else{
+                        $('#label_warning__ID').hide();
+                    }
                 }
             })
         }
