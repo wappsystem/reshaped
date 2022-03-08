@@ -42,8 +42,8 @@
             <div class="form-group">
                 <div class="questiongroup ">
                     <fieldset class="">
-                        <label<span class="">Number of items</span>
-                            <input class="form-control" type="number" name="no_items" placeholder="" readonly>
+                        <label<span class="">Number of events</span>
+                            <input class="form-control" type="number" name="no_events" placeholder="" readonly>
                         </label><br>
                     </fieldset>
                 </div>
@@ -86,37 +86,20 @@
         VmInclude: '__COMPONENT__/f/form-item-a.01.js'
         VmInclude: '__CURRENT_PATH__/shared-form.js'
         //-------------------------------------
-        m.before_submit = function (data, index) {
+        var before_submit=m.before_submit;
+        m.before_submit=function(data,index){
             data.items = m.item_a_get_data();
-            return true;
+            data.no_events= data.items.length;
+            return before_submit(data,index);
         }
         //--------------------------------------------------------
         var load2 = m.load;
         m.load = function () {
             load2();
-            console.log(JSON.stringify(m.input.record))
-            /*$('#order__ID').hide();
-            if (m.input.record != undefined) {
-                $('#uid__ID').val(m.input.record.UID);
-                $('#order__ID').show();
-            }
-*/
-            /*
-            if(m.input.record!=undefined && m.input.record.UID!=undefined){
-                $('#uid__ID').val(m.input.record.UID);
-
-                $('#row_submit__ID').show();
-                if(m.input.record!=undefined && m.input.record.PUID!=undefined && m.input.record.PUID!=""){
-                    $('#row_submit__ID').hide();
-                }
-
-            }
-            */
             //-------item a part
             m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items;
             m.item_a_render();
             //-------
-
         }
         //--------------------------------------------------------
         //item a part
@@ -132,10 +115,9 @@
                     td.find('input').on('change',function(){ m.item_a_records[I][field]=$(this).val();})
                     break;
                 case "Stop_date":
-                    var html = '<input type=date />';
-                    render_date_field(records[I], '__ID', td, html)
-                    //td.find('input').on('change', function () {
-                    //})
+                    td.html('<input type=date />');
+                    var sd=m.item_a_records[I][field]; if(sd!=undefined && sd!=null) td.find('input').val(sd);
+                    td.find('input').on('change',function(){ m.item_a_records[I][field]=$(this).val();})
                     break;
                 case "Ongoing":
                     var html = '<input type=checkbox />';
@@ -152,20 +134,6 @@
         m.item_a_after_remove = function () {
         }
         //----------------------------------
-        render_date_field=function(record,mID,$div,html){
-            var field=$div.attr('data-id');
-            //record.vm_custom[field]=true;
-            $div.html(html);
-            console.log(html)
-            $div.find('input').on('click', function(){
-                console.log(record[field])
-                var value='';
-                if(value==="" && record[field]===undefined) return;
-                record.vm_dirty=1;
-                record[field]=value;
-            });
-        }
-
     }
 </script>
 <style>

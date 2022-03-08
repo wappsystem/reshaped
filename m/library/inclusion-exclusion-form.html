@@ -18,7 +18,7 @@
                                                 data-id="Participant" />
                                         </label>
                                         <label><span class="">Participant ID</span>
-                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                            <input type=text name="Participant_uid" id="Participant_uid__ID" class=form-control readonly />
                                         </label>
                                     </fieldset>
                                 </div>
@@ -28,7 +28,7 @@
                                 <div class="questiongroup ">
                                     <h4>Inclusion Criteria</h4>
                                     <fieldset class="">
-                                        <label><span class="">1. 50 to 75 years of age</span></label><br>
+                                        <label><span class="">1. 50 to 75 years of age ( <span id="age__ID">-</span> )</span></label><br><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="inclusion_1" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">3. Mild – Severe OSA based on an average ODI ≥ 10 with 3% oxygen desaturation determined by the WristOx2 screening tool over two nights </span></label><br>
+                                        <label><span class="">3. Mild – Severe OSA based on an average ODI ≥ 10 with 3% oxygen desaturation determined by the WristOx2 screening tool over two nights ( <span id="odi__ID">-</span> )</span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="inclusion_3" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">2. Severe OSA (&gt; 10% of overnight recording time with oxygen saturation &lt;80%) or excessively sleepy patients at increased risk for driving-related accidents requiring immediate treatment and/or in the investigator's opinion requires immediate treatment.</span></label><br>
+                                        <label><span class="">2. Severe OSA (&gt; 10% of overnight recording time with oxygen saturation &lt;80%) or excessively sleepy patients at increased risk for driving-related accidents requiring immediate treatment and/or in the investigator's opinion requires immediate treatment. </span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="exclusion_2" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">4. Previous diagnosis of dementia or MMSE &lt;24 </span></label><br>
+                                        <label><span class="">4. Previous diagnosis of dementia or MMSE &lt;24 ( <span id="mmse__ID">-</span> )</span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="exclusion_4" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -273,35 +273,15 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <h4>Eligibility</h4>
+                                    <button type="button" id="btn_legend__ID" class="btn btn-primary mb-1 mt-0 mx-0 p-1">Check Eligibility</button>
                                     <fieldset class="">
                                         <label><span class="">1. Is the participant eligible for the trial? </span></label><br>
                                         <label class="radiobuttons">
-                                          <input type="radio" name="eligibility_1" value="0" >
+                                          <input type="radio" name="eligibility" id="inelig__ID" value="0" >
                                           <span class="checkmark"></span> No</label>
                                         <label class="radiobuttons">
-                                          <input type="radio" name="eligibility_1" value="1">
+                                          <input type="radio" name="eligibility" id="elig__ID" value="1">
                                           <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">2. Did the participant agree to be randomised? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="eligibility_2" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="eligibility_2" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="questiongroup ">
-                                    <fieldset class="">
-                                        <label><span class="">2a. If NOT, please explain why the participant does not want to be part of the study: </span></label><br>
-                                          <textarea class="form-control" name="eligibility_2a" ></textarea>
                                     </fieldset>
                                 </div>
                             </div>
@@ -318,7 +298,107 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
-            var mmse_total;
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', true);
+                if($("#Participant_uid__ID").val()!='' && $("#Participant_uid__ID").val()!=undefined){
+                    var query_uid={"Data.Participant_uid":$("#Participant_uid__ID").val()}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list["demographics-s-data-reshaped"].Table,query:query_uid,limit:1},function(res){
+                        console.log(res.result.length)
+                        if(res.status=='np' || res.result==undefined){
+                            res.result=[];
+                        }
+                        if(res.status=='np'){
+                            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            else $vm.alert("No permission.");
+                        }
+                        if(res.result.length!=0){
+                            if(res.result[0].Data != undefined){
+                                if(res.result[0].Data.age_assessment  != undefined){
+                                    $('#age__ID').text(res.result[0].Data.age_assessment)
+                                    if(parseInt(res.result[0].Data.age_assessment)>74 || parseInt(res.result[0].Data.age_assessment)<50 ) {
+                                        $('#age__ID').css('color','red');
+                                        if(parseInt(res.result[0].Data.age_assessment)==75){
+                                            $('#age__ID').text(res.result[0].Data.age_assessment+', Please make sure there is time to randomise!')
+                                        }
+                                    }
+                                    else $('#age__ID').css('color','black');
+                                }
+                                if(res.result[0].Data.mmse_total_score  != undefined){
+                                    $('#mmse__ID').text(res.result[0].Data.mmse_total_score)
+                                    console.log(res.result[0].Data.mmse_total_score)
+                                    if(parseInt(res.result[0].Data.mmse_total_score)<24 ) {
+                                        $('#mmse__ID').css('color','red');
+                                    }
+                                    else $('#mmse__ID').css('color','black');
+                                }
+                            }
+                        }
+                    })
+                    $vm.request({cmd:"find",table:$vm.module_list["wristox-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
+                        if(res.status=='np' || res.result==undefined){
+                            res.result=[];
+                        }
+                        if(res.status=='np'){
+                            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            else $vm.alert("No permission.");
+                        }
+                        if(res.result.length!=0){
+                            if(res.result[0].Data != undefined){
+                                if(res.result[0].Data.odi  != undefined){
+                                    $('#odi__ID').text(res.result[0].Data.odi)
+                                    if(parseInt(res.result[0].Data.odi)<10 ) {
+                                        $('#odi__ID').css('color','red');
+                                    }
+                                    else $('#odi__ID').css('color','black');
+                                }
+                            }
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+                $('#btn_legend__ID').on('click',function(){
+                    var include=parseInt($('#F__ID input[name=inclusion_1]:checked').val())+
+                    parseInt($('#F__ID input[name=inclusion_2]:checked').val())+
+                    parseInt($('#F__ID input[name=inclusion_3]:checked').val())+
+                    parseInt($('#F__ID input[name=inclusion_4]:checked').val())
+                    var exclude=parseInt($('#F__ID input[name=exclusion_1]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_2]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_3]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_4]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_5]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_6]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_7]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_8]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_9]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_10]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_11]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_12]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_13]:checked').val())+
+                    parseInt($('#F__ID input[name=exclusion_14]:checked').val())
+                    $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', false);
+                    if(include==4 && exclude==0){
+                        $("#elig__ID").prop("checked", true);
+                        $("input[name='eligibility']").prop('value','1')
+                    }
+                    else {
+                        $("#inelig__ID").prop("checked", true);
+                        $("input[name='eligibility']").prop('value','0')
+                    }
+                    $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', true);
+                })
+                var before_submit=m.before_submit;
+                m.before_submit=function(data,index){
+                    $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', false);
+                    return before_submit(data,index);
+                }
+          //-------------------------------------
+
+            }            
+            //-------------------------------------
+/*            var mmse_total;
             $("#calc__ID").on('click', function(){
                 mmse_total=0
                 if($("input[name='pre_scre_mmse_1_day']:checked").val()=='on') mmse_total++;
@@ -353,7 +433,7 @@
 
             });
             //-------------------------------------
-
+*/
         }
     </script>
     <style>

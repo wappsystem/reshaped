@@ -78,6 +78,28 @@
                                     </fieldset>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Did the participant agree to be randomised? </span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="agree_randomised" value="0" >
+                                          <span class="checkmark"></span> No</label>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="agree_randomised" value="1">
+                                          <span class="checkmark"></span> Yes</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">If NOT, please explain why the participant does not want to be part of the study: </span></label><br>
+                                          <textarea class="form-control" name="not_agree_randomised" ></textarea>
+                                    </fieldset>
+                                </div>
+                            </div>
+
                             VmInclude: __CURRENT_PATH__/modification_status.html
                         </form>
                     </div>

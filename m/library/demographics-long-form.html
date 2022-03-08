@@ -29,7 +29,7 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Date of Birth</span>
-                                            <input type=date class="form-control" name="dob" placeholder="" readonly>
+                                            <input type=date class="form-control" name="dob" placeholder="" >
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Age at assessment</span>
-                                            <input type=number class="form-control" name="age_assessment" id=age__ID placeholder="" readonly>
+                                            <input type=number class="form-control" name="age_assessment" id=age__ID placeholder="" >
                                         </label><br>
                                         <label id=label_warning__ID style="display:none"><span style='color:red' >This person is 75+<br>Will there be time to randomise before turning 76?<br></span>                                            
                                             <label><span class="">Months to next birthday</span>
@@ -341,7 +341,7 @@
                         if(res.result.length==0){
                         }
                         else{
-                            console.log(res.result[0].Data.mmse_score)
+                            //console.log(res.result[0].Data.mmse_score)
                             $('#mmse_score__ID').val(res.result[0].Data.mmse_score)
                             $("input[name='mmse_done']").prop("checked", true);
                             $('#mmse_total_score__ID').show();

@@ -208,23 +208,47 @@
 			})
 			//-------------------------------------
 			$('#F__ID input[name=Screening_Number]').on('click', function () {
-                var code=$('#F__ID input[name=Code').val()
-                if(code=='NS') code='US'
-				var I5 = $('#F__ID input[name=Screening_Number').val();
-				if (I5 == '') {
-					$vm.request({ cmd: "find", table: m.Table, sort: { I5: -1 }, skip: 0, limit: 1 }, function (res) {
-						if (res.sys.permission == false) {
-							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
-							return;
-						}
-						var max_I5 = 0;
-						if (res.result.length > 0) {
-							if (res.result[0].I5 !== undefined) max_I5 = res.result[0].I5
-						}
-						max_I5++;
-						$('#F__ID input[name=Screening_Number').val('S'+code+max_I5.toString().padStart(3, "0"));
-					})
-				}
+                var query_uid={"Data.Participant_uid":$("#record__ID").val()}
+                var ready_for_screening='0';
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:$vm.module_list["eligibility-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
+                    console.log(res.result.length)
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        else $vm.alert("No permission.");
+                    }
+                    if(res.result.length!=0){
+                        if(res.result[0].Data != undefined){
+                            if(res.result[0].Data.pre_screening_eligibility  != undefined){
+                                ready_for_screening=res.result[0].Data.pre_screening_eligibility
+                            }
+                        }
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+                if(ready_for_screening=='1'){
+                    var code=$('#F__ID input[name=Code').val()
+                    if(code=='NS') code='US'
+                    var I5 = $('#F__ID input[name=Screening_Number').val();
+                    if (I5 == '') {
+                        $vm.request({ cmd: "find", table: m.Table, sort: { I5: -1 }, skip: 0, limit: 1 }, function (res) {
+                            if (res.sys.permission == false) {
+                                $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                                return;
+                            }
+                            var max_I5 = 0;
+                            if (res.result.length > 0) {
+                                if (res.result[0].I5 !== undefined) max_I5 = res.result[0].I5
+                            }
+                            max_I5++;
+                            $('#F__ID input[name=Screening_Number').val('S'+code+max_I5.toString().padStart(3, "0"));
+                        })
+                    }
+                }
+                else $vm.alert('Pre-screening shows NOT eligible. Please check!')
 			})
  			//-------------------------------------
              function calculateAge(birthday) { // birthday is a date

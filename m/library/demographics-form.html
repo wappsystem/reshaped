@@ -86,6 +86,19 @@
                     $('#mmse_score__ID').hide();
                 }
                 $('#label_warning__ID').hide();
+                if(m.input.participant_record!=undefined){
+                    dob=new Date(m.input.participant_record.Data.DOB);
+                    var diff = Date.now() - dob.getTime()
+                    var age = new Date(diff);
+                    $('#age__ID').val(Math.abs(age.getUTCFullYear() - 1970).toString());
+                    $('#month__ID').val((12-Math.abs(age.getUTCMonth()).toString()));
+                    if(parseInt($('#age__ID').val())>='75'){
+                        $('#label_warning__ID').show();
+                    }
+                    else{
+                        $('#label_warning__ID').hide();
+                    }
+                }
             }
             //-------------------------------------
             $("input[name='mmse_available']").change(function(){
@@ -97,7 +110,7 @@
                 }
             });
             //-------------------------------------
-            $("#age__ID").click(function(){
+/*            $("#age__ID").click(function(){
                 if(m.input.participant_record!=undefined){
                     dob=new Date(m.input.participant_record.Data.DOB);
                     var diff = Date.now() - dob.getTime()
@@ -112,6 +125,7 @@
                     }
                 }
             })
+        */
         }
     </script>
     <style>
