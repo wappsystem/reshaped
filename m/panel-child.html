@@ -20,8 +20,7 @@
     		var participant_record;
     		var count={}
     		var participant_info=function(record){ 
-                if($vm.api_type=="sqlserver")   return record.Subject_ID+' '+record.Subject_Initials; 
-                else                            return record.Data.Subject_ID+' '+record.Data.Subject_Initials; 
+                return record.Data.Pre_Screening_Number+' '+record.Data.Subject_Initials; 
 			}
 			//DEMO VERSION
 			if(window.location.toString().indexOf('tb=demo')!=-1){
@@ -87,7 +86,7 @@
 				})
     		}
     		//---------------------------------------------
-    		$('#D__ID').on('load',function(){
+    		$('#D__ID').on('show',function(){
 				participant_record=m.input.record;
                 //console.log(JSON.stringify(m.input.record))
     			if(participant_record==undefined){
@@ -101,6 +100,7 @@
     			}
     			$('#info__ID').text(info);
                 var prog=participant_record.Data._Progress
+                hide_all();
                 $('#screening_enable__ID').hide();
                 $('#baseline_enable__ID').hide();
                 $('#6months_enable__ID').hide();
@@ -124,6 +124,64 @@
                    $('#treatment_enable__ID').show();
                 }
     		})
+            var hide_all = function () {
+                $('#unscheduled_show__ID').hide()
+                $('#prescreening_show__ID').hide()
+                $('#screening_show__ID').hide()
+                $('#baseline_show__ID').hide()
+                $('#6months_show__ID').hide()
+                $('#24months_show__ID').hide()
+                $('#treatment_show__ID').hide()
+                $('#unscheduled__ID').css('color', '#555')
+                $('#prescreening__ID').css('color', '#555')
+                $('#screening__ID').css('color', '#555')
+                $('#baseline__ID').css('color', '#555')
+                $('#6months__ID').css('color', '#555')
+                $('#24months__ID').css('color', '#555')
+                $('#treatment__ID').css('color', '#555')
+            }
+            //--------------------------------------------------------
+            $('#unscheduled__ID').on('click', function () {
+                hide_all();
+                $('#unscheduled_show__ID').show()
+                $('#unscheduled__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#prescreening__ID').on('click', function () {
+                hide_all();
+                $('#prescreening_show__ID').show()
+                $('#prescreening__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#screening__ID').on('click', function () {
+                hide_all();
+                $('#screening_show__ID').show()
+                $('#screening__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#baseline__ID').on('click', function () {
+                hide_all();
+                $('#baseline_show__ID').show()
+                $('#baseline__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#6months__ID').on('click', function () {
+                hide_all();
+                $('#6months_show__ID').show()
+                $('#6months__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#24months__ID').on('click', function () {
+                hide_all();
+                $('#24months_show__ID').show()
+                $('#24months__ID').css('color', 'red')
+            })
+            //--------------------------------------------------------
+            $('#treatment__ID').on('click', function () {
+                hide_all();
+                $('#treatment_show__ID').show()
+                $('#treatment__ID').css('color', 'red')
+            })
     		//--------------------------------------------------------
     		$('#count__ID').on('click',function(){
     			clear_counting();

@@ -10,7 +10,8 @@
         //-------------------------------------
         $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('Anthropometry')
         //-------------------------------------
-        var fields="File_Name,odi,wristox_data,wristox_date,wristox_duration,wristox_analyzed,wristox_spo2_total_events,wristox_spo2_adjusted_index,wristox_pulse_total_events,wristox_pulse_adjusted_index,wristox_time_below_90,wristox_basal_spo2,wristox_time_88,wristox_minimun_spo2,wristox_av_low_spo2,wristox_desaturation_event";
+        var fields="File_Name,odi,wristox_data,wristox_date,wristox_duration_hh,wristox_duration_mm,wristox_duration_ss,wristox_duration,wristox_analyzed_hh,wristox_analyzed_mm,wristox_analyzed_ss,wristox_analyzed,wristox_spo2_total_events,wristox_spo2_adjusted_index,wristox_pulse_total_events,wristox_pulse_adjusted_index,wristox_time_below_90,wristox_basal_spo2,wristox_time_88,wristox_minimun_spo2,wristox_av_low_spo2,wristox_desaturation_event";
+        fields+="File_Name_2,wristox_date_2,wristox_duration_hh_2,wristox_duration_mm_2,wristox_duration_ss_2,wristox_duration_2,wristox_analyzed_hh_2,wristox_analyzed_mm_2,wristox_analyzed_ss_2,wristox_analyzed_2,wristox_spo2_total_events_2,wristox_spo2_adjusted_index_2,wristox_pulse_total_events_2,wristox_pulse_adjusted_index_2,wristox_time_below_90_2,wristox_basal_spo2_2,wristox_time_88_2,wristox_minimun_spo2_2,wristox_av_low_spo2_2,wristox_desaturation_event";
         m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Modify_Reason,Update_date,Updated_by,Submit_date,Submitted_by,_Delete";
         //-------------------------------------
         var cell_render=m.cell_render;
