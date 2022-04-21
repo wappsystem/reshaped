@@ -68,16 +68,17 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h4>if ODI ≥10 and MMSE  ≥24 participant is eligible </h4>
                                 <div class="questiongroup ">
+                                    <h4>Eligibility</h4>
+                                    <button type="button" id="btn_legend__ID" class="btn btn-primary mb-1 mt-0 mx-0 p-1">Check Eligibility</button>
                                     <fieldset class="">
                                         <label><span class="">Is the participant eligible? </span></label><br>
                                         <label class="radiobuttons">
-                                          <input type="radio" name="pre_screening_eligibility" value="0" >
-                                          <span class="checkmark"></span> No</label><br>
+                                          <input type="radio" name="pre_screening_eligibility" id="inelig__ID" value="0" >
+                                          <span class="checkmark"></span> No</label>
                                         <label class="radiobuttons">
-                                          <input type="radio" name="pre_screening_eligibility" value="1">
-                                          <span class="checkmark"></span> Yes</label><br>
+                                          <input type="radio" name="pre_screening_eligibility" id="elig__ID" value="1">
+                                          <span class="checkmark"></span> Yes</label>
                                     </fieldset>
                                 </div>
                             </div>
@@ -98,6 +99,7 @@
             m.load = function () {
                 load2();
                 console.log("ABC: "+JSON.stringify(m.input))
+                $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', true);
                 if($("#Participant_uid__ID").val()!='' && $("#Participant_uid__ID").val()!=undefined){
                     var query_uid={"Data.Participant_uid":$("#Participant_uid__ID").val()}
                     //------------------------------
@@ -157,7 +159,8 @@
                     jQuery.ajaxSetup({async:true});
                 }
 
-            }            //-------------------------------------
+            }
+            //-------------------------------------
             $("input[name='wristox_inclusion']").change(function(){
                 if($("input[name='wristox_inclusion']:checked").val()=='1'){
                 }
@@ -172,6 +175,32 @@
                 }
             });
             //-------------------------------------
+            $('#btn_legend__ID').on('click',function(){
+                var mmse=0
+                if($('#F__ID input[name=pre_scre_mmse_inclusion]:checked').val()=='NA' || $('#F__ID input[name=pre_scre_mmse_inclusion]:checked').val()=='1') mmse=1;
+                var include=parseInt($('#F__ID input[name=age]:checked').val())+
+                parseInt($('#F__ID input[name=wristox_inclusion]:checked').val())+
+                mmse
+                console.log(mmse+' - '+include)
+
+                $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', false);
+                if(include==3 ){
+                    $("#elig__ID").prop("checked", true);
+                    $("input[name='pre_screening_eligibility']").prop('value','1')
+                }
+                else {
+                    $("#inelig__ID").prop("checked", true);
+                    $("input[name='pre_screening_eligibility']").prop('value','0')
+                }
+                $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', true);
+            })
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', false);
+                return before_submit(data,index);
+            }
+
 
 
         }

@@ -1,0 +1,432 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id="title__ID"></h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <h4>Predefined Medical Conditions</h4>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">Type II Diabetes</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Type_II_Diabetes" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Type_II_Diabetes" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_1" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="diabetes_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="diabetes_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="diabetes_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="diabetes_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="diabetes_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="diabetes_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">Hypertension</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Hypertension" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Hypertension" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_2" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="hypertension_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="hypertension_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hypertension_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hypertension_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hypertension_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hypertension_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">Hyperlipidemia</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Hyperlipidemia" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Hyperlipidemia" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_3" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="hyperlipidemia_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="hyperlipidemia_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hyperlipidemia_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hyperlipidemia_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hyperlipidemia_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="hyperlipidemia_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">TIA</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="TIA" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="TIA" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_4" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="tia_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="tia_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="tia_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="tia_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="tia_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="tia_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">Myocardial Infarction</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Myocardial_Infarction" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Myocardial_Infarction" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_5" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="infarction_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="infarction_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="infarction_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="infarction_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="infarction_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="infarction_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label></label><span class="">Angina</span></label>
+                                    </fieldset>
+                                </div>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Angina" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="Angina" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                                <div id="mh_6" style='display:none'>
+                                    <div class="form-group">
+                                        <div class="questiongroup ">
+                                            <fieldset class="">
+                                                <label><span class="">START DATE</span>
+                                                    <input type=date class="form-control" name="angina_start_date"
+                                                        placeholder="">
+                                                </label>
+                                                <label><span class="">STOP DATE</span>
+                                                    <input type=date class="form-control" name="angina_stop_date"
+                                                        placeholder="">
+                                                </label><br>
+                                                <label><span> Ongoing</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="angina_ongoing" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="angina_ongoing" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                                <label><span> Treated with medication</span></label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="angina_treated" value="0">
+                                                    <span class="checkmark"></span>No
+                                                </label>
+                                                <label class="radiobuttons">
+                                                    <input type="radio" name="angina_treated" value="1">
+                                                    <span class="checkmark"></span>Yes
+                                                </label>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='form-group'>
+                                <div class='questiongroup'>
+                                    <fieldset class=''>
+                                        <label><span>Participant medically approved to enrol in study:<br></span>
+                                        </label><br>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="medically_approved" value="0">
+                                            <span class="checkmark"></span>No
+                                        </label>
+                                        <label class="radiobuttons">
+                                            <input type="radio" name="medically_approved" value="1">
+                                            <span class="checkmark"></span>Yes
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            VmInclude: __CURRENT_PATH__/modification_status.html
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude: '__CURRENT_PATH__/shared-form.js'
+            //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ($("#D__ID input[name=Type_II_Diabetes]:checked").val() == '1') $('#mh_1').show();
+                else $('#mh_1').hide();
+                if ($("#D__ID input[name=Hypertension]:checked").val() == '1') $('#mh_2').show();
+                else $('#mh_2').hide();
+                if ($("#D__ID input[name=Hyperlipidemia]:checked").val() == '1') $('#mh_3').show();
+                else $('#mh_3').hide();
+                if ($("#D__ID input[name=TIA]:checked").val() == '1') $('#mh_4').show();
+                else $('#mh_4').hide();
+                if ($("#D__ID input[name=Myocardial_Infarction]:checked").val() == '1') $('#mh_5').show();
+                else $('#mh_5').hide();
+                if ($("#D__ID input[name=Angina]:checked").val() == '1') $('#mh_6').show();
+                else $('#mh_6').hide();
+            }
+            //-------------------------------------
+            $("input[name='Type_II_Diabetes']").change(function() {
+                if ($("#D__ID input[name=Type_II_Diabetes]:checked").val() == '1') $('#mh_1').show();
+                else $('#mh_1').hide();
+            })
+            //-------------------------------------
+            $("input[name='Hypertension']").change(function() {
+                if ($("#D__ID input[name=Hypertension]:checked").val() == '1') $('#mh_2').show();
+                else $('#mh_2').hide();
+            })
+            //-------------------------------------
+            $("input[name='Hyperlipidemia']").change(function() {
+                if ($("#D__ID input[name=Hyperlipidemia]:checked").val() == '1') $('#mh_3').show();
+                else $('#mh_3').hide();
+            })
+            //-------------------------------------
+            $("input[name='TIA']").change(function() {
+                if ($("#D__ID input[name=TIA]:checked").val() == '1') $('#mh_4').show();
+                else $('#mh_4').hide();
+            })
+            //-------------------------------------
+            $("input[name='Myocardial_Infarction']").change(function() {
+                if ($("#D__ID input[name=Myocardial_Infarction]:checked").val() == '1') $('#mh_5').show();
+                else $('#mh_5').hide();
+            })
+            //-------------------------------------
+            $("input[name='Angina']").change(function() {
+                if ($("#D__ID input[name=Angina]:checked").val() == '1') $('#mh_6').show();
+                else $('#mh_6').hide();
+            })
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 800px;
+        }
+
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>

@@ -1,0 +1,24 @@
+
+<section>
+    VmInclude:__CURRENT_PATH__/grid.v1h.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__CURRENT_PATH__/grid.01.js
+        VmInclude:__CURRENT_PATH__/shared-data.js
+        //-------------------------------------
+        var fields="Type_II_Diabetes,diabetes_start_date,diabetes_stop_date,diabetes_ongoing,diabetes_treated";
+        fields+=",Hypertension,hypertension_start_date,hypertension_stop_date,hypertension_ongoing,hypertension_treated";
+        fields+=",Hyperlipidemia,hyperlipidemia_start_date,hyperlipidemia_stop_date,hyperlipidemia_ongoing,hyperlipidemia_treated";
+        fields+=",TIA,tia_start_date,tia_stop_date,tia_ongoing,tia_treated";
+        fields+=",Myocardial_Infarction,infarction_start_date,infarction_stop_date,infarction_ongoing,infarction_treated";
+        fields+=",Angina,angina_start_date,angina_stop_date,angina_ongoing,angina_treated";
+        fields+=",medically_approved";
+        m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Modify_Reason,Update_date,Updated_by,Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+     }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

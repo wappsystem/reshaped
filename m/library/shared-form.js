@@ -1,5 +1,10 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Pre_Screening_Number!=undefined) return record.Data.Pre_Screening_Number; else return record.UID;}
+var participant_name=function(record){ 
+    console.log(JSON.stringify(record))
+        if(record.Data.Randomisation_Number!=undefined && record.Data.Randomisation_Number!='') {console.log("A"); return record.Data.Randomisation_Number; }
+        else if(record.Data.Screening_Number!=undefined && record.Data.Screening_Number!='') {console.log("B"); return record.Data.Screening_Number; }
+        else if(record.Data.Pre_Screening_Number!=undefined && record.Data.Pre_Screening_Number!='') {console.log("B"); return record.Data.Pre_Screening_Number; }
+        else return record.UID;}
 //-------------------------------------
 var query;
 //auto select particpant
