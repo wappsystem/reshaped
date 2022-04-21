@@ -44,9 +44,25 @@
                                 </div>
 								<div class="col-sm-12 col-lg-4">
 									<label class=''><span class=''>DOB</span>
-										<input type=date class=form-control name=DOB>
+										<input type=date class=form-control name=DOB id="DOB__ID">
 									</label>
 								</div>
+                            </div>
+                            <div class='row px-4'>
+								<div class="col-sm-12 col-lg-4 ">
+                                    <label><span class="">Age</span>
+                                        <input type=number class="form-control" name=age id=age__ID placeholder="" readonly>
+                                    </label>
+                                </div>
+								<div class="col-sm-12 col-lg-4 ">
+                                    <label><span class="">Months</span>
+                                        <input type=number class="form-control" name=months id=month__ID placeholder="" readonly>
+                                    </label>                                        
+                                </div>
+								<div class="col-sm-12 col-lg-4 ">
+                                    <label id=label_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person is 75+</span>                                            
+                                    </label>
+                                </div>
                             </div>
                             <div class='row px-4'>
                                 <div class="col-sm-12 col-lg-4">
@@ -160,6 +176,20 @@
                 }
                 //----------------------------
             }
+            $('#DOB__ID').change(function(){
+                dob=new Date($('#DOB__ID').val());
+                var diff = Date.now() - dob.getTime()
+                var age = new Date(diff);
+                console.log(age)
+                $('#age__ID').val((age.getUTCFullYear() - 1970).toString());
+                $('#month__ID').val((age.getUTCMonth()).toString());
+                if(parseInt($('#age__ID').val())>='75'){
+                    $('#label_warning__ID').show();
+                }
+                else{
+                    $('#label_warning__ID').hide();
+                }
+            });
             //-------------------------------
             $('#site__ID').change(function(){
                 var query_user={"Data.Site":this.value}

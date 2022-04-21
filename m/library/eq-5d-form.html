@@ -218,7 +218,7 @@
                                                             <li>100 means the <u>best</u> health you can imagine.<br>0 means the <u>worst</u> health you can imagine.</li>
                                                             <li>Please click on the scale to indicate how your health is TODAY.</li>
                                                         </ul>    
-                                                        <div style='text-align: right;padding-top:35px'>
+                                                        <div style='text-align: right;' id="yht__ID">
                                                             <label><span class="">YOUR HEALTH TODAY</span>
                                                                 <input class="form-control" type="number" min=0 max=100
                                                                     name="EQ_5D_6" required readonly>
@@ -599,6 +599,16 @@
     width: 15px;
     height: 1px;
 }
+#yht__ID{
+        padding-top:0;
+    }
+@media (min-width: 1024x) {
+    #yht__ID{
+        padding-top:35px;
+    }
+}
+
+
         VmInclude:__CURRENT_PATH__/wappsystem-form.css
     </style>
 </div>

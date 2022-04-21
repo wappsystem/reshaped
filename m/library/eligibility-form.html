@@ -97,8 +97,19 @@
             var load2 = m.load;
             m.load = function () {
                 load2();
+                console.log("ABC: "+JSON.stringify(m.input))
                 if($("#Participant_uid__ID").val()!='' && $("#Participant_uid__ID").val()!=undefined){
                     var query_uid={"Data.Participant_uid":$("#Participant_uid__ID").val()}
+                    //------------------------------
+                    $('#age__ID').text(m.input.participant_record.Data.age)
+                    if(parseInt(m.input.participant_record.Data.age)>74 || parseInt(m.input.participant_record.Data.age)<50 ) {
+                        $('#age__ID').css('color','red');
+                        if(parseInt(m.input.participant_record.Data.age)==75){
+                            $('#age__ID').text(m.input.participant_record.Data.age+' and '+m.input.participant_record.Data.months+' months. Please make sure there is time to randomise!')
+                        }
+                    }
+                    else $('#age__ID').css('color','black');
+                    //------------------------------
                     jQuery.ajaxSetup({async:false});
                     $vm.request({cmd:"find",table:$vm.module_list["demographics-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
                         console.log(res.result.length)
@@ -112,14 +123,6 @@
                         if(res.result.length!=0){
                             if(res.result[0].Data != undefined){
                                 if(res.result[0].Data.age  != undefined){
-                                    $('#age__ID').text(res.result[0].Data.age)
-                                    if(parseInt(res.result[0].Data.age)>74 || parseInt(res.result[0].Data.age)<50 ) {
-                                        $('#age__ID').css('color','red');
-                                        if(parseInt(res.result[0].Data.age)==75){
-                                            $('#age__ID').text(res.result[0].Data.age+', Please make sure there is time to randomise!')
-                                        }
-                                    }
-                                    else $('#age__ID').css('color','black');
                                 }
                                 if(res.result[0].Data.mmse_score  != undefined){
                                     $('#mmse__ID').text(res.result[0].Data.mmse_score)

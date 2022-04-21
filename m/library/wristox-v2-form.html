@@ -25,16 +25,19 @@
                             </div>
                             <!-- form group -->
                             <div class="form-group">
-                                <label><span class="">Is WristOx data available for 2 nights?</span></label>
+                                <label><span class="">WristOx data available for 1 .. 3 nights?</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="subquestions">
                                         <label class="radiobuttons">
-                                          <input type="radio" name="wristox_data" value="0" required>
-                                          <span class="checkmark"></span> No</label><br>
+                                          <input type="radio" name="wristox_data" value="1" required>
+                                          <span class="checkmark"></span> 1</label><br>
                                         <label class="radiobuttons">
-                                          <input type="radio" name="wristox_data" value="1">
-                                          <span class="checkmark"></span> Yes</label><br>
-                                    </fieldset>
+                                          <input type="radio" name="wristox_data" value="2">
+                                          <span class="checkmark"></span> 2</label><br>
+                                          <label class="radiobuttons">
+                                            <input type="radio" name="wristox_data" value="3">
+                                            <span class="checkmark"></span> 3</label><br>
+                                      </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,13 +61,13 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">&nbsp;&nbsp;HH</span>
-                                            <input type =number min="0" max="23" class="form-control"  id="hh__ID" name="wristox_duration_hh" required>
+                                            <input type =number min="0" max="23" class="form-control"  id="hh_1__ID" name="wristox_duration_hh" required>
                                         </label>
                                         <label><span class="">&nbsp;&nbsp;MM</span>
-                                            <input type =number min="0" max="59" class="form-control"  id="mm__ID" name="wristox_duration_mm" required>
+                                            <input type =number min="0" max="59" class="form-control"  id="mm_1__ID" name="wristox_duration_mm" required>
                                         </label>
                                         <label><span class="">&nbsp;&nbsp;SS</span>
-                                            <input type =number min="0" max="59" class="form-control"  id="ss__ID" name="wristox_duration_ss" required>
+                                            <input type =number min="0" max="59" class="form-control"  id="ss_1__ID" name="wristox_duration_ss" required>
                                         </label>            
                                         <label><span class="">&nbsp;&nbsp;Hours</span>
                                             <input type=number step="0.001" class="form-control" name=wristox_duration readonly>
@@ -77,13 +80,13 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">&nbsp;&nbsp;HH</span>
-                                            <input type =number min="0" max="23" class="form-control"  id="hha1__ID" name="wristox_analysed_hh" required>
+                                            <input type =number min="0" max="23" class="form-control"  id="hha_1__ID" name="wristox_analysed_hh" required>
                                         </label>
                                         <label><span class="">&nbsp;&nbsp;MM</span>
-                                            <input type =number min="0" max="59" class="form-control"  id="mma1__ID" name="wristox_analysed_mm" required>
+                                            <input type =number min="0" max="59" class="form-control"  id="mma_1__ID" name="wristox_analysed_mm" required>
                                         </label>
                                         <label><span class="">&nbsp;&nbsp;SS</span>
-                                            <input type =number min="0" max="59" class="form-control"  id="ssa1__ID" name="wristox_analysed_ss" required>
+                                            <input type =number min="0" max="59" class="form-control"  id="ssa_1__ID" name="wristox_analysed_ss" required>
                                         </label>            
                                         <label><span class="">&nbsp;&nbsp;Hours</span>
                                             <input type=number step="0.001" class="form-control" style="width:auto" name=wristox_analysed readonly>
@@ -91,14 +94,14 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label><span class="">SpO2 total events:</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_total_events >
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label><span class="">SpO2 adjusted index (1/hr):</span></label>
                                 <div class="questiongroup ">
@@ -108,6 +111,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label><span class="">SpO2 index:</span></label>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_index>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
                                 <label><span class="">Pulse total events:</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
@@ -122,7 +133,7 @@
                                         <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_pulse_adjusted_index>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label><span class="">Time (%) below 90%:</span></label>
                                 <div class="questiongroup ">
@@ -139,14 +150,14 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label><span class="">Time (min) &lt;88%:</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_88>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label><span class="">Minimum SpO2 (%):</span></label>
                                 <div class="questiongroup ">
@@ -156,6 +167,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label><span class="">Average pulse rate:</span></label>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_average_pulse_rate>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
                                 <label><span class="">Av. g. Low SpO2 (%):</span></label>
                                 <div class="questiongroup ">
                                     <fieldset class="">
@@ -170,7 +189,7 @@
                                         <input type=text class="form-control" style="width:auto" name=wristox_desaturation_event>
                                     </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="row px-4">
                                 <div class='col'>
                                     <span>File</span>
@@ -189,7 +208,7 @@
                                     <label><span class="">WristOx recording date:</span></label>
                                     <div class="questiongroup ">
                                         <fieldset class="">
-                                            <input type=date class="form-control" style="width:auto" name=wristox_date_2>
+                                            <input type=date class="form-control" name=wristox_date_2>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -198,13 +217,13 @@
                                     <div class="questiongroup ">
                                         <fieldset class="">
                                             <label><span class="">&nbsp;&nbsp;HH</span>
-                                                <input type =number min="0" max="23" class="form-control"  id="hh2__ID" name="wristox_duration_hh_2" required>
+                                                <input type =number min="0" max="23" class="form-control"  id="hh_2__ID" name="wristox_duration_hh_2" required>
                                             </label>
                                             <label><span class="">&nbsp;&nbsp;MM</span>
-                                                <input type =number min="0" max="59" class="form-control"  id="mm2__ID" name="wristox_duration_mm_2" required>
+                                                <input type =number min="0" max="59" class="form-control"  id="mm_2__ID" name="wristox_duration_mm_2" required>
                                             </label>
                                             <label><span class="">&nbsp;&nbsp;SS</span>
-                                                <input type =number min="0" max="59" class="form-control"  id="ss2__ID" name="wristox_duration_ss_2" required>
+                                                <input type =number min="0" max="59" class="form-control"  id="ss_2__ID" name="wristox_duration_ss_2" required>
                                             </label>            
                                             <label><span class="">&nbsp;&nbsp;Hours</span>
                                                 <input type=number step="0.001" class="form-control" name=wristox_duration_2 readonly>
@@ -217,25 +236,17 @@
                                     <div class="questiongroup ">
                                         <fieldset class="">
                                             <label><span class="">&nbsp;&nbsp;HH</span>
-                                                <input type =number min="0" max="23" class="form-control"  id="hha2__ID" name="wristox_analysed_hh_2" required>
+                                                <input type =number min="0" max="23" class="form-control"  id="hha_2__ID" name="wristox_analysed_hh_2" required>
                                             </label>
                                             <label><span class="">&nbsp;&nbsp;MM</span>
-                                                <input type =number min="0" max="59" class="form-control"  id="mma2__ID" name="wristox_analysed_mm_2" required>
+                                                <input type =number min="0" max="59" class="form-control"  id="mma_2__ID" name="wristox_analysed_mm_2" required>
                                             </label>
                                             <label><span class="">&nbsp;&nbsp;SS</span>
-                                                <input type =number min="0" max="59" class="form-control"  id="ssa2__ID" name="wristox_analysed_ss_2" required>
+                                                <input type =number min="0" max="59" class="form-control"  id="ssa_2__ID" name="wristox_analysed_ss_2" required>
                                             </label>            
                                             <label><span class="">&nbsp;&nbsp;Hours</span>
                                                 <input type=number step="0.001" class="form-control" style="width:auto" name=wristox_analysed_2 readonly>
                                             </label>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                    <div class="form-group">
-                                    <label><span class="">SpO2 total events:</span></label>
-                                    <div class="questiongroup ">
-                                        <fieldset class="">
-                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_total_events_2>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -248,18 +259,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><span class="">Pulse total events:</span></label>
+                                    <label><span class="">SpO2 index:</span></label>
                                     <div class="questiongroup ">
                                         <fieldset class="">
-                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_pulse_total_events_2>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label><span class="">Pulse adjusted index (1/hr):</span></label>
-                                    <div class="questiongroup ">
-                                        <fieldset class="">
-                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_pulse_adjusted_index_2>
+                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_index_2>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -280,14 +283,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><span class="">Time (min) &lt;88%:</span></label>
-                                    <div class="questiongroup ">
-                                        <fieldset class="">
-                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_88_2>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label><span class="">Minimum SpO2 (%):</span></label>
                                     <div class="questiongroup ">
                                         <fieldset class="">
@@ -296,18 +291,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><span class="">Av. g. Low SpO2 (%):</span></label>
+                                    <label><span class="">Average pulse rate:</span></label>
                                     <div class="questiongroup ">
                                         <fieldset class="">
-                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_av_low_spo2_2>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label><span class="">Desaturation event: </span></label>
-                                    <div class="questiongroup ">
-                                        <fieldset class="">
-                                            <input type=text class="form-control" style="width:auto" name=wristox_desaturation_event_2>
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_average_pulse_rate_2>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -319,6 +306,115 @@
                                             <br>
                                             <input type="file" name=File_Name_2 style="margin-top:6px" /> &nbsp&nbsp&nbsp
                                             <button type="button" id=x_File_Name_2__ID>Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="night_3__ID">
+                                <br>
+                                <h3>Night 3</h3>
+                                <div class="form-group">
+                                    <label><span class="">WristOx recording date:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=date class="form-control" name=wristox_date_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Duration:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;&nbsp;HH</span>
+                                                <input type =number min="0" max="23" class="form-control"  id="hh_3__ID" name="wristox_duration_hh_3" required>
+                                            </label>
+                                            <label><span class="">&nbsp;&nbsp;MM</span>
+                                                <input type =number min="0" max="59" class="form-control"  id="mm_3__ID" name="wristox_duration_mm_3" required>
+                                            </label>
+                                            <label><span class="">&nbsp;&nbsp;SS</span>
+                                                <input type =number min="0" max="59" class="form-control"  id="ss_3__ID" name="wristox_duration_ss_3" required>
+                                            </label>            
+                                            <label><span class="">&nbsp;&nbsp;Hours</span>
+                                                <input type=number step="0.001" class="form-control" name=wristox_duration_3 readonly>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Analysed</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">&nbsp;&nbsp;HH</span>
+                                                <input type =number min="0" max="23" class="form-control"  id="hha_3__ID" name="wristox_analysed_hh_3" required>
+                                            </label>
+                                            <label><span class="">&nbsp;&nbsp;MM</span>
+                                                <input type =number min="0" max="59" class="form-control"  id="mma_3__ID" name="wristox_analysed_mm_3" required>
+                                            </label>
+                                            <label><span class="">&nbsp;&nbsp;SS</span>
+                                                <input type =number min="0" max="59" class="form-control"  id="ssa_3__ID" name="wristox_analysed_ss_3" required>
+                                            </label>            
+                                            <label><span class="">&nbsp;&nbsp;Hours</span>
+                                                <input type=number step="0.001" class="form-control" style="width:auto" name=wristox_analysed_3 readonly>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">SpO2 adjusted index (1/hr):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_spo2_adjusted_index_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">SpO2 index:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=1 class="form-control" style="width:auto" name=wristox_spo2_index_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Time (%) below 90%:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_time_below_90_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Basal SpO2 (%):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_basal_spo2_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Minimum SpO2 (%):</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_minimun_spo2_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><span class="">Average pulse rate:</span></label>
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <input type=number step=0.1 class="form-control" style="width:auto" name=wristox_average_pulse_rate_3>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row px-4">
+                                    <div class='col'>
+                                        <span>File</span>
+                                        <div class="form-control">
+                                            <u style='cursor:pointer' id=link_File_Name_3__ID></u>
+                                            <br>
+                                            <input type="file" name=File_Name_3 style="margin-top:6px" /> &nbsp&nbsp&nbsp
+                                            <button type="button" id=x_File_Name_3__ID>Remove</button>
                                         </div>
                                     </div>
                                 </div>
@@ -343,32 +439,38 @@
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
                 }
-                if($('#F__ID input[name=wristox_data]:checked').val()==1) $('#night_2__ID').show();
-                else  $('#night_2__ID').hide();
+                $('#night_2__ID').hide();
+                $('#night_3__ID').hide();
+                if($('#F__ID input[name=wristox_data]:checked').val()==2) $('#night_2__ID').show();
+                else if($('#F__ID input[name=wristox_data]:checked').val()==3) {
+                    $('#night_2__ID').show();
+                    $('#night_3__ID').show();
+                }
             }
             //-------------------------------------
             $('#F__ID input[name=wristox_data]').change(function(){
-                if($("input[name='wristox_data']:checked").val()=='1'){
+                $('#night_2__ID').hide();
+                $('#night_3__ID').hide();
+                if($('#F__ID input[name=wristox_data]:checked').val()==2) $('#night_2__ID').show();
+                else if($('#F__ID input[name=wristox_data]:checked').val()==3) {
                     $('#night_2__ID').show();
-                }
-                else {
-                    $('#night_2__ID').hide();
+                    $('#night_3__ID').show();
                 }
             });
             //-------------------------------------
-            $("#D__ID #hh__ID").on('change', function () {
+            $("#D__ID #hh_1__ID").on('change', function () {
                 $("input[name='wristox_duration']").val( calc_time())
             });
-            $("#D__ID #mm__ID").on('change', function () {
+            $("#D__ID #mm_1__ID").on('change', function () {
                 $("input[name='wristox_duration']").val( calc_time())
             });
-            $("#D__ID #ss__ID").on('change', function () {
+            $("#D__ID #ss_1__ID").on('change', function () {
                 $("input[name='wristox_duration']").val( calc_time())
             });
             calc_time=function(){
-                console.log("a"+$("#D__ID #hh__ID").val()+"a")
-                if($("#D__ID #hh__ID").val()!="" && $("#D__ID #mm__ID").val()!="" && $("#D__ID #ss__ID").val()!="" ){
-                    var dur=((parseInt($('#hh__ID').val())*3600+parseInt($('#mm__ID').val())*60+parseInt($('#ss__ID').val()))/3600).toFixed(3)
+                console.log("a"+$("#D__ID #hh_1__ID").val()+"a")
+                if($("#D__ID #hh_1__ID").val()!="" && $("#D__ID #mm_1__ID").val()!="" && $("#D__ID #ss_1__ID").val()!="" ){
+                    var dur=((parseInt($('#hh_1__ID').val())*3600+parseInt($('#mm_1__ID').val())*60+parseInt($('#ss_1__ID').val()))/3600).toFixed(3)
                     return dur
                 }
                 else{
@@ -376,18 +478,19 @@
                 }
             }
             //-------------------------------------
-            $("#D__ID #hha1__ID").on('change', function () {
-                $("input[name='wristox_analysed']").val( calc_time2())
+            $("#D__ID #hh_2__ID").on('change', function () {
+                $("input[name='wristox_duration_2']").val( calc_time_2())
             });
-            $("#D__ID #mma1__ID").on('change', function () {
-                $("input[name='wristox_analysed']").val( calc_time2())
+            $("#D__ID #mm_2__ID").on('change', function () {
+                $("input[name='wristox_duration_2']").val( calc_time_2())
             });
-            $("#D__ID #ssa1__ID").on('change', function () {
-                $("input[name='wristox_analysed']").val( calc_time2())
+            $("#D__ID #ss_2__ID").on('change', function () {
+                $("input[name='wristox_duration_2']").val( calc_time_2())
             });
-            calc_time2=function(){
-                if($("#D__ID #hha1__ID").val()!="" && $("#D__ID #mma1__ID").val()!="" && $("#D__ID #ssa1__ID").val()!=""){
-                    var dur=((parseInt($('#hha1__ID').val())*3600+parseInt($('#mma1__ID').val())*60+parseInt($('#ssa1__ID').val()))/3600).toFixed(3)
+            calc_time_2=function(){
+                console.log("a"+$("#D__ID #hh_2__ID").val()+"a")
+                if($("#D__ID #hh_2__ID").val()!="" && $("#D__ID #mm_2__ID").val()!="" && $("#D__ID #ss_2__ID").val()!="" ){
+                    var dur=((parseInt($('#hh_2__ID').val())*3600+parseInt($('#mm_2__ID').val())*60+parseInt($('#ss_2__ID').val()))/3600).toFixed(3)
                     return dur
                 }
                 else{
@@ -395,18 +498,19 @@
                 }
             }
             //-------------------------------------
-            $("#D__ID #hh2__ID").on('change', function () {
-                $("input[name='wristox_duration_2']").val( calc_time3())
+            $("#D__ID #hh_3__ID").on('change', function () {
+                $("input[name='wristox_duration_3']").val( calc_time_3())
             });
-            $("#D__ID #mm2__ID").on('change', function () {
-                $("input[name='wristox_duration_2']").val( calc_time3())
+            $("#D__ID #mm_3__ID").on('change', function () {
+                $("input[name='wristox_duration_3']").val( calc_time_3())
             });
-            $("#D__ID #ss2__ID").on('change', function () {
-                $("input[name='wristox_duration_2]").val( calc_time())
+            $("#D__ID #ss_3__ID").on('change', function () {
+                $("input[name='wristox_duration_3']").val( calc_time_3())
             });
-            calc_time3=function(){
-                if($("#D__ID #hh2__ID").val()!="" && $("#D__ID #mm2__ID").val()!="" && $("#D__ID #ss2__ID").val()!=""){
-                    var dur=((parseInt($('#hh2__ID').val())*3600+parseInt($('#mm2__ID').val())*60+parseInt($('#ss2__ID').val()))/3600).toFixed(3)
+            calc_time_3=function(){
+                console.log("a"+$("#D__ID #hh_3__ID").val()+"a")
+                if($("#D__ID #hh_3__ID").val()!="" && $("#D__ID #mm_3__ID").val()!="" && $("#D__ID #ss_3__ID").val()!="" ){
+                    var dur=((parseInt($('#hh_3__ID').val())*3600+parseInt($('#mm_3__ID').val())*60+parseInt($('#ss_3__ID').val()))/3600).toFixed(3)
                     return dur
                 }
                 else{
@@ -414,18 +518,56 @@
                 }
             }
             //-------------------------------------
-            $("#D__ID #hha2__ID").on('change', function () {
-                $("input[name='wristox_analysed_2']").val( calc_time4())
+            $("#D__ID #hha_1__ID").on('change', function () {
+                $("input[name='wristox_analysed']").val( calc_time2_1())
             });
-            $("#D__ID #mma2__ID").on('change', function () {
-                $("input[name='wristox_analysed_2']").val( calc_time4())
+            $("#D__ID #mma_1__ID").on('change', function () {
+                $("input[name='wristox_analysed']").val( calc_time2_1())
             });
-            $("#D__ID #ssa2__ID").on('change', function () {
-                $("input[name='wristox_analysed_2']").val( calc_time4())
+            $("#D__ID #ssa_1__ID").on('change', function () {
+                $("input[name='wristox_analysed']").val( calc_time2_1())
             });
-            calc_time4=function(){
-                if($("#D__ID #hha2__ID").val()!="" && $("#D__ID #mma2__ID").val()!="" && $("#D__ID #ssa2__ID").val()!=""){
-                    var dur=((parseInt($('#hha2__ID').val())*3600+parseInt($('#mma2__ID').val())*60+parseInt($('#ssa2__ID').val()))/3600).toFixed(3)
+            calc_time2_1=function(){
+                if($("#D__ID #hha_1__ID").val()!="" && $("#D__ID #mma_1__ID").val()!="" && $("#D__ID #ssa_1__ID").val()!=""){
+                    var dur=((parseInt($('#hha_1__ID').val())*3600+parseInt($('#mma_1__ID').val())*60+parseInt($('#ssa_1__ID').val()))/3600).toFixed(3)
+                    return dur
+                }
+                else{
+                    return "";
+                }
+            }
+            //-------------------------------------
+            $("#D__ID #hha_2__ID").on('change', function () {
+                $("input[name='wristox_analysed_2']").val( calc_time2_2())
+            });
+            $("#D__ID #mma_2__ID").on('change', function () {
+                $("input[name='wristox_analysed_2']").val( calc_time2_2())
+            });
+            $("#D__ID #ssa_2__ID").on('change', function () {
+                $("input[name='wristox_analysed_2']").val( calc_time2_2())
+            });
+            calc_time2_2=function(){
+                if($("#D__ID #hha_2__ID").val()!="" && $("#D__ID #mma_2__ID").val()!="" && $("#D__ID #ssa_2__ID").val()!=""){
+                    var dur=((parseInt($('#hha_2__ID').val())*3600+parseInt($('#mma_2__ID').val())*60+parseInt($('#ssa_2__ID').val()))/3600).toFixed(3)
+                    return dur
+                }
+                else{
+                    return "";
+                }
+            }
+            //-------------------------------------
+            $("#D__ID #hha_3__ID").on('change', function () {
+                $("input[name='wristox_analysed_3']").val( calc_time2_3())
+            });
+            $("#D__ID #mma_3__ID").on('change', function () {
+                $("input[name='wristox_analysed_3']").val( calc_time2_3())
+            });
+            $("#D__ID #ssa_3__ID").on('change', function () {
+                $("input[name='wristox_analysed_3']").val( calc_time2_3())
+            });
+            calc_time2_3=function(){
+                if($("#D__ID #hha_3__ID").val()!="" && $("#D__ID #mma_3__ID").val()!="" && $("#D__ID #ssa_3__ID").val()!=""){
+                    var dur=((parseInt($('#hha_3__ID').val())*3600+parseInt($('#mma_3__ID').val())*60+parseInt($('#ssa_3__ID').val()))/3600).toFixed(3)
                     return dur
                 }
                 else{
@@ -436,12 +578,23 @@
             var before_submit=m.before_submit;
             m.before_submit=function(data,index){
                 console.log(isNaN(parseInt(data.wristox_spo2_adjusted_index_2)) +' - '+isNaN(parseInt(data.wristox_spo2_adjusted_index)))
-                if(isNaN(parseInt(data.wristox_spo2_adjusted_index_2)) || isNaN(parseInt(data.wristox_spo2_adjusted_index))){
-                    data.odi=data.wristox_spo2_adjusted_index;
+                var odi_v=0;
+                var nights=0;
+                if(isNaN(parseInt(data.wristox_spo2_adjusted_index))){
+                    odi_v=parseInt(data.wristox_spo2_adjusted_index);
+                    nights++;
                 }
-                else{
-                    data.odi=((parseInt(data.wristox_spo2_adjusted_index_2) + parseInt(data.wristox_spo2_adjusted_index))/2).toFixed(1);
+                if (isNaN(parseInt(data.wristox_spo2_adjusted_index_2))){
+                    odi_v+=parseInt(data.wristox_spo2_adjusted_index_2);
+                    nights++;
+
                 }
+                if (isNaN(parseInt(data.wristox_spo2_adjusted_index_3))){
+                    odi_v+=parseInt(data.wristox_spo2_adjusted_index_3);
+                    nights++;
+
+                }
+                data.odi=(odi_v/nights).toFixed(1);
               return before_submit(data,index);
           }
           //-------------------------------------
