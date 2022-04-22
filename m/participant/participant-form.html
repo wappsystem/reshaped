@@ -42,7 +42,7 @@
                                         <input type=text class=form-control name=Subject_Initials>
                                     </label>
                                 </div>
-								<div class="col-sm-12 col-lg-4">
+								<div id=DOB_orig__ID class="col-sm-12 col-lg-4">
 									<label class=''><span class=''>DOB</span>
 										<input type=date class=form-control name=DOB id="DOB__ID">
 									</label>
@@ -80,6 +80,26 @@
 										<input type=text class=form-control name=Randomisation_Number readonly placeholder='click to randomise'>
 									</label>
 								</div>
+                            </div>
+                            <div id="random_input__ID" style="display:none">
+                                <label class="px-4" style="color:red">When randomise, please fill in these manually as a check with original entries</label>
+                                <div class='row px-4'>
+                                    <div class="col-sm-12 col-lg-4 ">
+                                        <label><span class="">DOB</span>
+                                            <input type=date class="form-control" id=DOB_check__ID placeholder="">
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-4 ">
+                                        <label><span class="">ODI with one decimal</span>
+                                            <input type=number step="0.1" class="form-control" id=ODI_check__ID placeholder="">
+                                        </label>                                        
+                                    </div>
+                                    <div class="col-sm-12 col-lg-4 ">
+                                        <label><span class="">MMSE</span>
+                                            <input type=number class="form-control" id=MMSE_check__ID placeholder="">
+                                        </label>                                        
+                                    </div>
+                                </div>
                             </div>
 							<div class='row px-4'>
 								<div class="col-sm-12 col-lg-4 row_participant__ID">
@@ -119,6 +139,9 @@
             var load = m.load;
 			m.load = function () {
 				load();
+                console.log("LOAD: "+JSON.stringify(m.input))
+                $('#random_input__ID').hide();
+                $('#DOB_orig__ID').show();
 				if (m.input.record == undefined) {
 					$('.row_participant__ID').hide();
 					$('#F__ID input[name=_Password').val($vm.vm_password(8, false)); 
@@ -215,31 +238,58 @@
             })
 			//-------------------------------------
 			$('#F__ID input[name=Randomisation_Number]').on('click', function () {
-				var I1 = $('#F__ID input[name=Randomisation_Number').val();
-				if (I1 == '') {
-                    var query={"Data.Code":$('#F__ID input[name=Code]').val()};
-					$vm.request({ cmd: "find", table: m.Table, query:query, sort: { I1: -1 }, skip: 0, limit: 1 }, function (res) {
-						if (res.sys.permission == false) {
-							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
-							return;
-						}
-						var max_I1 = 0;
-                        console.log(JSON.stringify(res.result))
-						if (res.result.length > 0) {
-							if (res.result[0].I1 !== undefined) max_I1 = res.result[0].I1
-						}
-						max_I1++;
-                        var code=$('#F__ID input[name=Code').val()
-                        if(code=='NS') code='US'
-						$('#F__ID input[name=Randomisation_Number').val('R'+code+max_I1.toString().padStart(3, "0"));
-						$('#F__ID input[name=Randomised_by').val($vm.user_name);
-					})
-				}
+                var query_uid={"Data.Participant_uid":$("#record__ID").val()}
+                var ready_for_randomisation='0';
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:$vm.module_list["in-ex-s-data-reshaped"].Table,query:query_uid,limit:1},function(res){
+                    console.log(res.result.length)
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        else $vm.alert("No permission.");
+                    }
+                    if(res.result.length!=0){
+                        if(res.result[0].Data != undefined){
+                            if(res.result[0].Data.eligibility  != undefined){
+                                ready_for_randomisation=res.result[0].Data.eligibility
+                            }
+                        }
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+                if(ready_for_randomisation=='1'){
+                    var I1 = $('#F__ID input[name=Randomisation_Number').val();
+                    if (I1 == '') {
+                        var query={"Data.Code":$('#F__ID input[name=Code]').val()};
+                        $vm.request({ cmd: "find", table: m.Table, query:query, sort: { I1: -1 }, skip: 0, limit: 1 }, function (res) {
+                            if (res.sys.permission == false) {
+                                $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                                return;
+                            }
+                            var max_I1 = 0;
+                            console.log(JSON.stringify(res.result))
+                            if (res.result.length > 0) {
+                                if (res.result[0].I1 !== undefined) max_I1 = res.result[0].I1
+                            }
+                            max_I1++;
+                            var code=$('#F__ID input[name=Code').val()
+                            if(code=='NS') code='US'
+                            $('#F__ID input[name=Randomisation_Number').val('R'+code+max_I1.toString().padStart(3, "0"));
+                            $('#F__ID input[name=Randomised_by').val($vm.user_name);
+                        })
+                    }
+                    $('#random_input__ID').show();
+                    $('#DOB_orig__ID').hide();
+                }
+                else $vm.alert('Screening Inclusion/Exclusion shows NOT eligible. Please check!')
 			})
 			//-------------------------------------
 			$('#F__ID input[name=Screening_Number]').on('click', function () {
                 var query_uid={"Data.Participant_uid":$("#record__ID").val()}
                 var ready_for_screening='0';
+                var acceptance='0';
                 jQuery.ajaxSetup({async:false});
                 $vm.request({cmd:"find",table:$vm.module_list["eligibility-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
                     console.log(res.result.length)
@@ -254,12 +304,13 @@
                         if(res.result[0].Data != undefined){
                             if(res.result[0].Data.pre_screening_eligibility  != undefined){
                                 ready_for_screening=res.result[0].Data.pre_screening_eligibility
+                                acceptance=res.result[0].Data.screening_acceptance
                             }
                         }
                     }
                 })
                 jQuery.ajaxSetup({async:true});
-                if(ready_for_screening=='1'){
+                if(ready_for_screening=='1' && acceptance=='1'){
                     var code=$('#F__ID input[name=Code').val()
                     if(code=='NS') code='US'
                     var I5 = $('#F__ID input[name=Screening_Number').val();
@@ -288,10 +339,61 @@
             }
  			//-------------------------------------
 			m.before_submit = function (data, index) {
+                console.log("AAAA"+data.Randomisation_Number+"bbb")
+                var rand=''
+                if(m.input.record!=undefined){
+                    rand=m.input.record.Data.Randomisation_Number
+                }
+                console.log("RAND: "+rand)
+                if(data.Randomisation_Number!='' && data.Randomisation_Number!=undefined && rand==''  ){
+                    var mmse;
+                    var odi;
+                    var query={'Data.Participant_uid':$('#record__ID').val()}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            //console.log(res.result[0].Data.mmse_score)
+                            mmse=res.result[0].Data.mmse_score
+                        }
+                    })
+                    $vm.request({cmd:"find",table:$vm.module_list['wristox-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            //console.log(res.result[0].Data.mmse_score)
+                            odi=res.result[0].Data.odi
+                        }
+                    })
+                    //-----------------------------
+                    var OK1=false;
+                    var OK2=false;
+                    var OK3=false;
+                    if($('#F__ID #DOB_check__ID').val()==$('#DOB__ID').val()) {$('#F__ID #DOB_check__ID').css('color','black');OK1=true;}
+                    else  {$('#F__ID #DOB_check__ID').css('color','red');OK1=false;}
+                    if($('#F__ID #MMSE_check__ID').val()==mmse) {$('#F__ID #MMSE_check__ID').css('color','black');OK2=true;}
+                    else  {$('#F__ID #MMSE_check__ID').css('color','red');OK2=false;}
+                    if($('#F__ID #ODI_check__ID').val()==odi) {$('#F__ID #ODI_check__ID').css('color','black');OK3=true;}
+                    else  {$('#F__ID #ODI_check__ID').css('color','red');OK3=false;}
+                    jQuery.ajaxSetup({async:true});
+                    //-----------------------------
+                    if(!OK1 || !OK2 || !OK3)  {$vm.alert("DOB, ODI and MMSE differ from original"); return false;}         
+                    //else {return false; console.log("B")}
+                    //-----------------------------
+                }
                 var dob=new Date($('#F__ID input[name=DOB]').val())
                 var age=calculateAge(dob)
                 if(age>75){
-                    $vm.alert("This person is over 75 yrs")
+                    $vm.alert("This person is 76 yrs or older")
                     return false;
                 } 
                 else if (age<50){

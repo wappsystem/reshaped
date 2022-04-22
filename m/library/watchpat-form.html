@@ -28,7 +28,7 @@
                                 <div class="questiongroup ">
                                     <h4>WatchPAT</h4>
                                     <fieldset class="">
-                                        <label><span class="">Is WatchPAT data available?</span></label><br>
+                                        <label><span class="">Is valid WatchPAT data available?</span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="watchpat_available" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -37,27 +37,34 @@
                                           <span class="checkmark"></span> Yes</label>
                                     </fieldset>
                                     <fieldset class="">
-                                        <label><span class="">Is this data usable and valid?</span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="watchpat_usable" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="watchpat_usable" value="1">
-                                          <span class="checkmark"></span> Yes</label>
+                                        <label><span class="">if No please provide a reason</span></label><br>
+                                          <textarea class="form-control" name="watchpat_available_reason"></textarea>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="questiongroup ">
-                                    <fieldset class="subquestions">
+                                    <fieldset class="">
                                         <label><span class="">Sleep study date:</span>
                                             <input class="form-control" type="date" name="watchpat_date">
                                         </label><br>
+                                        <label><span class="">&nbsp;&nbsp;HH</span>
+                                            <input type =number min="0" max="23" class="form-control"  id="hh_1__ID" name="watchpat_recording_hh" >
+                                        </label>
+                                        <label><span class="">&nbsp;&nbsp;MM</span>
+                                            <input type =number min="0" max="59" class="form-control"  id="mm_1__ID" name="watchpat_recording_mm" >
+                                        </label>
                                         <label><span class="">Total recording time (min):</span>
-                                            <input class="form-control" type="number" name="watchpat_1">
+                                            <input class="form-control" type="number" name="watchpat_recording" readonly>
                                         </label><br>
+                                        <label><span class="">&nbsp;&nbsp;HH</span>
+                                            <input type =number min="0" max="23" class="form-control"  id="hh_2__ID" name="watchpat_sleep_hh" >
+                                        </label>
+                                        <label><span class="">&nbsp;&nbsp;MM</span>
+                                            <input type =number min="0" max="59" class="form-control"  id="mm_2__ID" name="watchpat_sleep_mm" >
+                                        </label>
                                         <label><span class="">Total sleep time (min):</span>
-                                            <input class="form-control" type="number" name="watchpat_2">
+                                            <input class="form-control" type="number" name="watchpat_sleep_time" readonly>
                                         </label>
                                     </fieldset>
                                 </div>
@@ -66,11 +73,17 @@
                                 <div class="questiongroup ">
                                     <h4>Respiratory Indices</h4>
                                     <fieldset class="subquestions">
-                                        <label><span class="">pAHI (all night):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_3">
+                                        <label><span class="">pAHI 3% (all night):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_pahi3">
                                         </label><br>
-                                        <label><span class="">ODI (all night):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_4">
+                                        <label><span class="">ODI 3% (all night):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_odi3">
+                                        </label><br>
+                                        <label><span class="">ODI 4% (all night):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_odi4">
+                                        </label><br>
+                                        <label><span class="">%CSR:</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_csr">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -80,13 +93,26 @@
                                     <h4>Oxygen Saturation Statistics</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">Mean:</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_5">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2mean">
                                         </label><br>
-                                        <label><span class="">Oxygen saturation:</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_6">
+                                        <label><span class="">Minimum:</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2min">
                                         </label><br>
-                                        <label><span class="">Sleep (%):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_7">
+                                        <label><span class="">O2 Sat&lt;90% (min):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2_90_mins">
+                                        </label><br>
+                                        <label><span class="">O2 sat &lt;90%(sleep %):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2_90_perc">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <h4>Pulse Rate Satistics During Sleep</h4>
+                                    <fieldset class="subquestions">
+                                        <label><span class="">BPM:</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_bpm">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -95,11 +121,11 @@
                                 <div class="questiongroup ">
                                     <h4>Body Position Statistics</h4>
                                     <fieldset class="subquestions">
-                                        <label><span class="">Supine (sleep min):</span>
-                                            <input class="form-control" type="number" name="watchpat_8">
+                                        <label><span class="">Supine pAHI 3%:</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_supine_ahi">
                                         </label><br>
-                                        <label><span class="">Non-supine (sleep-min):</span>
-                                            <input class="form-control" type="number" name="watchpat_9">
+                                        <label><span class="">Supine ODI 3%:</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_supine_odi">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -109,22 +135,25 @@
                                     <h4>Sleep Stages</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">Sleep (%):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_10">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_sleep">
                                         </label><br>
                                         <label><span class="">REM (%):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_11">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_rem">
                                         </label><br>
                                         <label><span class="">Light (%):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_12">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_light">
                                         </label><br>
                                         <label><span class="">Deep (%):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_13">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_deep">
                                         </label><br>
                                         <label><span class="">Sleep Latency (min):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_14">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_sleep_latency">
                                         </label><br>
                                         <label><span class="">REM Latency (min):</span>
-                                            <input class="form-control" type="number" step=0.1 name="watchpat_15">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_rem_latency">
+                                        </label><br>
+                                        <label><span class="">Wake (%):</span>
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_wake">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -161,7 +190,38 @@
                     $('[type="date"]').datepicker();
                 }
             }
-           //-------------------------------------
+            //-------------------------------------
+            $("#D__ID #hh_1__ID").on('change', function () {
+                $("input[name='watchpat_recording']").val( calc_time())
+            });
+            $("#D__ID #mm_1__ID").on('change', function () {
+                $("input[name='watchpat_recording']").val( calc_time())
+            });
+            calc_time=function(){
+                if($("#D__ID #hh_1__ID").val()!="" && $("#D__ID #mm_1__ID").val()!="" ){
+                    var dur=(parseInt($('#hh_1__ID').val())*60+parseInt($('#mm_1__ID').val())).toFixed(0)
+                    return dur
+                }
+                else{
+                    return "";
+                }
+            }
+            //-------------------------------------
+            $("#D__ID #hh_2__ID").on('change', function () {
+                $("input[name='watchpat_sleep_time']").val( calc_time2())
+            });
+            $("#D__ID #mm_2__ID").on('change', function () {
+                $("input[name='watchpat_sleep_time']").val( calc_time2())
+            });
+            calc_time2=function(){
+                if($("#D__ID #hh_2__ID").val()!="" && $("#D__ID #mm_2__ID").val()!="" ){
+                    var dur=(parseInt($('#hh_2__ID').val())*60+parseInt($('#mm_2__ID').val())).toFixed(0)
+                    return dur
+                }
+                else{
+                    return "";
+                }
+            }
             //-------------------------------------
 
         }

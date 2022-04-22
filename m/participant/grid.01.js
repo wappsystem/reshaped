@@ -5,6 +5,11 @@ m.query={};
 m.sort={_id:-1}
 m.projection={}
 if(m.title!=undefined) $('#title__ID').text(m.title);
+if(window.location.toString().indexOf('tb=demo')!=-1){
+    //$('#D__ID').css('background-image','url("images/demo.png")')
+    $('#D__ID').css('background-color','red')
+}			
+
 //-------------------------------------
 m.set_req=function(){
 };

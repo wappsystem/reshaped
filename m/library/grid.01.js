@@ -5,6 +5,12 @@ m.query={};
 m.sort={_id:-1}
 m.projection={}
 if(m.title!=undefined) $('#title__ID').text(m.title);
+//DEMO VERSION
+if(window.location.toString().indexOf('tb=demo')!=-1){
+    //$('#D__ID').css('background-image','url("images/demo.png")')
+    $('#D__ID').css('background-color','red')
+}			
+console.log(JSON.stringify(m.input))
 //-------------------------------------
 m.set_req=function(){
 };
@@ -151,7 +157,8 @@ m.cell_process=function(){
                     alert('Can not find "'+m.form_module+'" in the module list');
                     return;
                 }
-                $vm.load_module(prefix+m.form_module,$vm.root_layout_content_slot,{record:m.records[I]});
+                console.log("load_module: "+JSON.stringify(m.input.record))
+                $vm.load_module(prefix+m.form_module,$vm.root_layout_content_slot,{record:m.records[I],participant_record:m.input.record});
             })
         }
         //-------------------------

@@ -57,17 +57,21 @@
                             </div>
                             <div class="form-group">
                                 <div class="questiongroup">
-                                    <fieldset class="subquestions">
-                                        <label><span class="">Treatment selected</span>
-                                            <select name="treatment" class=form-control>
-                                                <option></option>
-                                                <option>CPAP</option>
-                                                <option>MAS</option>
-                                                <option>Oxygen</option>
-                                                <option>Positional Therapy</option>
-                                            </select>
-                                        </label>
-                                    </fieldset>
+                                    <label><span class="">Treatment selected</span></label>
+                                    <fieldset>
+                                        <label class="checkboxes">
+                                        <input type="checkbox" name="CPAP">
+                                        <span class="check_checkmark"></span> CPAP</label><br>
+                                        <label class="checkboxes">
+                                        <input type="checkbox" name="MAS">
+                                        <span class="check_checkmark"></span> MAS</label><br>
+                                        <label class="checkboxes">
+                                        <input type="checkbox" name="Oxygen">
+                                        <span class="check_checkmark"></span> Oxygen</label><br>
+                                        <label class="checkboxes">
+                                        <input type="checkbox" name="Positional_Therapy">
+                                        <span class="check_checkmark"></span> Positional Therapy</label><br>
+                                  </fieldset>
                                 </div>
                             </div>
                             VmInclude: __CURRENT_PATH__/modification_status.html                        

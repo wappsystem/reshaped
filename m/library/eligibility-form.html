@@ -82,6 +82,39 @@
                                     </fieldset>
                                 </div>
                             </div>
+                            <div id=acceptance__ID>
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <h4>Participant screening Acceptance</h4>
+                                        <fieldset class="">
+                                            <label><span class="">Is participant proceeding to screening? </span></label><br>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="screening_acceptance" value="0" >
+                                            <span class="checkmark"></span> No</label>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="screening_acceptance" value="1">
+                                            <span class="checkmark"></span> Yes</label>
+                                        </fieldset>
+                                    </div>
+                                    <div id=no_acceptance__ID>
+                                        <div class="form-group">
+                                            <div class="questiongroup ">
+                                                <h4>Reason</h4>
+                                                <fieldset class="">
+                                                    <select class=" form-control" name="no_acceptance">
+                                                        <option></option>
+                                                        <option>Change mind</option>
+                                                        <option>Unable to commit time to study</option>
+                                                        <option>Does not want OSA to be untreated</option>
+                                                        <option>Not willing to undergo certain aspects</option>
+                                                        <option>Lost to follow-up</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             VmInclude: __CURRENT_PATH__/modification_status.html                        
                         </form>
                     </div>
@@ -98,8 +131,10 @@
             var load2 = m.load;
             m.load = function () {
                 load2();
-                console.log("ABC: "+JSON.stringify(m.input))
-                $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', true);
+                //console.log("ABC: "+JSON.stringify(m.input))
+                $('#acceptance__ID').hide()                
+                $('#no_acceptance__ID').hide();
+                $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', true);
                 if($("#Participant_uid__ID").val()!='' && $("#Participant_uid__ID").val()!=undefined){
                     var query_uid={"Data.Participant_uid":$("#Participant_uid__ID").val()}
                     //------------------------------
@@ -114,7 +149,7 @@
                     //------------------------------
                     jQuery.ajaxSetup({async:false});
                     $vm.request({cmd:"find",table:$vm.module_list["demographics-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
-                        console.log(res.result.length)
+                        //console.log(res.result.length)
                         if(res.status=='np' || res.result==undefined){
                             res.result=[];
                         }
@@ -136,6 +171,7 @@
                             }
                         }
                     })
+                    //------------------------------
                     $vm.request({cmd:"find",table:$vm.module_list["wristox-ps-data-reshaped"].Table,query:query_uid,limit:1},function(res){
                         if(res.status=='np' || res.result==undefined){
                             res.result=[];
@@ -158,20 +194,30 @@
                     })
                     jQuery.ajaxSetup({async:true});
                 }
-
+                if($('#F__ID input[name=pre_screening_eligibility]:checked').val()=='1'){
+                    $('#acceptance__ID').show();               
+                }
+                if($('#F__ID input[name=screening_acceptance]:checked').val()=='0'){
+                    $('#no_acceptance__ID').show();               
+                }
             }
             //-------------------------------------
-            $("input[name='wristox_inclusion']").change(function(){
-                if($("input[name='wristox_inclusion']:checked").val()=='1'){
+            $("input[name='pre_screening_eligibility']").change(function(){
+                if($("input[name='pre_screening_eligibility']:checked").val()=='1'){
+                    $('#acceptance__ID').show();               
                 }
                 else {
+                    $('#acceptance__ID').hide();               
+
                 }
             });
             //-------------------------------------
-            $("input[name='pre_scre_mmse_inclusion']").change(function(){
-                if($("input[name='pre_scre_mmse_inclusion']:checked").val()=='1'){
+            $("input[name='screening_acceptance']").change(function(){
+                if($("input[name='screening_acceptance']:checked").val()=='0'){
+                    $('#no_acceptance__ID').show();
                 }
                 else {
+                    $('#no_acceptance__ID').hide();
                 }
             });
             //-------------------------------------
@@ -181,23 +227,24 @@
                 var include=parseInt($('#F__ID input[name=age]:checked').val())+
                 parseInt($('#F__ID input[name=wristox_inclusion]:checked').val())+
                 mmse
-                console.log(mmse+' - '+include)
-
                 $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', false);
                 if(include==3 ){
                     $("#elig__ID").prop("checked", true);
                     $("input[name='pre_screening_eligibility']").prop('value','1')
+                    $('#acceptance__ID').show();
                 }
                 else {
                     $("#inelig__ID").prop("checked", true);
                     $("input[name='pre_screening_eligibility']").prop('value','0')
+                    $('#acceptance__ID').hide();
+                    $("input[name='screening_acceptance']").prop('value','0')
                 }
                 $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', true);
             })
             //-------------------------------------
             var before_submit=m.before_submit;
             m.before_submit=function(data,index){
-                $('#F__ID input[name=eligibility]:not(:checked)').attr('disabled', false);
+                $('#F__ID input[name=pre_screening_eligibility]:not(:checked)').attr('disabled', false);
                 return before_submit(data,index);
             }
 

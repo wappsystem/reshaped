@@ -43,8 +43,8 @@
                 <div class="form-group">
                     <div class="questiongroup ">
                         <fieldset class="">
-                            <label<span class="">Number of events</span>
-                                <input class="form-control" type="number" name="no_events" placeholder="" readonly>
+                            <label<span class="">Number of items</span>
+                                <input class="form-control" type="number" name="no_items" placeholder="" readonly>
                             </label><br>
                         </fieldset>
                     </div>
@@ -91,7 +91,7 @@
         var before_submit=m.before_submit;
         m.before_submit=function(data,index){
             data.items = m.item_a_get_data();
-            data.no_events= data.items.length;
+            data.no_items= data.items.length;
             return before_submit(data,index);
         }
         //--------------------------------------------------------
@@ -105,7 +105,7 @@
         }
         //--------------------------------------------------------
         //item a part
-        m.item_a_fields = "Medical_hisory,Start_date,Stop_date,Ongoing,_Remove";
+        m.item_a_fields = "Medical_hisory,Start_date,Stop_date,Ongoing,Treated by medication|Treated,_Remove";
         //----------------------------------
         $('#item_a_add__ID').on('click', function () { m.item_a_add(); })
         //----------------------------------
@@ -122,6 +122,12 @@
                     td.find('input').on('change',function(){ m.item_a_records[I][field]=$(this).val();})
                     break;
                 case "Ongoing":
+                    var html = '<input type=checkbox />';
+                    $vm.render_checkbox_field(records[I], '__ID', td, html)
+                    td.find('input').on('change', function () {
+                    })
+                    break;
+                case "Treated":
                     var html = '<input type=checkbox />';
                     $vm.render_checkbox_field(records[I], '__ID', td, html)
                     td.find('input').on('change', function () {
