@@ -26,6 +26,13 @@
                             <!-- form group -->
                             <div class="form-group">
                                 <div class="questiongroup ">
+                                    <label><span class="">MAR Consent Date</span>
+                                        <input type=text name="mri_date" id=mri_date__ID class=form-control readonly />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
                                     <h4>MRI data</h4>
                                     <fieldset class="">
                                         <label><span class="">Had an MRI scan? </span></label><br>
@@ -36,15 +43,17 @@
                                           <input type="radio" name="mri_data" value="1">
                                           <span class="checkmark"></span> Yes</label>
                                     </fieldset>
-                                    <fieldset class="">
-                                        <label><span class="">Is the data on Xnat? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="mri_xnat" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="mri_xnat" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
+                                    <div id="uploaded__ID">
+                                        <fieldset class="">
+                                            <label><span class="">Has the data been uploaded to Xnat? </span></label><br>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="mri_xnat" value="0" >
+                                            <span class="checkmark"></span> No</label>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="mri_xnat" value="1">
+                                            <span class="checkmark"></span> Yes</label>
+                                        </fieldset>
+                                    </div>  
                                 </div>
                             </div>
 <!--                            <div class="form-group">
@@ -127,7 +136,36 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if(m.input.participant_record.UID!=undefined){
+                    var puid=m.input.participant_record.UID
+                    puid=puid.toString();
+                     var query={'Data.Participant_uid':puid}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list['consent-mri-data-reshaped'].Table,query:query,limit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            //console.log(res.result[0].Data.mmse_score)
+                            $('#mri_date__ID').val($vm.date_to_ddmmyyyy(res.result[0].Data.mri_consent_date))
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+                $('#uploaded__ID').hide();
+                if($('#D__ID input[name=mri_data]:checked').val()=='1') $('#uploaded__ID').show();
+            }
             //-------------------------------------
+            $('#D__ID input[name=mri_data]').change(function(){
+               if($('#D__ID input[name=mri_data]:checked').val()=='1')  $('#uploaded__ID').show();
+               else $('#uploaded__ID').hide();
+            })
 
         }
     </script>

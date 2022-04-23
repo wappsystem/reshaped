@@ -20,7 +20,10 @@
     		var participant_record;
     		var count={}
     		var participant_info=function(record){ 
-                return record.Data.Pre_Screening_Number+' '+record.Data.Subject_Initials; 
+                if(record.Data.Randomisation_Number!=undefined && record.Data.Randomisation_Number!='') {console.log("A"); return record.Data.Randomisation_Number+' '+record.Data.Subject_Initials; }
+                else if(record.Data.Screening_Number!=undefined && record.Data.Screening_Number!='') {console.log("B"); return record.Data.Screening_Number+' '+record.Data.Subject_Initials; }
+                else if(record.Data.Pre_Screening_Number!=undefined && record.Data.Pre_Screening_Number!='') {console.log("B"); return record.Data.Pre_Screening_Number+' '+record.Data.Subject_Initials; }
+                else return record.UID;
 			}
 			//DEMO VERSION
 			if(window.location.toString().indexOf('tb=demo')!=-1){

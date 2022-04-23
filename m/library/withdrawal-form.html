@@ -123,7 +123,7 @@
                 if($('#Participant_uid__ID').val()!=undefined && $("input[name='mmse_done']:checked").val()==undefined){
                      var query={'Data.Participant_uid':$('#Participant_uid__ID').val()}
                     jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,limit:1},function(res){
                         if(res.permission==false){
                             alert("No permission");
                             return;

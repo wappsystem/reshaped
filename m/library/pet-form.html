@@ -36,24 +36,22 @@
                                           <input type="radio" name="pet_data" value="1">
                                           <span class="checkmark"></span> Yes</label>
                                     </fieldset>
-                                    <fieldset class="">
-                                        <label><span class="">Did the participant sign consent to use his/her PET’s data? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data_consent" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_data_consent" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
-                                    <fieldset class="">
-                                        <label><span class="">Is the data saved in the hard drive? </span></label><br>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_hard_drive" value="0" >
-                                          <span class="checkmark"></span> No</label>
-                                        <label class="radiobuttons">
-                                          <input type="radio" name="pet_hard_drive" value="1">
-                                          <span class="checkmark"></span> Yes</label>
-                                    </fieldset>
+                                    <div id="uploaded__ID">
+                                        <fieldset class="">
+                                            <label><span class="">Did the participant sign consent to use his/her PET’s data? </span><br>
+                                                <input type=text name="pet_data_consent" id="pet_consent__ID" class=form-control readonly />
+                                            </label>
+                                        </fieldset>
+                                        <fieldset class="">
+                                            <label><span class="">Is the data saved in the hard drive? </span></label><br>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="pet_hard_drive" value="0" >
+                                            <span class="checkmark"></span> No</label>
+                                            <label class="radiobuttons">
+                                            <input type="radio" name="pet_hard_drive" value="1">
+                                            <span class="checkmark"></span> Yes</label>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
 <!--                            <div class="form-group">
@@ -99,6 +97,36 @@
             VmInclude: '__COMPONENT__/f/form.01.js'
             VmInclude: __CURRENT_PATH__/shared-form.js
             //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if(m.input.participant_record.UID!=undefined){
+                    var puid=m.input.participant_record.UID
+                    puid=puid.toString();
+                     var query={'Data.Participant_uid':puid}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list['consent-s-data-reshaped'].Table,query:query,limit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            //console.log(res.result[0].Data.mmse_score)
+                            $('#pet_consent__ID').val(res.result[0].Data.pet_data)
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+                $('#uploaded__ID').hide();
+                if($('#D__ID input[name=pet_data]:checked').val()=='1') $('#uploaded__ID').show();
+            }
+            //-------------------------------------
+            $('#D__ID input[name=pet_data]').change(function(){
+               if($('#D__ID input[name=pet_data]:checked').val()=='1')  $('#uploaded__ID').show();
+               else $('#uploaded__ID').hide();
+            })
             //-------------------------------------
 
         }

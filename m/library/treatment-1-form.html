@@ -98,7 +98,7 @@
                     puid=puid.toString();
                      var query={'Data.Participant_uid':puid}
                     jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list['watchpat-bl-data-reshaped'].Table,query:query,linit:1},function(res){
+                    $vm.request({cmd:"find",table:$vm.module_list['watchpat-bl-data-reshaped'].Table,query:query,limit:1},function(res){
                         if(res.permission==false){
                             alert("No permission");
                             return;
