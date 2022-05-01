@@ -29,52 +29,69 @@
                 <h4>MEDICAL/ SURGICAL HISTORY</h4>
             </div>
             <br>
+            <!-- form group -->
             <div class="form-group">
-                <div class="row">
-                    <div class=col>
-                        <u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i
-                                class="fa fa-plus"></i> Add history</u>
-                        <table id=grid_item_a__ID></table>
-                    </div>
+                <div class="questiongroup ">
+                    <fieldset class="">
+                        <label><span class="">Does the participant have other medical or surgical history? </span></label><br>
+                        <label class="radiobuttons">
+                            <input type="radio" name="other_medical_history" value="0" >
+                            <span class="checkmark"></span> No</label>
+                        <label class="radiobuttons">
+                            <input type="radio" name="other_medical_history" value="1">
+                            <span class="checkmark"></span> Yes</label>
+                    </fieldset>
                 </div>
             </div>
-            <br>
-            <div style="display:none">
+            <div id="other_medical_history__ID">
+                
+                <div class="form-group">
+                    <div class="row">
+                        <div class=col>
+                            <u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i
+                                    class="fa fa-plus"></i> Add history</u>
+                            <table id=grid_item_a__ID></table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div style="display:none">
+                    <div class="form-group">
+                        <div class="questiongroup ">
+                            <fieldset class="">
+                                <label<span class="">Number of items</span>
+                                    <input class="form-control" type="number" name="no_items" placeholder="" readonly>
+                                </label><br>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="questiongroup ">
                         <fieldset class="">
-                            <label<span class="">Number of items</span>
-                                <input class="form-control" type="number" name="no_items" placeholder="" readonly>
+                            <label style='width:100%'><span class="">Notes</span>
+                                <textarea class="form-control" name="notes" placeholder=""></textarea>
                             </label><br>
                         </fieldset>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="questiongroup ">
-                    <fieldset class="">
-                        <label style='width:100%'><span class="">Notes</span>
-                            <textarea class="form-control" name="notes" placeholder=""></textarea>
-                        </label><br>
-                    </fieldset>
-                </div>
-            </div>
-            <div class='form-group'>
-                <div class='questiongroup'>
-                    <fieldset class=''>
-                        <label><span>Participant medically approved to enrol in study:<br></span>
-                        </label><br>
-                        <label class="radiobuttons">
-                            <input type="radio" name="medically_approved" value="0">
-                            <span class="checkmark"></span>No
-                        </label>
-                        <label class="radiobuttons">
-                            <input type="radio" name="medically_approved" value="1">
-                            <span class="checkmark"></span>Yes
-                        </label>
-                    </fieldset>
-                </div>
-            </div>          
+                <!--<div class='form-group'>
+                    <div class='questiongroup'>
+                        <fieldset class=''>
+                            <label><span>Participant medically approved to enrol in study:<br></span>
+                            </label><br>
+                            <label class="radiobuttons">
+                                <input type="radio" name="medically_approved" value="0">
+                                <span class="checkmark"></span>No
+                            </label>
+                            <label class="radiobuttons">
+                                <input type="radio" name="medically_approved" value="1">
+                                <span class="checkmark"></span>Yes
+                            </label>
+                        </fieldset>
+                    </div>
+                </div>-->       
+            </div>   
             VmInclude: __CURRENT_PATH__/modification_status.html                        
         </form>
     </div>
@@ -98,12 +115,22 @@
         var load2 = m.load;
         m.load = function () {
             load2();
+            $('#other_medical_history__ID').hide();
+            if($('#D__ID input[name=other_medical_history]:checked').val()=='1') $('#other_medical_history__ID').show();
+            //-------------------------------------
+
             //-------item a part
             m.item_a_records = []; if (m.input.record != undefined) m.item_a_records = m.input.record.Data.items;
             m.item_a_render();
             //-------
         }
         //--------------------------------------------------------
+        $('#D__ID input[name=other_medical_history]').change(function(){
+            if($('#D__ID input[name=other_medical_history]:checked').val()=='1')  $('#other_medical_history__ID').show();
+            else $('#other_medical_history__ID').hide();
+        })
+        //-------------------------------------
+
         //item a part
         m.item_a_fields = "Medical_hisory,Start_date,Stop_date,Ongoing,Treated by medication|Treated,_Remove";
         //----------------------------------

@@ -71,8 +71,6 @@ m.request_data=function(){
         }
 
         m.records=res.result;
-        if(m.records.length>0) $('#new__ID').hide();
-        else $('#new__ID').show();
         m.res=res;
         if(m.data_process!==undefined){ m.data_process(res); }
         m.render();

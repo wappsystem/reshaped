@@ -27,10 +27,25 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">MRI Consent - Date Signed</span>
-                                            <input class="form-control" type="date" name="mri_consent_date">
-                                        </label><br>
+                                        <label><span class="">Was consent given to have an MRI conducted? </span></label><br>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="mri_consent" value="0" >
+                                          <span class="checkmark"></span> No</label>
+                                        <label class="radiobuttons">
+                                          <input type="radio" name="mri_consent" value="1">
+                                          <span class="checkmark"></span> Yes</label>
                                     </fieldset>
+                                </div>
+                            </div>
+                            <div id="mri_consent__ID">
+                                <div class="form-group">
+                                    <div class="questiongroup ">
+                                        <fieldset class="">
+                                            <label><span class="">MRI Consent - Date Signed</span>
+                                                <input class="form-control" type="date" name="mri_consent_date">
+                                            </label><br>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
                             VmInclude: __CURRENT_PATH__/modification_status.html
@@ -46,6 +61,18 @@
             VmInclude:'__COMPONENT__/f/form.01.js'
             VmInclude:__CURRENT_PATH__/shared-form.js
             //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                $('#mri_consent__ID').hide();
+                if($('#D__ID input[name=mri_consent]:checked').val()=='1') $('#mri_consent__ID').show();
+            }
+            //-------------------------------------
+            $('#D__ID input[name=mri_consent]').change(function(){
+               if($('#D__ID input[name=mri_consent]:checked').val()=='1')  $('#mri_consent__ID').show();
+               else $('#mri_consent__ID').hide();
+            })
+
         }
     </script>
     <style>

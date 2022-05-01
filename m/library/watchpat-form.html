@@ -74,13 +74,13 @@
                                     <h4>Respiratory Indices</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">pAHI 3% (all night):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_pahi3">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_pahi3">
                                         </label><br>
                                         <label><span class="">ODI 3% (all night):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_odi3">
+                                            <input style='width:150px' class="form-control" type="number" step=0.1 min="0" max="50" name="watchpat_odi3">
                                         </label><br>
                                         <label><span class="">ODI 4% (all night):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_odi4">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="50" step=0.1 name="watchpat_odi4">
                                         </label><br>
                                         <label><span class="">%CSR:</span>
                                             <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_csr">
@@ -93,16 +93,16 @@
                                     <h4>Oxygen Saturation Statistics</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">Mean:</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2mean">
+                                            <input style='width:150px' class="form-control" type="number" min="80" max="100" step=0.1 name="watchpat_o2mean">
                                         </label><br>
                                         <label><span class="">Minimum:</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2min">
+                                            <input style='width:150px' class="form-control" type="number" min="80" max="100" step=0.1 name="watchpat_o2min">
                                         </label><br>
                                         <label><span class="">O2 Sat&lt;90% (min):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2_90_mins">
+                                            <input style='width:150px' class="form-control" type="number" min="80" max="100" step=0.1 name="watchpat_o2_90_mins">
                                         </label><br>
                                         <label><span class="">O2 sat &lt;90%(sleep %):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_o2_90_perc">
+                                            <input style='width:150px' class="form-control" type="number" min="80" max="100" step=0.1 name="watchpat_o2_90_perc">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -122,10 +122,10 @@
                                     <h4>Body Position Statistics</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">Supine pAHI 3%:</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_supine_ahi">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_supine_ahi">
                                         </label><br>
                                         <label><span class="">Supine ODI 3%:</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_supine_odi">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="50" step=0.1 name="watchpat_supine_odi">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -135,25 +135,25 @@
                                     <h4>Sleep Stages</h4>
                                     <fieldset class="subquestions">
                                         <label><span class="">Sleep (%):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_sleep">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_sleep">
                                         </label><br>
                                         <label><span class="">REM (%):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_rem">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_rem">
                                         </label><br>
                                         <label><span class="">Light (%):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_light">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_light">
                                         </label><br>
                                         <label><span class="">Deep (%):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_deep">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_deep">
                                         </label><br>
                                         <label><span class="">Sleep Latency (min):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_sleep_latency">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="660" step=0.1 name="watchpat_sleep_latency">
                                         </label><br>
                                         <label><span class="">REM Latency (min):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_rem_latency">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="660" step=0.1 name="watchpat_rem_latency">
                                         </label><br>
                                         <label><span class="">Wake (%):</span>
-                                            <input style='width:150px' class="form-control" type="number" step=0.1 name="watchpat_wake">
+                                            <input style='width:150px' class="form-control" type="number" min="0" max="100" step=0.1 name="watchpat_wake">
                                         </label><br>
                                     </fieldset>
                                 </div>

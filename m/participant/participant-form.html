@@ -43,7 +43,7 @@
                                     </label>
                                 </div>
 								<div id=DOB_orig__ID class="col-sm-12 col-lg-4">
-									<label class=''><span class=''>DOB</span>
+									<label class=''><span id='DOB_span__ID' class=''>DOB</span>
 										<input type=date class=form-control name=DOB id="DOB__ID">
 									</label>
 								</div>
@@ -61,6 +61,10 @@
                                 </div>
 								<div class="col-sm-12 col-lg-4 ">
                                     <label id=label_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person is 75+</span>                                            
+                                    </label>
+                                </div>
+								<div class="col-sm-12 col-lg-4 ">
+                                    <label id=label_low_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person not 50 years old</span>                                            
                                     </label>
                                 </div>
                             </div>
@@ -114,7 +118,7 @@
 								</div>
                                 <div class="col-sm-12 col-lg-4 ">
 									<label class=''><span class=''>Progress - Enable Visit</span>
-										<select class=form-control name=_Progress>
+										<select class=form-control name=_Progress id="Progress__ID">
                                             <option value="">Pre Screening</option>
                                             <option value="1">Screening</option>
                                             <option value="2">Baseline</option>
@@ -141,6 +145,10 @@
 				load();
                 console.log("LOAD: "+JSON.stringify(m.input))
                 $('#random_input__ID').hide();
+                $('#label_warning__ID').hide();
+                $('#label_low_warning__ID').hide();
+                $("#DOB_span__ID").text("DOB")
+                $("#DOB_span__ID").css("color","black")
                 $('#DOB_orig__ID').show();
 				if (m.input.record == undefined) {
 					$('.row_participant__ID').hide();
@@ -158,6 +166,7 @@
                     $('#record__ID').val(m.input.record.UID)
 
 				}
+
                 //--------------------------------
                 var site_list;
                 var query='[{"Data.Site":""}]';
@@ -197,8 +206,14 @@
                 else{
                     $('#site__ID').val(m.input.record.Data.Site);
                 }
-                //----------------------------
             }
+            $('#DOB__ID').click(function(){
+                if(m.input.record!=undefined){
+                    $("#DOB_span__ID").text("Warning! Forms with Age are NOT automatically updated.")
+                    $("#DOB_span__ID").css("color","red")
+                }
+            })
+
             $('#DOB__ID').change(function(){
                 dob=new Date($('#DOB__ID').val());
                 var diff = Date.now() - dob.getTime()
@@ -211,6 +226,12 @@
                 }
                 else{
                     $('#label_warning__ID').hide();
+                }
+                if(parseInt($('#age__ID').val())<'50'){
+                    $('#label_low_warning__ID').show();
+                }
+                else{
+                    $('#label_low_warning__ID').hide();
                 }
             });
             //-------------------------------

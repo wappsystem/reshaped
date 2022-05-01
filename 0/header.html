@@ -19,7 +19,7 @@
             <a href="?/home"><i class="fas fa-home"></i> Home</a>
             <a href="?/participant-data"><i class="fas fa-users"></i> Participants/Data Entry</a>
             <a href="?/panel-setup-reshaped"><i class="fas fa-list-ul"></i> Setup</a>
-            <a href="?/panel-main-reshaped"><i class="fas fa-list-ul"></i> Special Data Entry </a>
+            <!--<a href="?/panel-main-reshaped"><i class="fas fa-list-ul"></i> Special Data Entry </a>-->
             <!--<div class="vm-dropdown">
                 <span class="vm-dropbtn">Export <i class="fa fa-caret-down"></i></span>
                 <div class="vm-dropdown-content">
@@ -69,6 +69,10 @@
             $vm.load_module(prefix+href,$vm.root_layout_content_slot,{});
         }
         //------------------------------------
+        if(window.location.toString().indexOf('tb=demo')!=-1){
+				$('#header').css('background-color','red')
+		}			
+
         $vm.header_ready=1;
         //------------------------------------
     </script>

@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <div class="questiongroup">
                                     <label><span>Sex</span></label>
                                     <fieldset class="">
@@ -69,7 +69,7 @@
                                             <span class="checkmark"></span>Other&nbsp;</label>
                                         </fieldset>
                                 </div>
-                            </div>
+                            </div>-->
                             <!--<div class="form-group">
                                 <div class="questiongroup">
                                     <fieldset class="subquestions">
@@ -89,7 +89,7 @@
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Total years of full-time education</span>
-                                            <input type=number class="form-control" name="years_education" placeholder="">
+                                            <input type=number class="form-control"  min="0" max="30" name="years_education" placeholder="">
                                         </label><br>
                                     </fieldset>
                                 </div>
@@ -123,7 +123,7 @@
                                         </label><br>
                                         <label class="radiobuttons">
                                             <input type="radio" name="mariatal_status" value="3">
-                                            <span class="checkmark"></span>Separate
+                                            <span class="checkmark"></span>Separated
                                         </label><br>
                                         <label class="radiobuttons">
                                             <input type="radio" name="mariatal_status" value="4">
@@ -260,17 +260,17 @@
                                     <fieldset class="">
                                         <label><span>Has the MMSE been done previously (within 6 months)?<br></span></label>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="mmse_done"  value="0" disabled>
+                                            <input type="radio" name="mmse_done" id="mmse_0__ID" value="0" disabled>
                                             <span class="checkmark"></span>No
                                         </label>
                                         <label class="radiobuttons">
-                                            <input type="radio" name="mmse_done" value="1" disabled>
+                                            <input type="radio" name="mmse_done" id="mmse_1__ID" value="1" disabled>
                                             <span class="checkmark"></span>Yes
                                         </label>
                                     </fieldset>
                                 </div>
                             </div>
-                            <div style='display:none' id=mmse_total_score__ID>
+                            <div id=mmse_total_score__ID>
                                 <div class="form-group">
                                     <div class="questiongroup ">
                                         <fieldset class="">
@@ -299,12 +299,6 @@
                 load2();
                 if ( $('[type="date"]').prop('type') != 'date' ) {
                     $('[type="date"]').datepicker();
-                }
-                if($("input[name='mmse_done']:checked").val()=='1'){
-                    $('#mmse_total_score__ID').show();
-                }
-                else {
-                    $('#mmse_total_score__ID').hide();
                 }
                 //console.log("A "+JSON.stringify(m.input))
                 if(m.input.participant_record!=undefined){
@@ -347,9 +341,17 @@
                         }
                         else{
                             //console.log(res.result[0].Data.mmse_score)
-                            $('#mmse_score__ID').val(res.result[0].Data.mmse_score)
-                            $("input[name='mmse_done']").prop("checked", true);
-                            $('#mmse_total_score__ID').show();
+                            if(res.result[0].Data.mmse_available=='1'){
+                                $('#mmse_score__ID').val(res.result[0].Data.mmse_score)
+                                $("#mmse_1__ID").prop("checked", true);
+                                $("#mmse_0__ID").prop("checked", false);
+                            }
+                            else if(res.result[0].Data.mmse_available=='0'){
+                                $("input[name='mmse_done']").prop("disabled", false);
+                                $('#mmse_score__ID').prop('readonly',false);
+                                $("#mmse_1__ID").prop("checked", false);
+                                $("#mmse_0__ID").prop("checked", true);
+                            }
                         }
                     })
                     jQuery.ajaxSetup({async:true});
@@ -358,15 +360,6 @@
 
 
             }
-            //-------------------------------------
-            $("input[name='mmse_done']").change(function(){
-                if($("input[name='mmse_done']:checked").val()=='1'){
-                    $('#mmse_total_score__ID').show();
-                }
-                else {
-                    $('#mmse_total_score__ID').hide();
-                }
-            });
             //-------------------------------------
             $("input[name='smoking_status']").change(function(){
                 if($("input[name='smoking_status']:checked").val()!='0'){
