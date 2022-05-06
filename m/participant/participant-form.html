@@ -44,7 +44,7 @@
                                 </div>
 								<div id=DOB_orig__ID class="col-sm-12 col-lg-4">
 									<label class=''><span id='DOB_span__ID' class=''>DOB</span>
-										<input type=date class=form-control name=DOB id="DOB__ID">
+										<input type=date class=form-control name=DOB id="DOB__ID" required>
 									</label>
 								</div>
                             </div>
@@ -116,7 +116,7 @@
 										<input type=text class=form-control name=_Password>
 									</label>
 								</div>
-                                <div class="col-sm-12 col-lg-4 ">
+                                <!--<div class="col-sm-12 col-lg-4 ">
 									<label class=''><span class=''>Progress - Enable Visit</span>
 										<select class=form-control name=_Progress id="Progress__ID">
                                             <option value="">Pre Screening</option>
@@ -126,7 +126,7 @@
                                             <option value="4">24 Month</option>
                                         </select>
 									</label>
-								</div>
+								</div>-->
 							</div>
 							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
 						</div>
@@ -251,7 +251,7 @@
                         }
                     }
                     if(res.status=='np'){
-                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table.");
                         else $vm.alert("No permission.");
                     }
                 })
@@ -296,8 +296,9 @@
                             }
                             max_I1++;
                             var code=$('#F__ID input[name=Code').val()
-                            if(code=='NS') code='US'
-                            $('#F__ID input[name=Randomisation_Number').val('R'+code+max_I1.toString().padStart(3, "0"));
+                            if(code=='NS_50') code='US_50'
+                            if(code=='NS_65') code='US_65'
+                            $('#F__ID input[name=Randomisation_Number').val('R'+code+'_'+max_I1.toString().padStart(3, "0"));
                             $('#F__ID input[name=Randomised_by').val($vm.user_name);
                         })
                     }
@@ -330,10 +331,10 @@
                         }
                     }
                 })
-                jQuery.ajaxSetup({async:true});
                 if(ready_for_screening=='1' && acceptance=='1'){
                     var code=$('#F__ID input[name=Code').val()
-                    if(code=='NS') code='US'
+                    if(code=='NS_50') code='US_50';
+                    if(code=='NS_65') code='US_65';
                     var I5 = $('#F__ID input[name=Screening_Number').val();
                     if (I5 == '') {
                         $vm.request({ cmd: "find", table: m.Table, sort: { I5: -1 }, skip: 0, limit: 1 }, function (res) {
@@ -346,11 +347,13 @@
                                 if (res.result[0].I5 !== undefined) max_I5 = res.result[0].I5
                             }
                             max_I5++;
-                            $('#F__ID input[name=Screening_Number').val('S'+code+max_I5.toString().padStart(3, "0"));
+                            $('#F__ID input[name=Screening_Number').val('S'+code+'_'+max_I5.toString().padStart(3, "0"));
                         })
                     }
                 }
                 else $vm.alert('Pre-screening shows NOT eligible. Please check!')
+                jQuery.ajaxSetup({async:true});
+                //console.log('Screening_Number:'+$('#F__ID input[name=Screening_Number').val().slice(-3))
 			})
  			//-------------------------------------
              function calculateAge(birthday) { // birthday is a date
@@ -371,7 +374,7 @@
                     var odi;
                     var query={'Data.Participant_uid':$('#record__ID').val()}
                     jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-s-data-reshaped'].Table,query:query,linit:1},function(res){
                         if(res.permission==false){
                             alert("No permission");
                             return;
@@ -380,7 +383,7 @@
                         }
                         else{
                             //console.log(res.result[0].Data.mmse_score)
-                            mmse=res.result[0].Data.mmse_score
+                            mmse=res.result[0].Data.mmse_total_score
                         }
                     })
                     $vm.request({cmd:"find",table:$vm.module_list['wristox-ps-data-reshaped'].Table,query:query,linit:1},function(res){
@@ -434,7 +437,10 @@
                 var rid=res.result.ops[0]._id
                 if(data.Pre_Screening_Number==''){
                     var uid=res.result.ops[0].UID;
-                    data.Pre_Screening_Number= 'P'+data.Code+uid.toString().padStart(3, "0")
+                    var age_group='_65';
+                    if(parseInt(res.result.ops[0].Data.age) < 65) age_group='_50'
+                    data.Pre_Screening_Number= 'P'+data.Code+age_group+'_'+uid.toString().padStart(3, "0")
+                    data.Code=data.Code+age_group;
                     $vm.request({cmd:'update',id:rid,table:m.Table,data:data},function(res){
                         //-----------------------------
                         if(res.status=="lk"){

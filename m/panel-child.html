@@ -19,10 +19,14 @@
     		var old_info='';
     		var participant_record;
     		var count={}
+            var date_6_month;
+            var date_24_month;
+            var date_baseline;
+            var now;
     		var participant_info=function(record){ 
-                if(record.Data.Randomisation_Number!=undefined && record.Data.Randomisation_Number!='') {console.log("A"); return record.Data.Randomisation_Number+' '+record.Data.Subject_Initials; }
-                else if(record.Data.Screening_Number!=undefined && record.Data.Screening_Number!='') {console.log("B"); return record.Data.Screening_Number+' '+record.Data.Subject_Initials; }
-                else if(record.Data.Pre_Screening_Number!=undefined && record.Data.Pre_Screening_Number!='') {console.log("B"); return record.Data.Pre_Screening_Number+' '+record.Data.Subject_Initials; }
+                if(record.Data.Randomisation_Number!=undefined && record.Data.Randomisation_Number!='') {return record.Data.Randomisation_Number+' '+record.Data.Subject_Initials; }
+                else if(record.Data.Screening_Number!=undefined && record.Data.Screening_Number!='') {return record.Data.Screening_Number+' '+record.Data.Subject_Initials; }
+                else if(record.Data.Pre_Screening_Number!=undefined && record.Data.Pre_Screening_Number!='') {return record.Data.Pre_Screening_Number+' '+record.Data.Subject_Initials; }
                 else return record.UID;
 			}
 			//DEMO VERSION
@@ -91,8 +95,9 @@
     		}
     		//---------------------------------------------
     		$('#D__ID').on('show',function(){
+                date_6_month='';
 				participant_record=m.input.record;
-                //console.log(JSON.stringify(m.input.record))
+                console.log(JSON.stringify(m.input.record))
     			if(participant_record==undefined){
     				$('#info__ID').text("No individual participant info was found.");
     				return;
@@ -103,32 +108,46 @@
     				set_counting();
     			}
     			$('#info__ID').text(info);
-                var prog=participant_record.Data._Progress
+                var bl_date=""
                 hide_all();
-                $('#screening_enable__ID').hide();
-                $('#baseline_enable__ID').hide();
-                $('#6months_enable__ID').hide();
-                $('#24months_enable__ID').hide();
-                $('#treatment_enable__ID').hide();
-                if(prog=='' || prog==undefined){
+                if(participant_record.Data.Screening_Number!=""){
+                    $('#screening__ID').css('color', '#555')
+                    console.log("screening")
                 }
-                if(parseInt(prog)>0){
-                   $('#screening_enable__ID').show();
+                if(participant_record.Data.Randomisation_Number!=""){
+                    console.log("baseline")
+                    $('#baseline__ID').css('color', '#555')
+                    $('#treatment__ID').css('color', '#555')
+                    jQuery.ajaxSetup({async:false});
+                    tb=$vm.module_list['date-bl-data-reshaped'].Table;
+                    $vm.request({cmd:"find",table:tb,query:{'Data.Participant_uid':participant_record.UID.toString()},options:{}},function(res){
+                        if(res.sys.permission==false){
+                            return;
+                        }
+                        if(res.result.length>0){
+                            bl_date=res.result[0].Data.date;
+                            bl_date=bl_date.split('-');
+                            date_baseline = new Date(bl_date[0],(parseInt(bl_date[1])-1).toString(),bl_date[2])
+                            date_6_month = new Date(date_baseline.setMonth(date_baseline.getMonth()+6));
+                            date_24_month = new Date(date_baseline.setMonth(date_baseline.getMonth()+18));
+                            date_baseline = new Date(bl_date[0],(parseInt(bl_date[1])-1).toString(),bl_date[2])
+                            now=new Date()
+                            $('#baseline__ID').text('Baseline - '+ date_baseline.getDate()+'/'+(date_baseline.getMonth()+1)+'/'+date_baseline.getFullYear())
+                            $('#6months__ID').text('6 Month - '+ date_6_month.getDate()+'/'+(date_6_month.getMonth()+1)+'/'+date_6_month.getFullYear())
+                            $('#24months__ID').text('24 Month - '+ date_24_month.getDate()+'/'+(date_24_month.getMonth()+1)+'/'+date_24_month.getFullYear())
+                            if(now.getTime()> date_6_month.getTime()) $('#6months__ID').css('color', '#555');
+                            if(now.getTime()> date_24_month.getTime()) $('#24months__ID').css('color', '#555');
+                        }
+                    });
+                    jQuery.ajaxSetup({async:true});
+
+
                 }
-                if(parseInt(prog)>1){
-                   $('#baseline_enable__ID').show();
-                   $('#treatment_enable__ID').show();
-                }
-                if(parseInt(prog)>2){
-                   $('#6months_enable__ID').show();
-                   $('#treatment_enable__ID').show();
-                }
-                if(parseInt(prog)>3){
-                   $('#24months_enable__ID').show();
-                   $('#treatment_enable__ID').show();
-                }
-    		})
+       		})
             var hide_all = function () {
+                $('#baseline__ID').text('Baseline');
+                $('#6months__ID').text('6 Month');
+                $('#24months__ID').text('24 Month');
                 $('#unscheduled_show__ID').hide()
                 $('#prescreening_show__ID').hide()
                 $('#screening_show__ID').hide()
@@ -138,11 +157,23 @@
                 $('#treatment_show__ID').hide()
                 $('#unscheduled__ID').css('color', '#555')
                 $('#prescreening__ID').css('color', '#555')
-                $('#screening__ID').css('color', '#555')
-                $('#baseline__ID').css('color', '#555')
-                $('#6months__ID').css('color', '#555')
-                $('#24months__ID').css('color', '#555')
-                $('#treatment__ID').css('color', '#555')
+                $('#screening__ID').css('color', '#f0f0f0');
+                $('#baseline__ID').css('color', '#f0f0f0');
+                $('#6months__ID').css('color', '#f0f0f0');
+                $('#24months__ID').css('color', '#f0f0f0');
+                $('#treatment__ID').css('color', '#f0f0f0');
+                if(participant_record.Data.Screening_Number!=""){
+                    $('#screening__ID').css('color', '#555')
+                }
+                if(participant_record.Data.Randomisation_Number!=""){
+                    $('#baseline__ID').css('color', '#555')
+                    $('#treatment__ID').css('color', '#555')
+                }
+                console.log(date_6_month)
+                if(date_6_month!=''){
+                    if(now.getTime()> date_6_month.getTime()) $('#6months__ID').css('color', '#555');
+                    if(now.getTime()> date_24_month.getTime()) $('#24months__ID').css('color', '#555');
+                }
             }
             //--------------------------------------------------------
             $('#unscheduled__ID').on('click', function () {
