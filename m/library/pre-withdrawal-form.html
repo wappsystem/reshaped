@@ -1,0 +1,186 @@
+<div id=D__ID>
+    <!--third html start -->
+    <div class="container mt-95 mb-3">
+        <div class="row">
+            <!-- form container start -->
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- form start -->
+                        <form id="F__ID">
+                            <h3 id="title__ID"></h3>
+                            <!-- participant part for all tsak forms -------------------->
+                            <div id="participant_div__ID">
+                                <div class="form-group">
+                                    <fieldset class="subquestions">
+                                        <label><span class="">Participant</span>
+                                            <input type=text name="Participant" class=form-control id=Participant__ID
+                                                data-id="Participant" />
+                                        </label>
+                                        <label><span class="">Participant ID</span>
+                                            <input type=text name="Participant_uid" id='Participant_uid__ID' class=form-control readonly />
+                                        </label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- form group -->
+                            <div class="form-group">
+                                <h4>Pre Study Withdrawal</h4>
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Date</span>
+                                            <input type=date class="form-control" name="pre_withdrawal_date" placeholder="">
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label><span class="">Withdrawal reason</span>
+                                            <select class="form-control" name="pre_withdrawal_reason" >
+                                                <option></option>
+                                                <option>Excluded - Age</option>
+                                                <option>Excluded – dementia diagnosis</option>
+                                                <option>Excluded – actively treated for sleep apnoea</option>
+                                                <option>Excluded - other</option>
+                                                <option>Refused – not interested</option>
+                                                <option>Refused – does not want to wear wristox</option>
+                                                <option>Refused – other</option>
+                                            </select>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <fieldset class="">
+                                        <label style='width:100%'><span class="">Notes</span>
+                                            <textarea class="form-control" name="pre_withdrawal_notes" ></textarea>
+                                        </label><br>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            VmInclude: __CURRENT_PATH__/modification_status.html                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function F__ID() {
+            //-------------------------------------
+            VmInclude: '__COMPONENT__/f/form.01.js'
+            VmInclude: __CURRENT_PATH__/shared-form.js
+            //-------------------------------------
+            var load2 = m.load;
+            m.load = function () {
+                load2();
+                if ( $('[type="date"]').prop('type') != 'date' ) {
+                    $('[type="date"]').datepicker();
+                }
+                if($("input[name='mmse_done']:checked").val()=='1'){
+                    $('#mmse_total_score__ID').show();
+                }
+                else {
+                    $('#mmse_total_score__ID').hide();
+                }
+                //console.log("A "+JSON.stringify(m.input))
+                if(m.input.participant_record!=undefined){
+                    $('#F__ID input[name=dob]').val(m.input.participant_record.Data.DOB);
+                    $('#age__ID').val(m.input.participant_record.Data.age);
+                    $('#month__ID').val(m.input.participant_record.Data.months);
+                    if(parseInt($('#age__ID').val())>='75'){
+                        $('#label_warning__ID').show();
+                    }
+                    else{
+                        $('#label_warning__ID').hide();
+                    }
+                }
+                //-------------------------------------
+                if($("input[name='smoking_status']:checked").val()!='0' && $("input[name='smoking_status']:checked").val()!=undefined){
+                    $('#smoking_div__ID').show();
+                }
+                else {
+                    $('#smoking_div__ID').hide();
+                }
+                //-------------------------------------
+                if($("input[name='alcohol_status']:checked").val()!='0' && $("input[name='alcohol_status']:checked").val()!=undefined){
+                    $('#alcohol_div__ID').show();
+                }
+                else {
+                    $('#alcohol_div__ID').hide();
+                }
+                //-------------------------------------
+                var records={};
+                //console.log("A: "+$('#Participant_uid__ID').val()+" - "+$("input[name='mmse_done']:checked").val())
+                if($('#Participant_uid__ID').val()!=undefined && $("input[name='mmse_done']:checked").val()==undefined){
+                     var query={'Data.Participant_uid':$('#Participant_uid__ID').val()}
+                    jQuery.ajaxSetup({async:false});
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-ps-data-reshaped'].Table,query:query,limit:1},function(res){
+                        if(res.permission==false){
+                            alert("No permission");
+                            return;
+                        }
+                        if(res.result.length==0){
+                        }
+                        else{
+                            //console.log(res.result[0].Data.mmse_score)
+                            $('#mmse_score__ID').val(res.result[0].Data.mmse_score)
+                            $("input[name='mmse_done']").prop("checked", true);
+                            $('#mmse_total_score__ID').show();
+                        }
+                    })
+                    jQuery.ajaxSetup({async:true});
+                }
+            //-------------------------------------
+
+
+            }
+            //-------------------------------------
+            $("input[name='mmse_done']").change(function(){
+                if($("input[name='mmse_done']:checked").val()=='1'){
+                    $('#mmse_total_score__ID').show();
+                }
+                else {
+                    $('#mmse_total_score__ID').hide();
+                }
+            });
+            //-------------------------------------
+            $("input[name='smoking_status']").change(function(){
+                if($("input[name='smoking_status']:checked").val()!='0'){
+                    $('#smoking_div__ID').show();
+                }
+                else {
+                    $('#smoking_div__ID').hide();
+                }
+            });
+            //-------------------------------------
+            $("input[name='alcohol_status']").change(function(){
+                if($("input[name='alcohol_status']:checked").val()!='0'){
+                    $('#alcohol_div__ID').show();
+                }
+                else {
+                    $('#alcohol_div__ID').hide();
+                }
+            });
+            //-------------------------------------
+            var before_submit=m.before_submit;
+            m.before_submit=function(data,index){
+                $('#F__ID input[name=mmse_done]:not(:checked)').attr('disabled', false);
+                data.mmse_done=$("input[name='mmse_done']:checked").val();
+                return before_submit(data,index);
+            }
+
+
+        }
+    </script>
+    <style>
+        #D__ID .mt-95 {
+            max-width: 800px;
+        }
+
+        VmInclude:__CURRENT_PATH__/wappsystem-form.css
+    </style>
+</div>
