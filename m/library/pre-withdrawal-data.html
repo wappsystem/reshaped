@@ -5,13 +5,12 @@
 <script>
     function F__ID(){
         //-------------------------------------
-        VmInclude:__CURRENT_PATH__/grid.01.js
-        VmInclude:__CURRENT_PATH__/shared-data.js
+        VmInclude:__CURRENT_PATH__/grid.01.multiple.js
         //-------------------------------------
         $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name); //$('#title__ID').text('Anthropometry')
         //-------------------------------------
-        var fields="pre-withdrawal_date,pre-withdrawal_reason,pre-withdrawal_notes";
-        m.fields="_Form,_Status,_Notes,_Participant_ID,Participant,"+fields+",Modify_Reason,Update_date,Updated_by,Submit_date,Submitted_by,_Delete";
+        var fields="pre_withdrawal_date,pre_withdrawal_reason,pre_withdrawal_notes";
+        m.fields="_Form,"+fields+",Update_date,Updated_by,Submit_date,Submitted_by,_Delete";
         //-------------------------------------
      }
 </script>
