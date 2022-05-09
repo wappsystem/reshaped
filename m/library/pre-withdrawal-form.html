@@ -12,7 +12,12 @@
                             <!-- participant part for all tsak forms -------------------->
                             <!-- form group -->
                             <div class="form-group">
-                                <h4>Pre Study Withdrawal</h4>
+								<div class="col-sm-12 col-lg-4">
+									<label class=''><span class=''>Site</span>
+										<select class=form-control name=Site id=site__ID required>
+                                        </select>
+									</label>
+								</div>
                                 <div class="questiongroup ">
                                     <fieldset class="">
                                         <label><span class="">Date</span>
@@ -60,6 +65,76 @@
             //-------------------------------------
             VmInclude: '__COMPONENT__/f/form.01.js'
             //-------------------------------------
+            var load = m.load;
+			m.load = function () {
+				load();
+                //--------------------------------
+                console.log("LOAD: "+JSON.stringify(m.input))
+                $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
+                var site_list;
+                var query='[{"Data.Site":""}]';
+                //console.log("User: "+$vm.user_name);
+                //console.log(JSON.stringify(m.Table2))
+                var table2=$vm.module_list['pre-withdrawal-data-reshaped'].Table2;
+                var query_user={"Data.user_name":$vm.user_name}
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:table2,query:query_user,limit:1},function(res){
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    else{
+                        if(res.result[0]!=undefined){
+                            if(res.result[0].Data.site!=undefined){
+                                site_list=res.result[0].Data.site.split(',');
+                            }    
+                        }
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                        else $vm.alert("No permission.");
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+                //console.log(site_list)
+                dropdown="";
+                for( var i=0;i<site_list.length;i++){
+                    if(site_list[i]!=''){
+                        dropdown+="<option value="+site_list[i]+">"+site_list[i]+"</option>"
+                    }
+                }
+                //console.log(dropdown)
+                $('#site__ID').html(dropdown);
+                if (m.input.record == undefined) {
+                    $('#site__ID').trigger("change");
+                }
+                else{
+                    $('#site__ID').val(m.input.record.Data.Site);
+                }
+            }
+            //-------------------------------
+            $('#site__ID').change(function(){
+                var query_user={"Data.Site":this.value}
+                jQuery.ajaxSetup({async:false});
+                $vm.request({cmd:"find",table:m.Table3,query:query_user,limit:1},function(res){
+
+                    if(res.status=='np' || res.result==undefined){
+                        res.result=[];
+                    }
+                    else{
+                        if(res.result[0]!=undefined){
+                            if(res.result[0].Data.Code!=undefined){
+                                $('#F__ID input[name=Code').val(res.result[0].Data.Code)
+                            }    
+                        }
+                    }
+                    if(res.status=='np'){
+                        if(res.sys.tb=='on') $vm.alert("No permission. Private database table.");
+                        else $vm.alert("No permission.");
+                    }
+                })
+                jQuery.ajaxSetup({async:true});
+            })
+
         }
     </script>
     <style>

@@ -60,7 +60,7 @@
         "adverse-event-form-reshaped":		{url:"$H/m/library/adverse-event-form.html",Table:"adverse-event-reshaped",task_name:"Unscheduled -  Adverse Event"},
         "withdrawal-data-reshaped":		{url:"$H/m/library/withdrawal-data.html",Table:"withdrawal-reshaped",form_module:"withdrawal-form-reshaped",task_name:"Unscheduled - Withdrawal"},
         "withdrawal-form-reshaped":		{url:"$H/m/library/withdrawal-form.html",Table:"withdrawal-reshaped",task_name:"Unscheduled - Withdrawal"},
-        "pre-withdrawal-data-reshaped":		{url:"$H/m/library/pre-withdrawal-data.html",Table:"pre-withdrawal-reshaped",form_module:"pre-withdrawal-form-reshaped",task_name:"Unscheduled - Pre Study Withdrawal"},
+        "pre-withdrawal-data-reshaped":		{url:"$H/m/library/pre-withdrawal-data.html",Table:"pre-withdrawal-reshaped",Table2:"site-permission-reshaped",form_module:"pre-withdrawal-form-reshaped",task_name:"Unscheduled - Pre Study Withdrawal"},
         "pre-withdrawal-form-reshaped":		{url:"$H/m/library/pre-withdrawal-form.html",Table:"pre-withdrawal-reshaped",task_name:"Unscheduled - Pre Study Withdrawal"},
         "concom-medication-data-reshaped":		{url:"$H/m/library/concom-medication-data.html",Table:"concom-medication-reshaped",form_module:"concom-medication-form-reshaped",task_name:"Unscheduled - Concomitant Medication"},
         "concom-medication-form-reshaped":		{url:"$H/m/library/concom-medication-form.html",Table:"concom-medication-reshaped",task_name:"Unscheduled - Concomitant Medication"},
