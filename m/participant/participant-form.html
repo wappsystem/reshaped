@@ -144,6 +144,10 @@
 			m.load = function () {
 				load();
                 console.log("LOAD: "+JSON.stringify(m.input))
+                if ($('[type="date"]').prop('type') != 'date') {
+                    $('[type="date"]').datepicker();
+                }
+    			//-------------------------------------
                 $('#random_input__ID').hide();
                 $('#label_warning__ID').hide();
                 $('#label_low_warning__ID').hide();
