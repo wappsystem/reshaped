@@ -580,18 +580,18 @@
             m.before_submit=function(data,index){
                 var odi_v=0;
                 var nights=0;
-                if(isNaN(parseInt(data.wristox_spo2_adjusted_index))==false){
-                    odi_v=parseInt(data.wristox_spo2_adjusted_index);
+                if(isNaN(parseFloat(data.wristox_spo2_adjusted_index))==false){
+                    odi_v=parseFloat(data.wristox_spo2_adjusted_index);
                     nights++;
                     console.log(odi_v)
                 }
-                if (isNaN(parseInt(data.wristox_spo2_adjusted_index_2))==false){
-                    odi_v+=parseInt(data.wristox_spo2_adjusted_index_2);
+                if (isNaN(parseFloat(data.wristox_spo2_adjusted_index_2))==false){
+                    odi_v+=parseFloat(data.wristox_spo2_adjusted_index_2);
                     nights++;
                     console.log(odi_v)
                 }
-                if (isNaN(parseInt(data.wristox_spo2_adjusted_index_3))==false){
-                    odi_v+=parseInt(data.wristox_spo2_adjusted_index_3);
+                if (isNaN(parseFloat(data.wristox_spo2_adjusted_index_3))==false){
+                    odi_v+=parseFloat(data.wristox_spo2_adjusted_index_3);
                     nights++;
                     console.log(odi_v)
                 }
