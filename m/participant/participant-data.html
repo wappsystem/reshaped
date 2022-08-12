@@ -91,7 +91,7 @@
                         if(records[I].Data._Progress=='4') td.html('24 Months');
                         break;
                     case '_Tx':
-                        console.log(JSON.stringify(records[I].Data.Randomisation_Number))
+                        //console.log(JSON.stringify(records[I].Data.Randomisation_Number))
                         td.html("<u style='cursor:pointer'>Tx</u>");
                         td.find('u').on('click',function(){
     						$vm.alert(check_treatment_group(records[I].Data.Randomisation_Number,records[I].Data.Code));
@@ -101,8 +101,8 @@
             }
             //-------------------------------------
             var check_treatment_group=function(rn,code){
-                console.log(rn)
-                console.log(code)
+                //console.log(rn)
+                //console.log(code)
                 var tb='';
                 var rtn='';
                 switch(code){
@@ -135,17 +135,17 @@
                 if(tb!=''){
                     jQuery.ajaxSetup({async:false});
                     $vm.request({cmd:'find',table:tb,query:qry,limit:1},function(res){
-                        console.log(JSON.stringify(res.status))
+                        //console.log(JSON.stringify(res.status))
                         if(res.status=="np"){
                             rtn="No Permission to access record"
                         }
                         else{
-                            console.log(res.result.length)
+                            //console.log(res.result.length)
                             if(res.result.length==0){
                                 rtn="No record found"
                             }
                             else {
-                                console.log(JSON.stringify(res.result[0].Data.Treatment))
+                               // console.log(JSON.stringify(res.result[0].Data.Treatment))
                                 rtn=res.result[0].Data.Randomisation_Number+' - '+res.result[0].Data.Treatment
                             }
                         }
