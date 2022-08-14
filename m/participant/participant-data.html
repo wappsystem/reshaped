@@ -94,7 +94,8 @@
                         //console.log(JSON.stringify(records[I].Data.Randomisation_Number))
                         td.html("<u style='cursor:pointer'>Tx</u>");
                         td.find('u').on('click',function(){
-    						$vm.alert(check_treatment_group(records[I].Data.Randomisation_Number,records[I].Data.Code));
+                            var code=check_treatment_group(records[I].Data.Randomisation_Number,records[I].Data.Code)
+    						$vm.alert(code);
                         });
                         break;
                 }
@@ -145,8 +146,15 @@
                                 rtn="No record found"
                             }
                             else {
+                                var treatment=res.result[0].Data.Treatment
+                                if(treatment=="Behavioural Treatment"){
+                                    treatment="Control"
+                                }
+                                else if(treatment=="Sleep Apnea Treatment"){
+                                    treatment="Intervention"
+                                }
                                // console.log(JSON.stringify(res.result[0].Data.Treatment))
-                                rtn=res.result[0].Data.Randomisation_Number+' - '+res.result[0].Data.Treatment
+                                rtn=res.result[0].Data.Randomisation_Number+' - '+treatment
                             }
                         }
                     })
