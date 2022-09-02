@@ -21,7 +21,7 @@ m.set_req_export=function(i1,i2){
 }
 //-----------------------------------------------
 m.request_data=function(){
-    var site_list;
+    /*var site_list;
     var query='[{"Data.Site":""}]';
     console.log("User: "+$vm.user_name);
     console.log(JSON.stringify(m.Table2))
@@ -51,8 +51,8 @@ m.request_data=function(){
         }
     })
     jQuery.ajaxSetup({async:true});
-    m.query={$or:JSON.parse(query)}
-    console.log(m.query)
+    m.query={$or:JSON.parse(query)}*/
+    console.log("request:"+JSON.stringify(m.query))
     var limit=parseInt($('#page_size__ID').val());
     var skip=limit*parseInt($('#I__ID').text());
     var mt1=new Date().getTime();
