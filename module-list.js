@@ -9,7 +9,7 @@
         "export-data":		                {url:"$H/m/export/export-data.html",Table:"export-reshaped",form_module:"export-form"},
         "export-form":		                {url:"$H/m/export/export-form.html",Table:"export-reshaped"},
         
-        "participant-data":   		        {url:"$H/m/participant/participant-data.html",Table:"participant-reshaped",form_module:"participant-form",
+        "participants-data":   		        {url:"$H/m/participant/participant-data.html",Table:"participant-reshaped",form_module:"participant-form",
                                                 child_panel:"panel-child-reshaped",
                                                 questionnaire_setup:"online-questionnaire-setup-reshaped",
                                                 online_questionnaire:"online-questionnaire-app-reshaped",

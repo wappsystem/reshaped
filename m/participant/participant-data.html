@@ -166,7 +166,7 @@
             //----------------------------
             m.export_records=function(){
                 tabledata=m.Table;
-                m.Table=$vm.module_list['participant-data'].Table;
+                m.Table=$vm.module_list['participants-data'].Table;
                 var participant_rec={};
                 var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
                 open_model__ID();

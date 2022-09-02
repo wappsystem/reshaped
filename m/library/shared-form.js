@@ -8,7 +8,7 @@ var participant_name=function(record){
 //-------------------------------------
 var query;
 //auto select particpant
-var autocomplete_req_p//={cmd:"find",table:$vm.module_list['participant-data'].Table,query:site_query,options:{},skip:0,limit:10}
+var autocomplete_req_p//={cmd:"find",table:$vm.module_list['participants-data'].Table,query:site_query,options:{},skip:0,limit:10}
 var autocomplete_callback_p//=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
 var autocomplete_list_p /*=function(records){
     var items=[];
@@ -35,7 +35,7 @@ var query;
 var dob='';
 var load=m.load;
 m.load=function(){
-    //console.log($vm.module_list["participant-data"])
+    //console.log($vm.module_list["participants-data"])
     load();
     if($vm.online_questionnaire==1) {
         $('#pdf__ID').hide();
@@ -45,7 +45,7 @@ m.load=function(){
     else{
         var query_user={"Data.user_name":$vm.user_name}
         jQuery.ajaxSetup({async:false});
-        $vm.request({cmd:"find",table:$vm.module_list["participant-data"].Table2,query:query_user,limit:1},function(res){
+        $vm.request({cmd:"find",table:$vm.module_list["participants-data"].Table2,query:query_user,limit:1},function(res){
             if(res.status=='np' || res.result==undefined){
                 res.result=[];
             }
@@ -65,7 +65,7 @@ m.load=function(){
         })
         jQuery.ajaxSetup({async:true});
         site_query={$or:JSON.parse(query)}
-        autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,query:site_query,options:{},skip:0,limit:10}
+        autocomplete_req_p={cmd:"find",table:$vm.module_list['participants-data'].Table,query:site_query,options:{},skip:0,limit:10}
         autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
         autocomplete_list_p=function(records){
             var items=[];

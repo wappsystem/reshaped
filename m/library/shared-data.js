@@ -155,7 +155,7 @@ var process_lock=function(I){
 m.export_records=function(){
     var req_count=0;
     tabledata=m.Table;
-    m.Table=$vm.module_list['participant-data'].Table;
+    m.Table=$vm.module_list['participants-data'].Table;
     var participant_rec={};
     var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
     var output_data=[];
@@ -202,7 +202,7 @@ m.export_records=function(){
         var export_fields=fields_ex.split(',');
         export_fields=export_fields.slice(5,export_fields.length-3);
         //Participants export fields Specified in module-list
-        var participant_export=$vm.module_list['participant-data'].participant_export;
+        var participant_export=$vm.module_list['participants-data'].participant_export;
         if(participant_export==undefined){
             participant_export="ID,Randomisation_Number,Subject_ID,Screening_Number,Subject_Initials,Gender,DOB"
         }
