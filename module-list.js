@@ -227,6 +227,7 @@
         "treatment-1-form-reshaped":                {url:"$H/m/library/treatment-1-form.html",Table:"treatment-1-reshaped",task_name:"Treatment Visit - First Treatment Visit"},
         "treatment-fu-data-reshaped":                {url:"$H/m/library/treatment-fu-data.html",Table:"treatment-fu-reshaped",form_module:"treatment-fu-form-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
         "treatment-fu-form-reshaped":                {url:"$H/m/library/treatment-fu-form.html",Table:"treatment-fu-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
+        "report1":                {url:"$H/m/export/report1.html",Table:'date-ps-reshaped',Table2:'xxxxx',router:1},
 
     }
     for(p in modules){

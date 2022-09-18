@@ -127,6 +127,7 @@ m.before_submit=function(data){
     if($("#F__ID input[name=_status]:checked").val()=='' || $("#F__ID input[name=_status]:checked").val()==undefined)
         data.sysStatus=status_of_data(data);
     else data.sysStatus=$("#F__ID input[name=_status]:checked").val()
+    data.Code=m.input.participant_record.Data.Code;
 }
 //-------------------------------------
 var status_of_data=function(data){

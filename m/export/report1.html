@@ -1,0 +1,196 @@
+<div>
+    <div id=toolbar__ID class="navbar navbar-default" style='background-color: #ccc;'>
+        <div>
+            <button id=query__ID type=button class="btn btn-secondary" title='Search for keyword'>Query</button>
+        </div>
+    </div>
+    <div>
+        <table id="grid__ID"></table>
+    </div>
+</div>
+<script>
+    function F__ID(){
+        //-------------------------------
+        var m=$vm.module_list['__MODULE__'];
+        //-------------------------------------------------
+        var columns=`
+                Time Point|timepoint
+                US|US
+                US_50|US_50
+                NS_65|NS_65
+            `
+        //-------------------------------------------------
+        var pipeline_1=
+            [
+                {
+                    $group :
+                    {
+                        _id : "$Data.Code",
+                        Count: { $sum: 1}
+                    }
+                },
+                
+                {
+                    "$project": {
+                        "Group":"$_id",
+                        "Count":1
+                    }
+                }
+            ]    
+        //-------------------------------------------------
+        var pipeline_x=
+            [
+                {
+                    "$project": {
+                        "_id":0,
+                        "U":"$UID",
+                        "C":"$Data.Code"
+                    }
+                }
+            ]    
+        //-------------------------------------------------
+        var pipeline_x=
+            [
+                {
+                    "$group":{
+                        "_id": 
+                        {
+                            "Code": "$Data.Code"
+                        },
+                        "count": { $sum:1 }
+                    }
+                }
+                ,
+                { 
+                    "$sort":{ "count" : -1 } 
+                },
+                {
+                    "$project": {
+                        "_id":0,
+                        "Site":"$_id.Code",
+                        "count":1
+                    }
+                }
+            ]    
+        //-------------------------------------------------
+        var pipeline_xx=
+            [
+                {
+                    "$group":{
+                        "_id": 
+                        {
+                            "Code": "$Data.Code"
+                        },
+                        "count": { $sum:1 }
+                    }
+                }
+                ,
+                { 
+                    "$sort":{ "count" : -1 } 
+                },
+                {
+                    "$project": {
+                        "_id":0,
+                        "Site2":"$_id.Code",
+                        "count":1
+                    }
+                }
+            ]    
+        //-------------------------------------------------
+        var request_data_1=function(){
+            var req={cmd:"aggregate",table:m.Table,pipeline:pipeline_1}
+            $vm.request(req,function(res){
+                call_back(1,res);
+
+            });
+
+        }
+        //-------------------------------------------------
+        var request_data_2=function(){
+            var req={cmd:"aggregate",table:m.Table2,pipeline:pipeline_2}
+            $vm.request(req,function(res){
+                call_back(2,res);
+            });
+
+        }
+        //-------------------------------------------------
+        var N;
+        //-------------------------------------------------
+        var r1="";
+        var r2="";
+        var call_back=function(q,res){
+            if(q==1){r1=res;}
+            if(q==2){r2=res;}
+            N--;
+            if(N==0){
+                //console.log(r1);
+                //console.log(r2);
+                rending();
+            }
+
+        }
+        //-------------------------------------------------
+        var rending=function(){
+            var rows=[];
+            var row={}
+            row['timepoint']="Pre-screening";
+            
+            var hd=columns.split('\n');
+            for(var j=0;j<hd.length;j++){
+                var col=hd[j].split('|');
+                if(col.length==2){
+                    var fid=col[1];
+                    for(var k=0;k<r1.result.length;k++){
+                        if(r1.result[k].Group==fid){
+                            row[fid]=r1.result[k].Count;
+                        }
+                    }
+                }
+            }
+            rows.push(row);
+            //console.log(rows);
+            //-------------------------------------------------
+            var records=$vm.grid_render_1("__ID", {
+                name:"Report1",
+                columns:columns,
+                rows:rows,
+                cell_render:cell_render
+            })
+            //-------------------------------------------------
+            var cell_render=function(records,row,id,td){
+                switch(id){
+                    /*
+                    case "amountPaid": 
+                        var v=$(td).text();
+                        if(v!=''){
+                            var vv=parseFloat(v).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                            }); 
+                            $(td).text(vv);
+                            $(td).css('text-align','right')
+                            $(td).css('width','100px')
+                        }
+                        break;
+                    */    
+                }
+            }
+        }
+        //-------------------------------------------------
+        $('#D__ID').on('load',function(){
+            N=1;
+            request_data_1();
+            //request_data_2();
+        })
+        //-------------------------------------------------
+        $('#query__ID').on('click',function(){    
+            N=1;
+            request_data_1();
+            //request_data_2();
+        })
+        //-------------------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>

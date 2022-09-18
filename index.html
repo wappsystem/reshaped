@@ -38,6 +38,7 @@
             "app":	        {url:"$H/0/app.html"},
             "header":	    {url:"$H/0/header.html"},
             "footer":	    {url:"$H/0/footer.html"},
+            "vmext":        {url:"$H/0/vm-extension.html"},
         };
         for(p in $vm.module_list) $vm.module_list[p].url=$vm.module_list[p].url.replace('$H',$vm.hosting_path);
         //------------------------------------
@@ -53,6 +54,7 @@
             $vm.load_component('header',$vm.root_layout_header,{});
             $vm.load_component('footer',$vm.root_layout_footer,{});
             $vm.load_component('app',$vm.root_layout_app,{});
+            $vm.install_module('vmext','',{},function(name,id){});
         }
         //------------------------------------
         
