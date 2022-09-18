@@ -81,7 +81,7 @@ m.load=function(){
     }
     $('#title__ID').text($vm.module_list[$vm.vm['__ID'].name].task_name);
 //--------------------------
-    if(m.input!=undefined && m.input.participant_record!=undefined){
+    if(m.input!=undefined && m.input.participant_record!=undefined && m.input.record==undefined){
         //new from child panel
         $("#F__ID input[name=Participant]").val(participant_name(m.input.participant_record));
         $("#F__ID input[name=Participant_uid]").val(m.input.participant_record.UID);
