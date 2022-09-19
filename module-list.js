@@ -227,7 +227,7 @@
         "treatment-1-form-reshaped":                {url:"$H/m/library/treatment-1-form.html",Table:"treatment-1-reshaped",task_name:"Treatment Visit - First Treatment Visit"},
         "treatment-fu-data-reshaped":                {url:"$H/m/library/treatment-fu-data.html",Table:"treatment-fu-reshaped",form_module:"treatment-fu-form-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
         "treatment-fu-form-reshaped":                {url:"$H/m/library/treatment-fu-form.html",Table:"treatment-fu-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
-        "report1":                {url:"$H/m/export/report1.html",Table:'date-ps-reshaped',Table2:'xxxxx',router:1},
+        "progress-report":                {url:"$H/m/export/progress-report.html",Table:'date-ps-reshaped',Table2:'date-s-reshaped',Table3:'date-bl-reshaped',Table4:'date-6-reshaped',Table5:'date-24-reshaped',router:1},
 
     }
     for(p in modules){
@@ -239,6 +239,8 @@
             $vm.module_list[p].Table="demo-"+$vm.module_list[p].Table;
             $vm.module_list[p].Table2="demo-"+$vm.module_list[p].Table2;
             $vm.module_list[p].Table3="demo-"+$vm.module_list[p].Table3;
+            $vm.module_list[p].Table4="demo-"+$vm.module_list[p].Table4;
+            $vm.module_list[p].Table5="demo-"+$vm.module_list[p].Table5;
         }
     }
 

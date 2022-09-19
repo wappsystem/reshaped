@@ -15,9 +15,19 @@
         //-------------------------------------------------
         var columns=`
                 Time Point|timepoint
-                US|US
-                US_50|US_50
-                NS_65|NS_65
+                RNSH 50|NS_50
+                RNSH 65|NS_65
+                Sydney 50|US_50
+                Sydney 65|US_65
+                Austin 50|AH_50
+                Austin 65|AH_65
+                Macquarie 50|MQ_50
+                Macquarie 65|MQ_65
+                Tasmania 50|UT_50
+                Tasmania 65|UT_65
+                Murdoch 50|MU_50
+                Murdoch 65|MU_65
+                Total Number|totalnum
             `
         //-------------------------------------------------
         var pipeline_1=
@@ -38,65 +48,6 @@
                 }
             ]    
         //-------------------------------------------------
-        var pipeline_x=
-            [
-                {
-                    "$project": {
-                        "_id":0,
-                        "U":"$UID",
-                        "C":"$Data.Code"
-                    }
-                }
-            ]    
-        //-------------------------------------------------
-        var pipeline_x=
-            [
-                {
-                    "$group":{
-                        "_id": 
-                        {
-                            "Code": "$Data.Code"
-                        },
-                        "count": { $sum:1 }
-                    }
-                }
-                ,
-                { 
-                    "$sort":{ "count" : -1 } 
-                },
-                {
-                    "$project": {
-                        "_id":0,
-                        "Site":"$_id.Code",
-                        "count":1
-                    }
-                }
-            ]    
-        //-------------------------------------------------
-        var pipeline_xx=
-            [
-                {
-                    "$group":{
-                        "_id": 
-                        {
-                            "Code": "$Data.Code"
-                        },
-                        "count": { $sum:1 }
-                    }
-                }
-                ,
-                { 
-                    "$sort":{ "count" : -1 } 
-                },
-                {
-                    "$project": {
-                        "_id":0,
-                        "Site2":"$_id.Code",
-                        "count":1
-                    }
-                }
-            ]    
-        //-------------------------------------------------
         var request_data_1=function(){
             var req={cmd:"aggregate",table:m.Table,pipeline:pipeline_1}
             $vm.request(req,function(res){
@@ -107,9 +58,33 @@
         }
         //-------------------------------------------------
         var request_data_2=function(){
-            var req={cmd:"aggregate",table:m.Table2,pipeline:pipeline_2}
+            var req={cmd:"aggregate",table:m.Table2,pipeline:pipeline_1}
             $vm.request(req,function(res){
                 call_back(2,res);
+            });
+
+        }
+        //-------------------------------------------------
+        var request_data_3=function(){
+            var req={cmd:"aggregate",table:m.Table3,pipeline:pipeline_1}
+            $vm.request(req,function(res){
+                call_back(3,res);
+            });
+
+        }
+        //-------------------------------------------------
+        var request_data_4=function(){
+            var req={cmd:"aggregate",table:m.Table4,pipeline:pipeline_1}
+            $vm.request(req,function(res){
+                call_back(4,res);
+            });
+
+        }
+        //-------------------------------------------------
+        var request_data_5=function(){
+            var req={cmd:"aggregate",table:m.Table5,pipeline:pipeline_1}
+            $vm.request(req,function(res){
+                call_back(5,res);
             });
 
         }
@@ -118,13 +93,17 @@
         //-------------------------------------------------
         var r1="";
         var r2="";
+        var r3="";
+        var r4="";
+        var r5="";
         var call_back=function(q,res){
             if(q==1){r1=res;}
             if(q==2){r2=res;}
+            if(q==3){r3=res;}
+            if(q==4){r4=res;}
+            if(q==5){r5=res;}
             N--;
             if(N==0){
-                //console.log(r1);
-                //console.log(r2);
                 rending();
             }
 
@@ -134,7 +113,6 @@
             var rows=[];
             var row={}
             row['timepoint']="Pre-screening";
-            
             var hd=columns.split('\n');
             for(var j=0;j<hd.length;j++){
                 var col=hd[j].split('|');
@@ -143,6 +121,62 @@
                     for(var k=0;k<r1.result.length;k++){
                         if(r1.result[k].Group==fid){
                             row[fid]=r1.result[k].Count;
+                        }
+                    }
+                }
+            }
+            rows.push(row);
+            row={}
+            row['timepoint']="Screening";
+            for(var j=0;j<hd.length;j++){
+                var col=hd[j].split('|');
+                if(col.length==2){
+                    var fid=col[1];
+                    for(var k=0;k<r2.result.length;k++){
+                        if(r2.result[k].Group==fid){
+                            row[fid]=r2.result[k].Count;
+                        }
+                    }
+                }
+            }
+            rows.push(row);
+            row={}
+            row['timepoint']="Baseline";
+            for(var j=0;j<hd.length;j++){
+                var col=hd[j].split('|');
+                if(col.length==2){
+                    var fid=col[1];
+                    for(var k=0;k<r3.result.length;k++){
+                        if(r3.result[k].Group==fid){
+                            row[fid]=r3.result[k].Count;
+                        }
+                    }
+                }
+            }
+            rows.push(row);
+            row={}
+            row['timepoint']="6 Weeks";
+            for(var j=0;j<hd.length;j++){
+                var col=hd[j].split('|');
+                if(col.length==2){
+                    var fid=col[1];
+                    for(var k=0;k<r4.result.length;k++){
+                        if(r4.result[k].Group==fid){
+                            row[fid]=r4.result[k].Count;
+                        }
+                    }
+                }
+            }
+            rows.push(row);
+            row={}
+            row['timepoint']="24 Weeks";
+            for(var j=0;j<hd.length;j++){
+                var col=hd[j].split('|');
+                if(col.length==2){
+                    var fid=col[1];
+                    for(var k=0;k<r5.result.length;k++){
+                        if(r5.result[k].Group==fid){
+                            row[fid]=r5.result[k].Count;
                         }
                     }
                 }
@@ -159,8 +193,7 @@
             //-------------------------------------------------
             var cell_render=function(records,row,id,td){
                 switch(id){
-                    /*
-                    case "amountPaid": 
+                /*    case "totalnum": 
                         var v=$(td).text();
                         if(v!=''){
                             var vv=parseFloat(v).toLocaleString('en-US', {
@@ -172,21 +205,27 @@
                             $(td).css('width','100px')
                         }
                         break;
-                    */    
+                        */
                 }
             }
         }
         //-------------------------------------------------
         $('#D__ID').on('load',function(){
-            N=1;
+            N=5;
             request_data_1();
-            //request_data_2();
+            request_data_2();
+            request_data_3();
+            request_data_4();
+            request_data_5();
         })
         //-------------------------------------------------
         $('#query__ID').on('click',function(){    
-            N=1;
+            N=5;
             request_data_1();
-            //request_data_2();
+            request_data_2();
+            request_data_3();
+            request_data_4();
+            request_data_5();
         })
         //-------------------------------------------------
     }
