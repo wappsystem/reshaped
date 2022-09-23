@@ -92,7 +92,8 @@
                         td.html("<u style='cursor:pointer'>Tx</u>");
                         td.find('u').on('click',function(){
                             var code=check_treatment_group(records[I].Data.Randomisation_Number,records[I].Data.Code)
-    						$vm.alert(code);
+    						//$vm.alert(code);
+                            td.html(code)
                         });
                         break;
                 }
