@@ -441,7 +441,7 @@
                 //console.log(JSON.stringify(res))
                 var rid=res.nr._id
                 if(data.Pre_Screening_Number==''){
-                    //var uid=res.result.ops[0].UID;
+                    //var uid=res.nr.UID;
                     var uid=res.nr.UID;
                     var age_group='_65';
                     if(parseInt(res.nr.Data.age) < 65) age_group='_50'
