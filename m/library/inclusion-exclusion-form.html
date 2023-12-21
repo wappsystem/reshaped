@@ -28,7 +28,7 @@
                                 <div class="questiongroup ">
                                     <h4>Inclusion Criteria</h4>
                                     <fieldset class="">
-                                        <label><span class="">1. 50 to 75 years of age ( <span id="age__ID">-</span> )</span></label><br><br>
+                                        <label><span class="">1. 50 to 85 years of age ( <span id="age__ID">-</span> )</span></label><br><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="inclusion_1" value="0" >
                                           <span class="checkmark"></span> No</label>
@@ -318,9 +318,9 @@
                             if(res.result[0].Data != undefined){
                                 if(res.result[0].Data.age_assessment  != undefined){
                                     $('#age__ID').text(res.result[0].Data.age_assessment)
-                                    if(parseInt(res.result[0].Data.age_assessment)>74 || parseInt(res.result[0].Data.age_assessment)<50 ) {
+                                    if(parseInt(res.result[0].Data.age_assessment)>84 || parseInt(res.result[0].Data.age_assessment)<50 ) {
                                         $('#age__ID').css('color','red');
-                                        if(parseInt(res.result[0].Data.age_assessment)==75){
+                                        if(parseInt(res.result[0].Data.age_assessment)==85){
                                             $('#age__ID').text(res.result[0].Data.age_assessment+', Please make sure there is time to randomise!')
                                         }
                                     }

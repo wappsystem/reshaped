@@ -53,7 +53,7 @@
                                         <div class="col-sm-12 col-lg-4 ">
                                             <label id=label_warning__ID style="display:none"><span
                                                     style='color:red'>Please check age criteria. This person is
-                                                    75+</span>
+                                                    85+</span>
                                             </label>
                                         </div>
                                     </div>
@@ -383,7 +383,7 @@
                     $('#F__ID input[name=dob]').val(m.input.participant_record.Data.DOB);
                     $('#age__ID').val(m.input.participant_record.Data.age);
                     $('#month__ID').val(m.input.participant_record.Data.months);
-                    if (parseInt($('#age__ID').val()) >= '75') {
+                    if (parseInt($('#age__ID').val()) >= '85') {
                         $('#label_warning__ID').show();
                     }
                     else {

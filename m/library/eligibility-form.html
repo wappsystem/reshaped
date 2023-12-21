@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <div class="questiongroup ">
                                     <fieldset class="">
-                                        <label><span class="">Is the participant 50 to 75 years of age? ( <span id="age__ID">-</span> )</span></label><br>
+                                        <label><span class="">Is the participant 50 to 85 years of age? ( <span id="age__ID">-</span> )</span></label><br>
                                         <label class="radiobuttons">
                                           <input type="radio" name="age" value="0" >
                                           <span class="checkmark"></span> No</label><br>
@@ -139,9 +139,9 @@
                     var query_uid={"Data.Participant_uid":$("#Participant_uid__ID").val()}
                     //------------------------------
                     $('#age__ID').text(m.input.participant_record.Data.age)
-                    if(parseInt(m.input.participant_record.Data.age)>74 || parseInt(m.input.participant_record.Data.age)<50 ) {
+                    if(parseInt(m.input.participant_record.Data.age)>84 || parseInt(m.input.participant_record.Data.age)<50 ) {
                         $('#age__ID').css('color','red');
-                        if(parseInt(m.input.participant_record.Data.age)==75){
+                        if(parseInt(m.input.participant_record.Data.age)==85){
                             $('#age__ID').text(m.input.participant_record.Data.age+' and '+m.input.participant_record.Data.months+' months. Please make sure there is time to randomise!')
                         }
                     }

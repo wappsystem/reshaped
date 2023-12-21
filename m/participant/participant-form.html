@@ -60,7 +60,7 @@
                                     </label>                                        
                                 </div>
 								<div class="col-sm-12 col-lg-4 ">
-                                    <label id=label_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person is 75+</span>                                            
+                                    <label id=label_warning__ID style="display:none"><span style='color:red' >Please check age criteria. This person is 85+</span>                                            
                                     </label>
                                 </div>
 								<div class="col-sm-12 col-lg-4 ">
@@ -225,7 +225,7 @@
                 console.log(age)
                 $('#age__ID').val((age.getUTCFullYear() - 1970).toString());
                 $('#month__ID').val((age.getUTCMonth()).toString());
-                if(parseInt($('#age__ID').val())>='75'){
+                if(parseInt($('#age__ID').val())>='85'){
                     $('#label_warning__ID').show();
                 }
                 else{
@@ -420,8 +420,8 @@
                 }
                 var dob=new Date($('#F__ID input[name=DOB]').val())
                 var age=calculateAge(dob)
-                if(age>75){
-                    $vm.alert("This person is 76 yrs or older")
+                if(age>85){
+                    $vm.alert("This person is 86 yrs or older")
                     return false;
                 } 
                 else if (age<50){
