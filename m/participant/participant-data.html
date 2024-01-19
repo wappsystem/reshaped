@@ -25,7 +25,7 @@
                         if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
                         else $vm.alert("No permission.");
                     }
-                    if(res.result[0].Data.site!=undefined){
+                    if(res.result[0]!=undefined){
                         site_list=res.result[0].Data.site.split(',');
                         query='[';
                         for (var i=0;i<site_list.length;i++){
@@ -36,6 +36,9 @@
                     }
                 })
                 jQuery.ajaxSetup({async:true});
+                if(query=='[{"Data.Site":"x"}]'){
+                    $vm.alert('Please add site permission in Setup');
+                }
                 m.query={$or:JSON.parse(query)}
                 console.log("load:"+JSON.stringify(m.query));
             }
