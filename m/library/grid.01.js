@@ -236,6 +236,7 @@ m.delete=function(rid){
 };
 //-------------------------------
 m.export_records=function(){
+    console.log("GRID EXPORT")
     //var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
     var req={cmd:"export",table:m.Table,query:m.query,I1:m.I1,search:$('#keyword__ID').val()}
     open_model__ID();
@@ -357,6 +358,12 @@ m.handleFileSelect=function(evt){
 }
 //-----------------------------------------------
 if(document.getElementById('Import_f__ID')!=null) document.getElementById('Import_f__ID').addEventListener('change', m.handleFileSelect,false);
+//---------------------------------------------
+$('#export_all__ID').on('click',function(){
+    //console.log(export_fields +" - "+m.Table)
+    var prefix=""; if(m.prefix!=undefined) prefix=m.prefix;
+    $vm.load_module(prefix+"export-form",'',{tbl:m.Table,title:m.task_name,ex_flds:fields,goback:1});
+})
 //---------------------------------------------
 $('#search__ID').on('click',function(){   m.set_req(); m.request_data(); })
 $('#query__ID').on('click',function(){    m.set_req(); m.request_data(); })

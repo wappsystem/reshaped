@@ -13,12 +13,14 @@ $vm.module_list["__MODULE__"].show=function(){
 	//Get fields to export from each record
 	//console.log("Start")
 	var table=$vm.module_list['export-form'].Table;
+	console.log(table)
 	$vm.request({cmd:'find',table:table},function(res){
 		if(res.status=='np'){
 			$vm.alert("No access permissions")
 		}
 		if(res.result.length>0){
 			export_list=res.result;
+			console.log(JSON.stringify(export_list))
 			$('#panel__ID a').each(function(){
 				var href=$(this).attr('href');
 				if(href!=undefined){
@@ -49,7 +51,10 @@ $('#panel__ID a').on('click',function(e){
 	if(href!=undefined){
 		href=href.replace('?\/','');
 		href=href.replace(/\//g,'_');
-		$vm.load_module('export-form','',{name:name,link:href,goback:1})
+		if(app==undefined) $vm.load_module(href,'',{});
+		else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
+		else alert("The '"+ href +"' is not defined in the module list");
+//		$vm.load_module('export-form','',{name:name,link:href,goback:1})
 	}
 })
 //--------------------------------------------------------			
@@ -338,6 +343,12 @@ var prepare_output=function(data){
 					export_labels=show.split(',');
 					break;										
 				}
+				/* Extract export fields. Use m.fields
+					var fields_ex=m.fields.replace("_Participant_ID","Participant_uid")
+					var export_fields=fields_ex.split(',');
+					//Order by m.fields
+					export_fields=export_fields.slice(4,export_fields.length-3);
+				*/			
 				if(i==export_list.length-1){
 				//Extract labels from last record entered.
 				for (var k in data[data_rec_order][data[data_rec_order].length-1]){
@@ -450,7 +461,7 @@ var prepare_output=function(data){
 }
 //--------------------------------------------------------
 var combine_output=function(output,participant){
-	//console.log(JSON.stringify(output))
+	console.log(JSON.stringify(participant))
 	var single="";
 	var all="";
 	var final=[];
@@ -458,7 +469,25 @@ var combine_output=function(output,participant){
 	for(var j=0;j<participant[0].length;j++){
 		var enrolled=false;
 		if(participant[0][j].Randomisation_Number!='') enrolled=true;
-		if((enrolled && enrolled_only) || (!enrolled_only) ){
+		if((enrolled && enrolled_only || (!screened_only && !enrolled_only)) ){
+			console.log("A: "+j)
+			all=JSON.stringify(participant[0][j]);
+			for(var i=0;i<output.length;i++){
+				if(output[i][j]!=undefined ){
+					var keys=Object.keys(output[i][j])
+					if( keys[0]!=''){
+						single=JSON.stringify(output[i][j])
+						all+=single;
+					}
+				}
+			}
+			all=all.replace(/}{/g,',')
+			final.push(JSON.parse(all))
+		}
+		var screened=false;
+		if(participant[0][j].Screening_Number!='') screened=true;
+		if((screened && screened_only) ){
+			console.log("B: "+j)
 			all=JSON.stringify(participant[0][j]);
 			for(var i=0;i<output.length;i++){
 				if(output[i][j]!=undefined ){

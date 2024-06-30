@@ -17,17 +17,18 @@
         <!-- menu -->
         <div menu id="vm-menu">
             <a href="?/home"><i class="fas fa-home"></i> Home</a>
-            <a href="?/participants-data"><i class="fas fa-users"></i> Participants/Data Entry</a>
+            <a href="?/participant-data"><i class="fas fa-users"></i> Participants/Data Entry</a>
             <a href="?/panel-setup-reshaped"><i class="fas fa-list-ul"></i> Setup</a>
             <!--<a href="?/panel-main-reshaped"><i class="fas fa-list-ul"></i> Special Data Entry </a>-->
-            <!--<div class="vm-dropdown">
-                <span class="vm-dropbtn">Export <i class="fa fa-caret-down"></i></span>
+            <div class="vm-dropdown">
+                <span class="vm-dropbtn"><i class="fas fa-list-ul"></i>Export <i class="fa fa-caret-down"></i></span>
                 <div class="vm-dropdown-content">
-                    <a href="?/panel-export-screening-reshaped">Export Screened</a>-->
-                    <a href="?/panel-main-reshaped"><i class="fas fa-list-ul"></i> Export Individual eCRFs</a>
-                    <a href="?/panel-export-enrolled-reshaped">Export All</a>
-                <!--</div>
-            </div>-->
+                    <a href="?/panel-export-reshaped">Individual eCRFs</a>
+                    <a href="?/panel-export-pre-screening-reshaped">Pre Screened</a>
+                    <a href="?/panel-export-screening-reshaped">Screened</a>
+                    <a href="?/panel-export-enrolled-reshaped">Enrolled</a>
+                </div>
+            </div>
             <a href="https://backoffice.wappsystem.com.au"><i class="fas fa-key"></i> Backoffice</a>
             <a id=vm_signin onclick="$vm.signin();"><i class="fas fa-user"></i> Sign In</a>
             <a class=vm-hide id=vm_signout onclick=$vm.signout()><i class="fas fa-user"></i> Sign Out</a>

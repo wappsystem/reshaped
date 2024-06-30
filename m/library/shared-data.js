@@ -151,113 +151,126 @@ var process_lock=function(I){
     });
 
 }
-//-------------------------------------
+//-------------------------------
 m.export_records=function(){
+    //Participants fields
+    var fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,age,months,_Tx,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
+    console.log('SHARED EXPORT');
     var req_count=0;
-    tabledata=m.Table;
-    m.Table=$vm.module_list['participants-data'].Table;
+    var tabledata=m.Table;
+    m.Table=$vm.module_list['participant-data'].Table;
+    //console.log(JSON.stringify(m.task_name))
+    var query={};
+    if(JSON.stringify(m.task_name).includes('Pre-screening')) query={};
+    if(JSON.stringify(m.task_name).includes('Screening')) query={"Data.Screening_Number": {"$ne" : ""}}
+    if(JSON.stringify(m.task_name).includes('Baseline')) query={"Data.Randomisation_Number": {"$ne" : ""}};
+    if(JSON.stringify(m.task_name).includes('6 Months')) query={"Data.Randomisation_Number": {"$ne" : ""}};
+    if(JSON.stringify(m.task_name).includes('24 Months')) query={"Data.Randomisation_Number": {"$ne" : ""}};
+    if(JSON.stringify(m.task_name).includes('Treatment Visit')) query={"Data.Randomisation_Number": {"$ne" : ""}};
+    //console.log(query)
     var participant_rec={};
-    var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
-    var output_data=[];
+    var req={cmd:"export",table:m.Table,I1:m.I1,query:query,search:$('#keyword__ID').val()}
     open_model__ID();
     $vm.request(req,function(N,i,txt){
-        //console.log(i+"/"+N);
+        console.log("part: "+i+"/"+N);
         $('#msg__ID').text((100*i/N).toFixed(0)+"%");
         if(i==-1){
-            req_count++;
             var len=txt.length;
-            var data_rec="["+txt.substring(5,len-9)+"]";
-            participant_rec=JSON.parse(data_rec);
-            console.log(JSON.stringify(participant_rec))
-        }
-    });
-    var task_rec={};
-    m.Table=tabledata;
-    var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
-    $vm.request(req,function(N,i,txt){
-        //console.log(i+"/"+N);
-        $('#msg__ID').text((100*i/N).toFixed(0)+"%");
-        if(i==-1){
-            req_count++;
-            var len=txt.length;
-            var data_rec="["+txt.substring(5,len-9)+"]";
-            task_rec=JSON.parse(data_rec);
-            console.log(JSON.stringify(task_rec))
-        }
-    });
-    check();
-    function check(){
-        if (req_count<2){
-            setTimeout(function(){
-                //console.log(req_count)
-                check();
-            },500);
-        }
-        else{
-            combine_records()
-        }
-    }
-    var combine_records=function(){
-        var fields_ex=m.fields.replace("_Participant_ID","Participant_uid")
-        var export_fields=fields_ex.split(',');
-        export_fields=export_fields.slice(5,export_fields.length-3);
-        //Participants export fields Specified in module-list
-        var participant_export=$vm.module_list['participants-data'].participant_export;
-        if(participant_export==undefined){
-            participant_export="ID,Randomisation_Number,Subject_ID,Screening_Number,Subject_Initials,Gender,DOB"
-        }
-        var participant_fields=participant_export.split(',');
-        //Create empty object with all export fields. Participant and Task
-        var empty_item={}
-        for(var i=0;i<participant_fields.length;i++){
-            empty_item[participant_fields[i]]="";
-        }
-        for(var i=0;i<export_fields.length;i++){
-            empty_item[export_fields[i]]="";
-        }
-        var empty_item2={};
-        //Loop through all participants and fill in task fields linked to them.
-        //Put all in output_data object
-        for(var ii=0;ii<participant_rec.length;ii++){
-            empty_item2={};
-            for (var kk=0;kk<task_rec.length;kk++){
-                if(task_rec[kk].Participant_uid==participant_rec[ii].ID){
-                    //Get a new empty object
-                    empty_item2=(JSON.parse(JSON.stringify(empty_item)));
-                    for( var ll=0;ll<participant_fields.length;ll++){
-                        if(participant_rec[ii].hasOwnProperty(participant_fields[ll])){
-                            empty_item2[participant_fields[ll]]=participant_rec[ii][participant_fields[ll]];
-                        }
-                    }
-                    for( var ll=0;ll<export_fields.length;ll++){
-                        if(task_rec[kk].hasOwnProperty(export_fields[ll])){
-                            empty_item2[export_fields[ll]]=task_rec[kk][export_fields[ll]];
-                        }
-                    }
-                    output_data.push(empty_item2);
-                    break;
-                }
-                else if(kk==task_rec.length-1){
-                    empty_item2={};
-                    for( var ll=0;ll<participant_fields.length;ll++){
-                        if(participant_rec[ii].hasOwnProperty(participant_fields[ll])){
-                            empty_item2[participant_fields[ll]]=participant_rec[ii][participant_fields[ll]];
-                        }
-                    }
-                    for( var ll=0;ll<export_fields.length;ll++){
-                        empty_item2[export_fields[ll]]="";
-                    }
-                    output_data.push(empty_item2)
-                }
+            n_txt="["+txt.substring(5,len-9)+"]";
+            participant_rec=JSON.parse(n_txt);
+            for( var jj=0;jj<participant_rec.length;jj++){
+                delete participant_rec[jj].List;
+                delete participant_rec[jj]['_Password'];
+                delete participant_rec[jj]['_Progress'];
             }
+            var fields_ex=fields.replace("_Participant_ID","ID");
+            var export_labels=fields_ex.split(',');
+            export_labels=export_labels.slice(0,export_labels.length-6)
+            for (var kk=0;kk<export_labels.length;kk++){
+                for (var k=0;k<participant_rec.length;k++){
+                    if(participant_rec[k].hasOwnProperty(export_labels[kk])){}  
+                    else {participant_rec[k][export_labels[kk]]='';}   
+                }                     
+            }
+            //$vm.download_csv(m.Table+".csv",o);
+            close_model__ID();
+            m.Table=tabledata;
+            var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
+            open_model__ID();
+            $vm.request(req,function(N,i,txt){
+                console.log("B"+i+"/"+N);
+                $('#msg__ID').text((100*i/N).toFixed(0)+"%");
+                if(i==-1){
+                    console.log("Data Record")
+                    var len=txt.length;
+                    //console.log(txt);
+                    var data_rec="["+txt.substring(5,len-9)+"]";
+                    var o=JSON.parse(data_rec);
+                    //console.log(o)
+                    var fields_ex=m.fields.replace("_Participant_ID","Participant_uid")
+                    var export_fields=fields_ex.split(',');
+                    //Order by m.fields
+                    export_fields=export_fields.slice(3,export_fields.length-4);
+                    //Add empty for non existant fields in record
+                    for (var k=0;k<o.length;k++){
+                        for (var kk=0;kk<export_fields.length;kk++){
+                            if(o[k].hasOwnProperty(export_fields[kk])){}  
+                            else {o[k][export_fields[kk]]='';}   
+                        }                     
+                    }
+                    //console.log(JSON.stringify(o));   
+                    var oo=JSON.parse(JSON.stringify(o,export_fields));
+                    //console.log(oo);
+                    //Create an empty item so download.csv will create all headings
+                    var empty_item={}
+                    for(var i=0;i<export_fields.length;i++){
+                        empty_item[export_fields[i]]="";
+                    }
+                    var empty_item2={};
+                    var output_data=[];
+                    var participant_out=[];
+                    for(var i=0;i<participant_rec.length;i++){
+                        //console.log("PPP "+participant_rec[i].ID)
+                        for (var k=0;k<oo.length;k++){
+                            if(oo[k].Participant_uid==participant_rec[i].ID){
+                                //if a particpant with a record for this form add to output
+                                var aa=JSON.stringify(oo[k]);
+                                var bb=JSON.stringify(participant_rec[i])
+                                var cc=bb+aa
+                                cc=cc.replace('}{',',')
+                                cc=JSON.parse(cc)
+                                output_data.push(cc);
+                                break;
+                            }
+                            //No record found add an empty record for participant
+                            if(k==oo.length-1) { 
+                                empty_item2=(JSON.parse(JSON.stringify(empty_item))); 
+                                empty_item2.Participant_uid=(participant_rec[i].ID).toString();
+                                var bb=JSON.stringify(participant_rec[i])
+                                var aa=JSON.stringify(empty_item2);
+                                var cc=bb+aa
+                                cc=cc.replace('}{',',')
+                                cc=JSON.parse(cc)
+                                output_data.push(cc);
+                            };
+                        }
+                    }
+                    //console.log(JSON.stringify(output_data))
+                    var tmp=JSON.stringify(output_data).replace(/Participant_uid/g,"Participant ID").replace(/"off"/g,'"N"').replace(/"on"/g,'"Y"');
+                    output_data=JSON.parse(tmp);
+                    for( var jj=0;jj<output_data.length;jj++){
+                        delete output_data[jj]['Participant ID'];
+                        delete output_data[jj]['Participant'];
+                    }
+                    //output_data.concat(participant_out)
+                    //console.log(output_data)
+                    //console.log(JSON.stringify(participant_out))
+                    $vm.download_csv(m.Table+".csv",output_data);
+                    close_model__ID();
+                }
+            });
         }
-        //console.log(output_data)
-        var tmp=JSON.stringify(output_data).replace(/ID/g,"Participant ID").replace(/"off"/g,'"N"').replace(/"on"/g,'"Y"');
-        output_data=JSON.parse(tmp);
-        //console.log(JSON.stringify(output_data));
-        $vm.download_csv(m.Table+".csv",output_data);
-    }
-    close_model__ID();
+    });
 }
 
 //-------------------------------

@@ -7,22 +7,22 @@
         	<span id=elapsed__ID style='float:right'></span>
 		</div>
         <section id=panel__ID>
-			<h3>Enrolled</h3>
+			<h3>Pre - Screened</h3>
 			<span>Select the fields to export by clicking on each form links.</span><br>
-			<div class='nav__ID'>
+        	<div class='nav__ID'>
         		<ul>
 					<li title=""><a href=?/participant-data>Participants</a></li>
-					<p id=participant-data__ID class="small font-italic text-muted mt-1">Fixed - All fields</p>
+					<p id=participant-datas__ID class="small font-italic text-muted mt-1">Fixed - All fields</p>
 				</ul>
-        	VmInclude:__CURRENT_PATH__/panel-tasks-export-enrolled.html
+        	VmInclude:__CURRENT_PATH__/panel-tasks-export-pre-screened.html
         </section>
 	</div>
 	VmInclude:__COMPONENT__/m/model.01.html
     <script>
         function F__ID(){
 			//-------------------------------------
-			var output_file_name="Reshaped Enrolled Export";
-			var enrolled_only=true;
+			var output_file_name="Reshaped Screened Export";
+			var enrolled_only=false;
 			var screened_only=false;
 			VmInclude: __CURRENT_PATH__/export.js
 			//-------------------------------------

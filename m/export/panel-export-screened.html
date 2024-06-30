@@ -11,8 +11,8 @@
 			<span>Select the fields to export by clicking on each form links.</span><br>
         	<div class='nav__ID'>
         		<ul>
-					<li title="Manage participant - Add new. Data entry for single participant. Setup questionnaires."><a href=?/participants-data>Participants</a></li>
-					<p id=participant-data__ID class="small font-italic text-muted mt-1">Latest entry shown</p>
+					<li title=""><a href=?/participant-data>Participants</a></li>
+					<p id=participant-datas__ID class="small font-italic text-muted mt-1">Fixed - All fields</p>
 				</ul>
         	VmInclude:__CURRENT_PATH__/panel-tasks-export-screened.html
         </section>
@@ -21,8 +21,9 @@
     <script>
         function F__ID(){
 			//-------------------------------------
-			var output_file_name="SPARDAC Screened Export";
+			var output_file_name="Reshaped Screened Export";
 			var enrolled_only=false;
+			var screened_only=true;
 			VmInclude: __CURRENT_PATH__/export.js
 			//-------------------------------------
 		}

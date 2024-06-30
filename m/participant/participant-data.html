@@ -10,6 +10,7 @@
             $('#title__ID').text('Participants');            
             //-------------------------------------
             var fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,age,months,_Tx,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
+            //var export_fields="_Participant_ID,Site,Code,Pre_Screening_Number,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB,age,months";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by";
             //-------------------------------------
             m.load=function(){
@@ -169,29 +170,34 @@
             }
             //----------------------------
             m.export_records=function(){
-                tabledata=m.Table;
-                m.Table=$vm.module_list['participants-data'].Table;
+                var tabledata=m.Table;
+                m.Table=$vm.module_list['participant-data'].Table;
                 var participant_rec={};
-                var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
+                var req={cmd:"export",table:m.Table,I1:m.I1,sort:{_id:1},search:$('#keyword__ID').val()}
                 open_model__ID();
                 $vm.request(req,function(N,i,txt){
                     //console.log(i+"/"+N);
                     $('#msg__ID').text((100*i/N).toFixed(0)+"%");
                     if(i==-1){
                         var len=txt.length;
+                        //console.log(txt)
                         n_txt="["+txt.substring(5,len-9)+"]";
                         //console.log(n_txt)
                         participant_rec=JSON.parse(n_txt);
-                        //Order by m.fields
-                        var fields_ex=m.fields.replace("_Participant_ID","ID").replace("Randomisation_Number|I1","Randomisation_Number")
-                        var export_fields=fields_ex.split(',');
-                        //console.log(export_fields);
-                        //console.log(participant_rec);
-                        export_fields=export_fields.slice(1,export_fields.length-3);
-                        var oo=JSON.parse(JSON.stringify(participant_rec,export_fields));
+                        var fields_ex=fields.replace("_Participant_ID","ID"); //m.fields.replace("_Participant_ID","ID").replace("Randomisation_Number|I1","Randomisation_Number")
+                        var export_labels=fields_ex.split(',');
+                        //console.log(JSON.stringify(export_labels))
+                        export_labels=export_labels.slice(0,export_labels.length-6)
+                        //console.log(JSON.stringify(export_labels))
+                        for (var k=0;k<participant_rec.length;k++){
+                            for (var kk=0;kk<export_labels.length;kk++){
+                                if(participant_rec[k].hasOwnProperty(export_labels[kk])){}  
+                                else {participant_rec[k][export_labels[kk]]='';}   
+                            }                     
+                        }
+                        var oo=JSON.parse(JSON.stringify(participant_rec,export_labels));
                         var tmp=JSON.stringify(oo).replace(/\bID\b/g,"Participant ID")
                         oo=JSON.parse(tmp);
-                        //console.log(JSON.stringify(oo))
                         $vm.download_csv(m.Table+".csv",oo);
                         close_model__ID();
                     }

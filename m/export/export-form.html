@@ -16,14 +16,18 @@
 									</label>
 								</div>
 								<div class="col-sm-12 col-lg-6">
-									<label class='' style="width:100%"><span class=''>Export Fields List</span>
+									<label class='' style="width:100%"><span class=''>Export Fields List (Delete fields not needed)</span>
 										<textarea  style="height:300px" type=text class=form-control name=Export_Fields></textarea>
 									</label>
 									<button type="button" style='cursor: pointer;' id=load_all__ID>Load all field names</button>
 								</div>
 							</div>
-							<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
-							<button type="submit" id="delete__ID" class="btn btn-primary btn-lg">Delete</button>
+							<div class="box" style="text-align:right">
+								<div class="box-item">
+									<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+									<button type="submit" id="delete__ID" class="btn btn-primary btn-lg">Delete</button>
+								</div>
+							</div>	
 						</div>
 					</form>
 				</div>
@@ -40,11 +44,13 @@
 			m.load = function () {
 				load();
 				$('#delete__ID').hide();
-				m.Table=$vm.module_list['export-form'].Table;
+				//console.log(JSON.stringify(m))
+				var tbname=m.input.tbl;
 				if(m.input!=undefined){
-					$('#title__ID').html(m.input.name)
-					$('#F__ID input[name=Table_name').val($vm.module_list[m.input.link].Table)
-					var tbname=$vm.module_list[m.input.link].Table;
+					$('#title__ID').html(m.input.title)
+					$('#F__ID input[name=Table_name').val(tbname)
+					//var tbname=$vm.module_list[m.input.link].Table;
+					//console.log(tbname)
 					m.query={'Data.Table_name':tbname}
 					m.request_data()
 				}
@@ -66,6 +72,10 @@
 			}
 			//-------------------------------------
 			$('#load_all__ID').on('click',function(){
+				$('#F__ID textarea[name=Export_Fields').val(m.input.ex_flds);
+			});
+			//-------------------------------------			
+/*			$('#load_all__ID').on('click',function(){
 				var table=$vm.module_list[m.input.link].Table;
 				$vm.request({cmd:'find',table:table,sort:{UID:-1},limit:1},function(res){
 					if(res.status=='np'){
@@ -82,7 +92,7 @@
 					}		
 				});
 			});
-			//-------------------------------------			
+*/			//-------------------------------------			
 			m.before_submit = function (data, index) {
 			}
 			//-------------------------------------
@@ -94,5 +104,5 @@
 		}
 
 		VmInclude:__CURRENT_PATH__/../../library/wappsystem-form.css
-	</style>
+</style>
 </div>

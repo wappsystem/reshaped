@@ -1,15 +1,17 @@
 (function(){
     var modules={
+        "panel-export-reshaped":    	    {url:"$H/m/panel-export.html"},
         "panel-main-reshaped":    	        {url:"$H/m/panel-main.html",router:1},
         "panel-child-reshaped":              {url:"$H/m/panel-child.html"},
         "panel-setup-reshaped":              {url:"$H/m/panel-setup.html"},
         "panel-library-reshaped":    		{url:"$H/m/panel-library.html",router:1},
+        "panel-export-pre-screening-reshaped":   {url:"$H/m/export/panel-export-pre-screened.html",router:1},
         "panel-export-screening-reshaped":   {url:"$H/m/export/panel-export-screened.html",router:1},
         "panel-export-enrolled-reshaped":    {url:"$H/m/export/panel-export-enrolled.html",router:1},
         "export-data":		                {url:"$H/m/export/export-data.html",Table:"export-reshaped",form_module:"export-form"},
         "export-form":		                {url:"$H/m/export/export-form.html",Table:"export-reshaped"},
         
-        "participants-data":   		        {url:"$H/m/participant/participant-data.html",Table:"participant-reshaped",form_module:"participant-form",
+        "participant-data":   		        {url:"$H/m/participant/participant-data.html",Table:"participant-reshaped",form_module:"participant-form",
                                                 child_panel:"panel-child-reshaped",
                                                 questionnaire_setup:"online-questionnaire-setup-reshaped",
                                                 online_questionnaire:"online-questionnaire-app-reshaped",
@@ -17,6 +19,7 @@
                                                 participant_export:"ID,Subject_ID,Screening_Number,Randomisation_Number,Subject_Initials,Gender,DOB",
                                                 Table2:"site-permission-reshaped",
                                                 Table3:"site-reshaped",                                                
+                                                task_name:"Participant"                                                
                                             },
        "participant-form":   		        {url:"$H/m/participant/participant-form.html",Table:"participant-reshaped",Table2:"site-permission-reshaped",Table3:"site-reshaped"},
 
