@@ -65,8 +65,12 @@
         "withdrawal-form-reshaped":		{url:"$H/m/library/withdrawal-form.html",Table:"withdrawal-reshaped",task_name:"Unscheduled - Withdrawal"},
         "pre-withdrawal-data-reshaped":		{url:"$H/m/library/pre-withdrawal-data.html",Table:"pre-withdrawal-reshaped",Table2:"site-permission-reshaped",form_module:"pre-withdrawal-form-reshaped",task_name:"Unscheduled - Pre Study Withdrawal"},
         "pre-withdrawal-form-reshaped":		{url:"$H/m/library/pre-withdrawal-form.html",Table:"pre-withdrawal-reshaped",task_name:"Unscheduled - Pre Study Withdrawal"},
+        "stop-treatment-data-reshaped":		{url:"$H/m/library/stop-treatment-data.html",Table:"stop-treatment-reshaped",form_module:"stop-treatment-form-reshaped",task_name:"Unscheduled - Stop Treatment"},
+        "stop-treatment-form-reshaped":		{url:"$H/m/library/stop-treatment-form.html",Table:"stop-treatment-reshaped",task_name:"Unscheduled - Stop Treatment"},
         "concom-medication-data-reshaped":		{url:"$H/m/library/concom-medication-data.html",Table:"concom-medication-reshaped",form_module:"concom-medication-form-reshaped",task_name:"Unscheduled - Concomitant Medication"},
         "concom-medication-form-reshaped":		{url:"$H/m/library/concom-medication-form.html",Table:"concom-medication-reshaped",task_name:"Unscheduled - Concomitant Medication"},
+        "entry-checkin-call-data-reshaped":		{url:"$H/m/library/entry-checkin-call-data.html",Table:"entry-checkin-call-reshaped",form_module:"entry-checkin-call-form-reshaped",task_name:"Unscheduled - Entry check in call"},
+        "entry-checkin-call-form-reshaped":		{url:"$H/m/library/entry-checkin-call-form.html",Table:"entry-checkin-call-reshaped",task_name:"Unscheduled - Entry check in call"},
         "file-notes-data-reshaped":		{url:"$H/m/library/file-notes-data.html",Table:"file-notes-reshaped",form_module:"file-notes-form-reshaped",task_name:"Unscheduled - File Notes"},
         "file-notes-form-reshaped":		{url:"$H/m/library/file-notes-form.html",Table:"file-notes-reshaped",task_name:"Unscheduled - File Notes"},
         "consent-ps-data-reshaped":		        {url:"$H/m/library/consent-date-data.html",Table:"consent-ps-reshaped",form_module:"consent-ps-form-reshaped",task_name:"Pre-screening - Date of Sign Consent"},
@@ -156,6 +160,8 @@
         "watchpat-6-form-reshaped":                {url:"$H/m/library/watchpat-form.html",Table:"watchpat-6-reshaped",task_name:"6 Months - WatchPat"},
         "biomedical-measurements-6-data-reshaped":                {url:"$H/m/library/biomedical-measurements-6-data.html",Table:"biomedical-measurements-6-reshaped",form_module:"biomedical-measurements-6-form-reshaped",task_name:"6 Months - Biomedical Measurements"},
         "biomedical-measurements-6-form-reshaped":                {url:"$H/m/library/biomedical-measurements-6-form.html",Table:"biomedical-measurements-6-reshaped",task_name:"6 Months  - Biomedical Measurements"},
+        "entry-checkin-call-6-data-reshaped":		{url:"$H/m/library/entry-checkin-call-data.html",Table:"entry-checkin-call-6-reshaped",form_module:"entry-checkin-call-6-form-reshaped",task_name:"6 Months - Entry check in call"},
+        "entry-checkin-call-6-form-reshaped":		{url:"$H/m/library/entry-checkin-call-form.html",Table:"entry-checkin-call-6-reshaped",task_name:"6 Months - Entry check in call"},
         "ravlt-7-6-data-reshaped":                {url:"$H/m/library/ravlt-data.html",Table:"ravlt-6-reshaped",form_module:"ravlt-7-6-form-reshaped",task_name:"6 Months - RAVLT Trials"},
         "ravlt-7-6-form-reshaped":                {url:"$H/m/library/ravlt-form.html",Table:"ravlt-6-reshaped",task_name:"6 Months - RAVLT Trials"},
         "trail-part-b-6-data-reshaped":                {url:"$H/m/library/trail-part-b-data.html",Table:"trail-part-b-6-reshaped",form_module:"trail-part-b-6-form-reshaped",task_name:"6 Months - Trail Making Test Part A and B"},
@@ -230,6 +236,7 @@
         "treatment-1-form-reshaped":                {url:"$H/m/library/treatment-1-form.html",Table:"treatment-1-reshaped",task_name:"Treatment Visit - First Treatment Visit"},
         "treatment-fu-data-reshaped":                {url:"$H/m/library/treatment-fu-data.html",Table:"treatment-fu-reshaped",form_module:"treatment-fu-form-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
         "treatment-fu-form-reshaped":                {url:"$H/m/library/treatment-fu-form.html",Table:"treatment-fu-reshaped",task_name:"Treatment Visit - Treatment visit follow-up"},
+
         "progress-report":                {url:"$H/m/export/progress-report.html",Table:'date-ps-reshaped',Table2:'date-s-reshaped',Table3:'date-bl-reshaped',Table4:'date-6-reshaped',Table5:'date-24-reshaped',router:1},
 
     }
