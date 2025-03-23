@@ -32,14 +32,14 @@
         <!----------------------------------------------->
         <script app code>
             //---------------------------------------------
-            $VmAPI={};$vm.ver=[0.06,0.04]; $vm['jquery-ui-min-js']=1;
+            $VmAPI={};$vm.ver=[0.07,0.04]; $vm['jquery-ui-min-js']=1;
             $vm.flexindex=new FlexSearch({  doc: {id: "id",field: ["title","contents"]}    });
             $vm.hosting_path=window.location.href.substring(0, window.location.href.split('?')[0].lastIndexOf('/'));
             //---------------------------------------------
             $vm.module_list={
                 header:         {url:$vm.hosting_path+"/0-oq/header.html"},
                 footer:         {url:$vm.hosting_path+"/0-oq/footer.html"},
-                home:           {url:$vm.hosting_path+"/m/oq-login.html",Table:"neurovosa-participant",router:1,questionnaire_panel:"online-questionnaire-panel"},
+                home:           {url:$vm.hosting_path+"/m/oq-login.html",Table:"participant-reshaped",router:1,questionnaire_panel:"online-questionnaire-panel"},
                 init_and_auth:  {url:$vm.hosting_path+"/0/system/init-and-auth.html"},
                 vmext:          {url:$vm.hosting_path+"/0/system/vm-extension.html"},
             }
@@ -67,12 +67,12 @@
             $vm.app_id="wapp";
             $vm.api_default= $vm.app_id;
             $vm.api_addresses={
-                "wapp":"https://api-neurovosa.wappsystem.com.au"
+                "wapp":"https://api-reshaped.wappsystem.com.au"
             }
-            $vm.api_address='https://api-neurovosa.wappsystem.com.au';
+            $vm.api_address='https://api-reshaped.wappsystem.com.au';
             if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost'){ 
                 $vm.localhost=true;
-                $vm.api_address='http://3.27.244.6';
+                $vm.api_address='http://52.63.91.172';
             }
             $vm._id=0;$vm.reload='';$vm.debug_message=true;
             //---------------------------------------------
