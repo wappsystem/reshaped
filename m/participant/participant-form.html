@@ -378,7 +378,7 @@
                     var odi;
                     var query={'Data.Participant_uid':$('#record__ID').val()}
                     jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list['demographics-s-data-reshaped'].Table,query:query,linit:1},function(res){
+                    $vm.request({cmd:"find",table:$vm.module_list['demographics-s-data-reshaped'].Table,query:query,limit:1},function(res){
                         if(res.permission==false){
                             alert("No permission");
                             return;
@@ -390,7 +390,7 @@
                             mmse=res.result[0].Data.mmse_total_score
                         }
                     })
-                    $vm.request({cmd:"find",table:$vm.module_list['wristox-ps-data-reshaped'].Table,query:query,linit:1},function(res){
+                    $vm.request({cmd:"find",table:$vm.module_list['wristox-ps-data-reshaped'].Table,query:query,limit:1},function(res){
                         if(res.permission==false){
                             alert("No permission");
                             return;

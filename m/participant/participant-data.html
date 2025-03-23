@@ -14,6 +14,7 @@
             m.fields="_Form,"+fields+",Submit_date,Submitted_by";
             //-------------------------------------
             m.load=function(){
+                console.log("user: "+$vm.user_name)
                 var site_list;
                 var query='[{"Data.Site":"x"}]';
                 var query_user={"Data.user_name":$vm.user_name}

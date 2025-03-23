@@ -25,6 +25,7 @@
 
         "online-questionnaire-setup-reshaped": {url:"$H/m/oq-setup.html",Table:"participant-reshaped"},
         "online-questionnaire-app-reshaped":   {url:"$H/oq.html"},
+        "online-questionnaire-panel":       {url:"$H/m/oq-panel.html"},
 
         "notes-data":  	                    {url:"$H/m/library/notes-data.html",Table:"notes-reshaped",form_module:"notes-form",router:1},
         "notes-form":  	                    {url:"$H/m/library/notes-form.html",Table:"notes-reshaped"},
