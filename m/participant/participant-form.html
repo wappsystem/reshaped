@@ -439,12 +439,13 @@
 			//-------------------------------------
             m.after_insert = function (data,res) {
                 //console.log(JSON.stringify(res))
-                var rid=res.nr._id
+                var rid=res.result.nr._id
+                //rid=res.result.insertedId;
                 if(data.Pre_Screening_Number==''){
-                    //var uid=res.nr.UID;
-                    var uid=res.nr.UID;
+                    //var uid=res.result.nr.UID;
+                    var uid=res.result.nr.UID;
                     var age_group='_65';
-                    if(parseInt(res.nr.Data.age) < 65) age_group='_50'
+                    if(parseInt(res.result.nr.Data.age) < 65) age_group='_50'
                     data.Pre_Screening_Number= 'P'+data.Code+age_group+'_'+uid.toString().padStart(3, "0")
                     data.Code=data.Code+age_group;
                     $vm.request({cmd:'update',id:rid,table:m.Table,data:data},function(res){
